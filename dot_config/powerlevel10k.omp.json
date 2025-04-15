@@ -26,6 +26,19 @@
       "alignment": "left",
       "segments": [
         {
+          "type": "text",
+          "style": "diamond",
+          "leading_diamond": "",
+          "trailing_diamond": " ",
+          "foreground": "#ffffff",
+          "background": "#0577BD",
+          "template": ">_",
+          "properties": {
+            "prefix": "",
+            "postfix": ""
+          }
+        },
+        {
           "properties": {
             "style": "full"
           },
