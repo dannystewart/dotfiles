@@ -115,6 +115,13 @@ if [[ -f "$HOME/Developer/iri/iri-powershell/Devices/Get-DeviceDetails.ps1" ]]; 
   }
 fi
 
+# Function to run Enable-PIM in PowerShell
+if [[ -f "$HOME/Developer/iri/iri-powershell/Azure/Enable-PIM.ps1" ]]; then
+  function Enable-PIM() {
+      pwsh -File "$HOME/Developer/iri/iri-powershell/Azure/Enable-PIM.ps1" "$@"
+  }
+fi
+
 # clear "Open With" menu and reset LaunchServices database
 # info: https://ss64.com/osx/lsregister.html and https://eclecticlight.co/2019/03/25/lsregister-a-valuable-undocumented-command-for-launchservices/
 [ -d "/System/Library" ] && alias lscheck='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -gc -R -v -apps u'
