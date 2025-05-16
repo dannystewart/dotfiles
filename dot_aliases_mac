@@ -111,16 +111,35 @@ alias touchid="sudo su root -c '/opt/homebrew/bin/gsed -i \"2iauth       suffici
 # Function to run Get-DeviceDetails in PowerShell
 if [[ -f "$HOME/Developer/iri/iri-powershell/Devices/Get-DeviceDetails.ps1" ]]; then
   function Get-DeviceDetails() {
-      pwsh -File "$HOME/Developer/iri/iri-powershell/Devices/Get-DeviceDetails.ps1" "$@"
+    pwsh -File "$HOME/Developer/iri/iri-powershell/Devices/Get-DeviceDetails.ps1" "$@"
   }
 fi
 
 # Function to run Enable-PIM in PowerShell
 if [[ -f "$HOME/Developer/iri/iri-powershell/Azure/Enable-PIM.ps1" ]]; then
   function Enable-PIM() {
-      pwsh -File "$HOME/Developer/iri/iri-powershell/Azure/Enable-PIM.ps1" "$@"
+    pwsh -File "$HOME/Developer/iri/iri-powershell/Azure/Enable-PIM.ps1" "$@"
   }
 fi
+
+# Function to revoke user sessions via Microsoft Graph API
+function Revoke-Sessions() {
+  GREEN='\033[0;32m'
+  NC='\033[0m'
+
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: Revoke-Sessions <user@iri.org>"
+    return 1
+  fi
+
+  local user_upn="$1"
+
+  pwsh -Command "
+        Connect-MgGraph -NoWelcome -Scopes 'User.ReadWrite.All' -ErrorAction SilentlyContinue
+        Invoke-MgGraphRequest -Method POST -Uri 'https://graph.microsoft.com/v1.0/users/$user_upn/revokeSignInSessions'
+    "
+  echo -e "${GREEN}Sessions revoked for $user_upn${NC}"
+}
 
 # clear "Open With" menu and reset LaunchServices database
 # info: https://ss64.com/osx/lsregister.html and https://eclecticlight.co/2019/03/25/lsregister-a-valuable-undocumented-command-for-launchservices/
@@ -138,17 +157,21 @@ fi
 
 # Get upcoming calendar events (argument for number of days, defaults to one week)
 calevents() {
-    days=${1:-7}
-    full_days=$((days - 1))
-    if [ $days -eq 1 ]; then
-        day_word="day"
-    else
-        day_word="days"
-    fi
+  days=${1:-7}
+  full_days=$((days - 1))
+  if [ $days -eq 1 ]; then
+    day_word="day"
+  else
+    day_word="days"
+  fi
 
-    (echo -n "Today is $(date "+%A, %B %-d, %Y"). Events for the next $days $day_word:"; echo; icalbuddy -nc -ic "Personal,Home,Calendar" -sd -npn -nrd -b "" -po "datetime,title" -eep "notes,attendees,location,url,calendar" eventsToday+$full_days) |
-      sed -e 's/^------------------------$//' -e 's/^    //' |
-      awk '
+  (
+    echo -n "Today is $(date "+%A, %B %-d, %Y"). Events for the next $days $day_word:"
+    echo
+    icalbuddy -nc -ic "Personal,Home,Calendar" -sd -npn -nrd -b "" -po "datetime,title" -eep "notes,attendees,location,url,calendar" eventsToday+$full_days
+  ) |
+    sed -e 's/^------------------------$//' -e 's/^    //' |
+    awk '
         BEGIN {
           skip_patterns[++s] = "(Sr|Senior) Staff"
           skip_patterns[++s] = "Coffee Time"
