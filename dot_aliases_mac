@@ -115,10 +115,16 @@ if [[ -f "$HOME/Developer/iri/iri-powershell/Devices/Get-DeviceDetails.ps1" ]]; 
   }
 fi
 
-# Function to run Enable-PIM in PowerShell
+# Functions to run Enable-PIM and Set-PIM in PowerShell
 if [[ -f "$HOME/Developer/iri/iri-powershell/Azure/Enable-PIM.ps1" ]]; then
   function Enable-PIM() {
     pwsh -File "$HOME/Developer/iri/iri-powershell/Azure/Enable-PIM.ps1" "$@"
+  }
+fi
+
+if [[ -f "$HOME/Developer/iri/iri-powershell/Azure/Set-PIM.ps1" ]]; then
+  function Set-PIM() {
+    pwsh -File "$HOME/Developer/iri/iri-powershell/Azure/Set-PIM.ps1" "$@"
   }
 fi
 
