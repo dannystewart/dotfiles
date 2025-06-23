@@ -1,6 +1,9 @@
 #!/bin/bash
 # shellcheck disable=SC1090,SC1091
 
+# Environment variable to make Docker builds display output again
+export BUILDKIT_PROGRESS=plain
+
 # Alias for devpi
 alias devpi="devpi --clientdir ~/.devpi"
 
