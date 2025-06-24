@@ -3,6 +3,11 @@ function fish_prompt
     set -l normal (set_color normal)
     set -l usercolor (set_color $fish_color_user)
 
+    # Add a blank line for visual separation (except for the very first prompt)
+    if test $CMD_DURATION
+        echo
+    end
+
     # Git prompt
     set -g __fish_git_prompt_showdirtystate 1
     set -g __fish_git_prompt_showuntrackedfiles 1
@@ -32,27 +37,8 @@ function fish_prompt
     string match -qi "*.utf-8" -- $LANG $LC_CTYPE $LC_ALL; or set delim ">"
     fish_is_root_user; and set delim "#"
 
-    # Desaturated colors
+    # Path
     set -l cwd (set_color $fish_color_cwd)
-    if command -sq cksum
-        set -l shas (pwd -P | cksum | string split -f1 ' ' | math --base=hex | string sub -s 3 | string pad -c 0 -w 6 | string match -ra ..)
-        set -l col 0x$shas[1..3]
-
-        # Desaturation magic: reduce the intensity by mixing with gray
-        set col[1] (math --base=hex "($col[1] + 128) / 2") # Mix with 128 (mid-gray)
-        set col[2] (math --base=hex "($col[2] + 128) / 2")
-        set col[3] (math --base=hex "($col[3] + 128) / 2")
-
-        # Still ensure readability
-        while test (math 0.2126 x $col[1] + 0.7152 x $col[2] + 0.0722 x $col[3]) -lt 120
-            set col[1] (math --base=hex "min(255, $col[1] + 30)")
-            set col[2] (math --base=hex "min(255, $col[2] + 30)")
-            set col[3] (math --base=hex "min(255, $col[3] + 30)")
-        end
-
-        set -l col (string replace 0x '' $col | string pad -c 0 -w 2 | string join "")
-        set cwd (set_color $col)
-    end
 
     # Prompt host
     if not set -q prompt_host
