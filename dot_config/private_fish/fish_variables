@@ -42,3 +42,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dbrblack
 SETUVAR fish_pager_color_selected_completion:white\x1e\x2d\x2dbold
 SETUVAR fish_pager_color_selected_description:white
 SETUVAR fish_pager_color_selected_prefix:white\x1e\x2d\x2dbold
+SETUVAR fish_user_paths:/sbin\x1e/System/Cryptexes/App/usr/bin\x1e/Library/Apple/usr/bin\x1e/usr/libexec\x1e/usr/local/bin\x1e/Users/danny/\x2elocal/bin\x1e/Users/danny/\x2epyenv/shims\x1e/Users/danny/\x2ecargo/bin\x1e/opt/homebrew/opt/openjdk/bin
