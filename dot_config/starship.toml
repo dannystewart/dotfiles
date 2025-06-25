@@ -60,7 +60,7 @@ symbol_threshold = 1
 disabled = false
 format = "[ $time]($style) "
 time_format = "%r"
-style = "dimmed green"
+style = "green"
 use_12hr = true
 
 [directory]
