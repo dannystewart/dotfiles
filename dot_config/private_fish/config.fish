@@ -32,6 +32,9 @@ if status is-interactive
 
     # Bind Tab to complete-and-search
     bind \t complete-and-search
+
+    # Warp terminal integration (auto-Warpify subshells)
+    printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish", "uname": "'$(uname)'" }}�'
 end
 
 starship init fish | source
