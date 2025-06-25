@@ -17,7 +17,7 @@ $golang\
 $java\
 $ruby\
 $php\
-$hostname$cmd_duration$jobs$time\
+$username$hostname$cmd_duration$jobs$time\
 $line_break\
 $character """
 
@@ -44,7 +44,7 @@ stashed = '[*$count](green)'
 [cmd_duration]
 min_time = 500
 format = "[$duration]($style) "
-style = "yellow"
+style = "cyan"
 
 [character]
 success_symbol = "[❯](green)"
@@ -69,10 +69,16 @@ truncation_length = 5
 truncate_to_repo = false
 truncation_symbol = "…/"
 
+[username]
+style_user = "dimmed yellow"
+style_root = "red bold"
+format = "[$user]($style)"
+disabled = false
+
 [hostname]
 ssh_only = true
 ssh_symbol = " "
-format = "[$user@$hostname]($style) "
+format = "[@$hostname]($style) "
 style = "dimmed yellow"
 disabled = false
 
