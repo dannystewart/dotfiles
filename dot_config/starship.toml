@@ -44,7 +44,7 @@ stashed = '[*$count](green)'
 [cmd_duration]
 min_time = 500
 format = "[$duration]($style) "
-style = "yellow"
+style = "dimmed yellow"
 
 [character]
 success_symbol = "[❯](green)"
