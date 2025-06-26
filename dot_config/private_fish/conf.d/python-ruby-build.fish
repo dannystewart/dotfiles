@@ -30,7 +30,7 @@ function python_build_mode
     set -l mode_file "$HOME/.python_build_mode"
     set -l tcltk_libs_option "--with-tcltk-libs=-L$BREW_TCLTK/lib -ltcl8.6 -ltk8.6"
 
-    if test "$argv[1]" = "optimized"
+    if test "$argv[1]" = optimized
         set -gx LDFLAGS "$LDFLAGS -L$BREW_PREFIX/opt/libb2/lib"
         set -gx CPPFLAGS "$CPPFLAGS -I$BREW_PREFIX/opt/libb2/include"
         set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --with-openssl=$OPENSSL_ROOT_DIR --with-tcltk-includes=-I$BREW_TCLTK/include '$tcltk_libs_option' --with-readline=edit"
@@ -48,7 +48,7 @@ function python_build_mode
         end
     end
 
-    echo "$argv[1]" > "$mode_file"
+    echo "$argv[1]" >"$mode_file"
 end
 
 # Initialize with saved mode or default to standard

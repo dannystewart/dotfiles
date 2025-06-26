@@ -34,7 +34,8 @@ if command -v git &>/dev/null
 end
 
 # Server-specific abbreviations
-switch (hostname)
+set -l current_hostname (hostname)
+switch $current_hostname
     case web
         command -v prismlens &>/dev/null; and abbr -a pra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
         command -v prismlens &>/dev/null; and abbr -a prd "prismlens dev restart"
