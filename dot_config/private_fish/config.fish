@@ -9,8 +9,8 @@ test -f /home/linuxbrew/.linuxbrew/bin/brew; and eval "$(/home/linuxbrew/.linuxb
 # Configure paths
 source ~/.config/fish/conf.d/paths.fish
 
-# Configure Python and Ruby build dependencies
-source ~/.config/fish/conf.d/python-ruby-build.fish
+# Configure Python build dependencies
+source ~/.config/fish/conf.d/python-build.fish
 
 # Initialize pyenv
 if command -v pyenv &>/dev/null
