@@ -14,6 +14,7 @@ command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && bre
 # Shell abbreviations
 abbr -a ls eza --oneline
 abbr -a ll eza -l --no-user --no-permissions --icons
+abbr -a lt eza --tree --level=1
 abbr -a cat bat -p
 abbr -a dud du -d 1 -h
 
