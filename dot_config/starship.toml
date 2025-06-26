@@ -69,7 +69,20 @@ read_only = " 󰌾"
 truncation_length = 5
 truncate_to_repo = false
 truncation_symbol = "…/"
-style = "#00B2FF"
+style = "#00B2FF bold"
+
+[directory.substitutions]
+"~" = "󰋜 ~"
+"~/Documents" = "󰈙 ~/Documents"
+"~/Downloads" = "󰇚 ~/Downloads"
+"~/Music" = "󰝚 ~/Music"
+"~/Logic" = "󰝚 ~/Logic"
+"~/Pictures" = "󰋩 ~/Pictures"
+"~/Videos" = "󰕧 ~/Videos"
+"~/Desktop" = "󰇄 ~/Desktop"
+"~/Projects" = "󰲋 ~/Projects"
+"~/Developer" = "󰲋 ~/Developer"
+"~/dev" = "󰲋 ~/dev"
 
 [username]
 style_user = "#DFAD81"
