@@ -42,7 +42,7 @@ staged = '[++$count](green)'
 stashed = '[*$count](green)'
 
 [cmd_duration]
-min_time = 500
+min_time = 1000
 format = "[took $duration]($style) "
 style = "cyan"
 
