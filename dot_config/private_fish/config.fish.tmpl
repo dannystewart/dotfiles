@@ -1,7 +1,7 @@
 if status is-interactive
     # Clear and rebuild PATH
     set -e fish_user_paths # Clear user paths
-    set -U fish_user_paths # Reset to empty
+    set -g fish_user_paths # Reset to empty
 
     # Add paths in reverse order (fish prepends)
     set path_candidates \
@@ -30,11 +30,27 @@ if status is-interactive
         end
     end
 
+    # Set timezone
+    set -x TZ "America/New_York"
+
     # Bind Tab to complete-and-search
     bind \t complete-and-search
 
     # Warp terminal integration (auto-Warpify subshells)
     printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish", "uname": "'$(uname)'" }}�'
 end
+
+# Homebrew setup
+{{- if eq .chezmoi.os "darwin" }}
+if test -f /opt/homebrew/bin/brew
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else if test -f /usr/local/bin/brew
+    eval "$(/usr/local/bin/brew shellenv)"
+end
+{{- else if eq .chezmoi.os "linux" }}
+if test -f /home/linuxbrew/.linuxbrew/bin/brew
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+end
+{{- end }}
 
 starship init fish | source
