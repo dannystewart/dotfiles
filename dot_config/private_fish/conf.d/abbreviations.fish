@@ -11,6 +11,17 @@ end
 # Homebrew abbreviations
 command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && brew cleanup"
 
+# Shell abbreviations
+abbr -a ls eza --oneline
+abbr -a ll eza -l --no-user --no-permissions --icons
+abbr -a cat bat -p
+abbr -a dud du -d 1 -h
+
+# Disk usage by size
+function duds --description 'Display disk usage sorted by size'
+    du -d 1 -h $argv | sort -hr
+end
+
 # Python abbreviations
 if command -v pip &>/dev/null
     # pip commands
@@ -27,10 +38,10 @@ if command -v git &>/dev/null
     abbr -a gs git status
     abbr -a ga git add -A
     abbr -a gc git commit -m
+    abbr -a gp git push
+    abbr -a gsc git stash clear
     abbr -a gfp "git fetch && git pull"
     abbr -a gac "git add -A && git commit -m"
-    abbr -a gsc "git stash clear"
-    abbr -a gp git push
 end
 
 # Server-specific abbreviations
@@ -38,5 +49,5 @@ set -l current_hostname (hostname)
 switch $current_hostname
     case web
         command -v prismlens &>/dev/null; and abbr -a pra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
-        command -v prismlens &>/dev/null; and abbr -a prd "prismlens dev restart"
+        command -v prismlens &>/dev/null; and abbr -a prd prismlens dev restart
 end
