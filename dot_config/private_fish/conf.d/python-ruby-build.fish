@@ -28,25 +28,27 @@ set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$OPENSSL_ROOT_DIR"
 
 function python_build_mode
     set -l mode_file "$HOME/.python_build_mode"
-    set -l base_opts "--enable-framework" "--with-openssl=$OPENSSL_ROOT_DIR" "--with-tcltk-includes=-I$BREW_TCLTK/include" "--with-tcltk-libs=-L$BREW_TCLTK/lib -ltcl8.6 -ltk8.6"
+    set -l tcltk_libs_option "--with-tcltk-libs=-L$BREW_TCLTK/lib -ltcl8.6 -ltk8.6"
 
-    if not test -f "$mode_file"; or test "$argv[1]" != (cat "$mode_file" 2>/dev/null)
-        if test "$argv[1]" = optimized
-            set -gx LDFLAGS "$LDFLAGS -L$BREW_PREFIX/opt/libb2/lib"
-            set -gx CPPFLAGS "$CPPFLAGS -I$BREW_PREFIX/opt/libb2/include"
-            set -gx PYTHON_CONFIGURE_OPTS $base_opts "--with-readline=edit"
-            set -gx PYTHON_CFLAGS "-march=native -mtune=native"
+    if test "$argv[1]" = "optimized"
+        set -gx LDFLAGS "$LDFLAGS -L$BREW_PREFIX/opt/libb2/lib"
+        set -gx CPPFLAGS "$CPPFLAGS -I$BREW_PREFIX/opt/libb2/include"
+        set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --with-openssl=$OPENSSL_ROOT_DIR --with-tcltk-includes=-I$BREW_TCLTK/include '$tcltk_libs_option' --with-readline=edit"
+        set -gx PYTHON_CFLAGS "-march=native -mtune=native"
 
-            test -f "$mode_file"; and echo "Switched to optimized Python build mode"
-        else
-            set -gx PYTHON_CONFIGURE_OPTS $base_opts "--with-readline=homebrew"
-            set -e PYTHON_CFLAGS
-
-            test -f "$mode_file"; and echo "Switched to standard Python build mode"
+        if not test -f "$mode_file"; or test "$argv[1]" != (cat "$mode_file" 2>/dev/null)
+            echo "Switched to optimized Python build mode"
         end
+    else
+        set -gx PYTHON_CONFIGURE_OPTS "--enable-framework --with-openssl=$OPENSSL_ROOT_DIR --with-tcltk-includes=-I$BREW_TCLTK/include '$tcltk_libs_option' --with-readline=homebrew"
+        set -e PYTHON_CFLAGS
 
-        echo "$argv[1]" >"$mode_file"
+        if not test -f "$mode_file"; or test "$argv[1]" != (cat "$mode_file" 2>/dev/null)
+            echo "Switched to standard Python build mode"
+        end
     end
+
+    echo "$argv[1]" > "$mode_file"
 end
 
 # Initialize with saved mode or default to standard
