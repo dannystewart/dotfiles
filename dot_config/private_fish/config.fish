@@ -50,7 +50,12 @@ if status is-interactive
         end
     command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && brew cleanup"
 
-    # Python abbreviations if available
+    # Initialize pyenv
+    if command -v pyenv &>/dev/null
+        pyenv init - | source
+    end
+
+    # Python abbreviations
     if command -v pip &>/dev/null
         # pip commands
         abbr -a pipin pip install -U
@@ -80,7 +85,7 @@ if status is-interactive
     end
 end
 
-# Homebrew setup
+# Initialize Homebrew
 test -f /usr/local/bin/brew; and eval "$(/usr/local/bin/brew shellenv)"
 test -f /opt/homebrew/bin/brew; and eval "$(/opt/homebrew/bin/brew shellenv)"
 test -f /home/linuxbrew/.linuxbrew/bin/brew; and eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
