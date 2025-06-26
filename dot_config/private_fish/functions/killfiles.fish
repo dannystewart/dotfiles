@@ -6,7 +6,7 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
     set i 1
     while test $i -le (count $argv)
         switch $argv[$i]
-            case '-d' '--directory'
+            case -d --directory
                 set i (math $i + 1)
                 if test $i -le (count $argv)
                     set directory $argv[$i]
@@ -14,17 +14,17 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
                     echo "Error: -d requires a directory argument"
                     return 1
                 end
-            case 'ds' 'dsstore'
+            case ds dsstore
                 set patterns $patterns ".DS_Store"
-            case 'sc' 'sync-conflict'
+            case sc sync-conflict
                 set patterns $patterns "*.sync-conflict-*"
-            case 'pkf'
+            case pkf
                 set patterns $patterns "*.pkf"
-            case 'py' 'python-cache'
+            case py python-cache
                 set patterns $patterns "*.egg-info" ".idea" ".mypy_cache" ".pytest_cache" ".ruff_cache" ".tox" ".coverage" ".coverage""__pycache__" "*.pyc" "*.pyo"
-            case 'junk' 'windows-junk'
+            case junk windows-junk
                 set patterns $patterns "\$RECYCLE.BIN" "desktop.ini" "Thumbs.db" "Icon?" ".DS_Store"
-            case '--help' '-h'
+            case --help -h
                 echo "Usage: killfiles [options] [pattern|shortcut]..."
                 echo ""
                 echo "Options:"
