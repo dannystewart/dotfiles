@@ -60,6 +60,24 @@ if status is-interactive
         abbr -a pipds "pip uninstall -y dsbin && pip install -U dsbin"
         abbr -a pipdev "pip uninstall -y dsbin && pip install -U git+ssh://git@github.com/dannystewart/dsbin.git"
     end
+
+    # Git abbreviations
+    if command -v git &>/dev/null
+        abbr -a gs git status
+        abbr -a ga git add -A
+        abbr -a gc git commit -m
+        abbr -a gfp "git fetch && git pull"
+        abbr -a gac "git add -A && git commit -m"
+        abbr -a gsc "git stash clear"
+        abbr -a gp git push
+    end
+
+    # Server-specific abbreviations
+    switch (hostname)
+        case "web"
+            command -v prismlens &>/dev/null; and abbr -a pra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
+            command -v prismlens &>/dev/null; and abbr -a prd "prismlens dev restart"
+    end
 end
 
 # Homebrew setup
