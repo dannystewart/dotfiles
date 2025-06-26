@@ -29,7 +29,7 @@ disabled = false
 [git_branch]
 symbol = "  "
 format = "[$symbol$branch]($style) "
-style = "green"
+style = "#00DA00"
 
 [git_commit]
 tag_symbol = '  '
@@ -37,14 +37,15 @@ format = "[$symbol($version )]($style)"
 
 [git_status]
 format = '[$all_status$ahead_behind]($style) '
-style = "green"
-staged = '[++$count](green)'
-stashed = '[*$count](green)'
+style = "#00DA00"
+staged = '[++$count](#00DA00)'
+stashed = '[*$count](#00DA00)'
+untracked = '[?$count](#00DA00)'
 
 [cmd_duration]
 min_time = 1000
 format = "[ $duration]($style) "
-style = "cyan"
+style = "#88865A"
 
 [character]
 success_symbol = "[❯](green)"
@@ -60,7 +61,7 @@ symbol_threshold = 1
 disabled = false
 format = "[ $time]($style) "
 time_format = "%r"
-style = "green"
+style = "#518987"
 use_12hr = true
 
 [directory]
@@ -68,9 +69,10 @@ read_only = " 󰌾"
 truncation_length = 5
 truncate_to_repo = false
 truncation_symbol = "…/"
+style = "#00B2FF"
 
 [username]
-style_user = "dimmed yellow"
+style_user = "#DFAD81"
 style_root = "red bold"
 format = "[$user]($style)"
 disabled = false
@@ -79,7 +81,7 @@ disabled = false
 ssh_only = true
 ssh_symbol = " "
 format = "[@$hostname]($style) "
-style = "dimmed yellow"
+style = "#DFAD81"
 disabled = false
 
 [fill]
