@@ -52,3 +52,6 @@ switch $current_hostname
         command -v prismlens &>/dev/null; and abbr -a pra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
         command -v prismlens &>/dev/null; and abbr -a prd prismlens dev restart
 end
+
+# PowerShell abbreviations
+abbr -a pim pwsh "/Users/danny/Developer/iri/iri-powershell/Azure/Set-PIM.ps1"
