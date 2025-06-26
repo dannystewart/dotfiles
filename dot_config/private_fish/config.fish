@@ -57,5 +57,9 @@ if status is-interactive
     end
 
     # Initialize Starship
-    starship init fish | source
+    set -l starship_cache ~/.cache/fish/starship_init
+    if not test -f $starship_cache; or test (which starship) -nt $starship_cache
+        starship init fish > $starship_cache
+    end
+    source $starship_cache
 end
