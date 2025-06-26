@@ -38,6 +38,10 @@ if status is-interactive
 
     # Warp terminal integration (auto-Warpify subshells)
     printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish", "uname": "'$(uname)'" }}�'
+
+    # Set up abbreviations
+    abbr -a powershell pwsh
+    abbr -a vscode code
 end
 
 # Homebrew setup

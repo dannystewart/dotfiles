@@ -1,4 +1,4 @@
-function bru --description 'Update Homebrew'
+function brewup --description 'Update Homebrew'
     set -g GREEN (set_color green)
     set -g RED (set_color red)
     set -g NC (set_color normal)
@@ -15,3 +15,4 @@ function bru --description 'Update Homebrew'
         echo -e "$RED""Error: Homebrew not found. Are you sure it's installed?$NC"
     end
 end
+abbr --add bru --function brewup
