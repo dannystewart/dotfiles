@@ -7,33 +7,33 @@ if [ "$(uname -a | grep ARM64)" ] && [ ! -f /usr/local/bin/brew ]; then
     arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-# Package list (package_name:os:command_to_check)
+# Package list (os:package_name:command_to_check)
 packages=(
-    "age:all:age"
-    "bat:all:bat"
-    "chafa:all:chafa"
-    "chezmoi:all:chezmoi"
-    "curl:all:curl"
-    "displayplacer:mac:displayplacer"
-    "exiftool:all:exiftool"
-    "eza:all:eza"
-    "fd:all:fd"
-    "fish:all:fish"
-    "gcc:all:gcc"
-    "gh:all:gh"
-    "git-lfs:all:git-lfs"
-    "htop:all:htop"
-    "inetutils:all:ftp"
-    "lesspipe:all:lesspipe.sh"
-    "mosh:all:mosh"
-    "pyenv:all:pyenv"
-    "rsync:all:rsync"
-    "sed:all:sed"
-    "starship:all:starship"
-    "tmux-mem-cpu-load:all:tmux-mem-cpu-load"
-    "tmux:all:tmux"
-    "tmuxinator:all:tmuxinator"
-    "wget:all:wget"
+    "all:age:age"
+    "all:bat:bat"
+    "all:chafa:chafa"
+    "all:chezmoi:chezmoi"
+    "all:curl:curl"
+    "all:exiftool:exiftool"
+    "all:eza:eza"
+    "all:fd:fd"
+    "all:fish:fish"
+    "all:gcc:gcc"
+    "all:gh:gh"
+    "all:git-lfs:git-lfs"
+    "all:htop:htop"
+    "all:inetutils:ftp"
+    "all:lesspipe:lesspipe.sh"
+    "all:mosh:mosh"
+    "all:pyenv:pyenv"
+    "all:rsync:rsync"
+    "all:sed:sed"
+    "all:starship:starship"
+    "all:tmux-mem-cpu-load:tmux-mem-cpu-load"
+    "all:tmux:tmux"
+    "all:tmuxinator:tmuxinator"
+    "all:wget:wget"
+    "mac:displayplacer:displayplacer"
 )
 
 # Detect OS
@@ -53,7 +53,7 @@ install_packages() {
     [ -n "$extra_cmd" ] && $extra_cmd
 
     for pkg_info in "${packages[@]}"; do
-        IFS=':' read -r pkg os_support cmd_to_check <<< "$pkg_info"
+        IFS=':' read -r os_support pkg cmd_to_check <<< "$pkg_info"
         if [ "$os_support" = "all" ] || [ "$os_support" = "$current_os" ]; then
             if ! command -v "$cmd_to_check" > /dev/null 2>&1; then
                 $install_cmd "$pkg"
