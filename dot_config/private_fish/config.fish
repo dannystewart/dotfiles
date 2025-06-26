@@ -22,9 +22,11 @@ if status is-interactive
     # Bind Tab to complete-and-search
     bind \t complete-and-search
 
+    # Warp terminal integration (SSH sessions only)
+    if set -q SSH_CONNECTION
+        printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish", "uname": "'$(uname)'" }}�'
+    end
+
     # Initialize Starship
     starship init fish | source
-
-    # Warp terminal integration
-    printf ' P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish", "uname": "'$(uname)'" }}�'
 end
