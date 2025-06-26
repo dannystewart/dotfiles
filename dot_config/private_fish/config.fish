@@ -39,21 +39,16 @@ if status is-interactive
     # Warp terminal integration (auto-Warpify subshells)
     printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish", "uname": "'$(uname)'" }}�'
 
-    # OS-specific abbreviations
-    if command -v apt &>/dev/null # Debian-based distros
-        abbr -a aptup "sudo apt update && sudo apt upgrade -y"
-    else if command -v pacman &>/dev/null # Arch-based distros
-        abbr -a pacup sudo pacman -Syu
-    else if command -v dnf &>/dev/null # Red Hat-based distros
-        abbr -a dnfup sudo dnf update -y
-    else if command -v mas &>/dev/null # macOS
-        abbr -a macup mas upgrade
-    end
-
-    # Homebrew updater if available
-    if command -v brew &>/dev/null
-        abbr -a bru "brew update && brew upgrade && brew cleanup"
-    end
+    # Package manager abbreviations
+    switch (uname)
+        case Darwin
+            command -v mas &>/dev/null; and abbr -a macup mas upgrade
+        case Linux
+            command -v apt &>/dev/null; and abbr -a aptup "sudo apt update && sudo apt upgrade -y"
+            command -v pacman &>/dev/null; and abbr -a pacup sudo pacman -Syu
+            command -v dnf &>/dev/null; and abbr -a dnfup sudo dnf update -y
+        end
+    command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && brew cleanup"
 
     # Python abbreviations if available
     if command -v pip &>/dev/null
@@ -68,12 +63,9 @@ if status is-interactive
 end
 
 # Homebrew setup
-if test -f /opt/homebrew/bin/brew
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-else if test -f /usr/local/bin/brew
-    eval "$(/usr/local/bin/brew shellenv)"
-else if test -f /home/linuxbrew/.linuxbrew/bin/brew
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-end
+test -f /usr/local/bin/brew; and eval "$(/usr/local/bin/brew shellenv)"
+test -f /opt/homebrew/bin/brew; and eval "$(/opt/homebrew/bin/brew shellenv)"
+test -f /home/linuxbrew/.linuxbrew/bin/brew; and eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+# Initialize Starship
 starship init fish | source
