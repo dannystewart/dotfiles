@@ -13,7 +13,6 @@ end
 # Set paths
 set -gx OPENSSL_ROOT_DIR "$BREW_PREFIX/opt/openssl@3"
 set -gx BREW_READLINE "$BREW_PREFIX/opt/readline"
-set -gx BREW_OPENSSL "$BREW_PREFIX/opt/openssl@3"
 set -gx BREW_SQLITE "$BREW_PREFIX/opt/sqlite"
 set -gx BREW_ZLIB "$BREW_PREFIX/opt/zlib"
 set -gx BREW_GETTEXT "$BREW_PREFIX/opt/gettext"
@@ -25,11 +24,11 @@ set -gx CPPFLAGS "-I$BREW_READLINE/include -I$OPENSSL_ROOT_DIR/include -I$BREW_S
 set -gx PKG_CONFIG_PATH "$BREW_READLINE/lib/pkgconfig:$OPENSSL_ROOT_DIR/lib/pkgconfig:$BREW_SQLITE/lib/pkgconfig:$BREW_ZLIB/lib/pkgconfig:$BREW_GETTEXT/lib/pkgconfig"
 
 # Ruby configuration
-set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$BREW_OPENSSL"
+set -gx RUBY_CONFIGURE_OPTS "--with-openssl-dir=$OPENSSL_ROOT_DIR"
 
 function python_build_mode
     set -l mode_file "$HOME/.python_build_mode"
-    set -l base_opts --enable-framework "--with-openssl=$OPENSSL_ROOT_DIR" "--with-tcltk-includes=-I$BREW_TCLTK/include" "--with-tcltk-libs=-L$BREW_TCLTK/lib -ltcl8.6 -ltk8.6"
+    set -l base_opts "--enable-framework" "--with-openssl=$OPENSSL_ROOT_DIR" "--with-tcltk-includes=-I$BREW_TCLTK/include" "--with-tcltk-libs=-L$BREW_TCLTK/lib -ltcl8.6 -ltk8.6"
 
     if not test -f "$mode_file"; or test "$argv[1]" != (cat "$mode_file" 2>/dev/null)
         if test "$argv[1]" = optimized
@@ -51,8 +50,10 @@ function python_build_mode
 end
 
 # Initialize with saved mode or default to standard
+set -l saved_mode
 if test -f "$HOME/.python_build_mode"
-    python_build_mode (cat "$HOME/.python_build_mode")
+    set saved_mode (cat "$HOME/.python_build_mode")
+    python_build_mode $saved_mode
 else
     python_build_mode standard
 end
