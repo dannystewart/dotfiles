@@ -27,7 +27,12 @@ source ~/.config/fish/conf.d/python-build.fish
 
 # Initialize pyenv
 if command -v pyenv &>/dev/null
-    pyenv init - | source
+    set -l pyenv_cache ~/.cache/fish/pyenv_init
+    if not test -f $pyenv_cache; or test (which pyenv) -nt $pyenv_cache
+        mkdir -p (dirname $pyenv_cache)
+        pyenv init - > $pyenv_cache
+    end
+    source $pyenv_cache
 end
 
 if status is-interactive
