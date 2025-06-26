@@ -20,28 +20,28 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
                 set patterns $patterns "*.sync-conflict-*"
             case 'pkf'
                 set patterns $patterns "*.pkf"
-            case 'pyc' 'python-cache'
-                set patterns $patterns "__pycache__" "*.pyc" "*.pyo"
+            case 'py' 'python-cache'
+                set patterns $patterns "*.egg-info" ".idea" ".mypy_cache" ".pytest_cache" ".ruff_cache" ".tox" ".coverage" ".coverage""__pycache__" "*.pyc" "*.pyo"
             case 'junk' 'windows-junk'
                 set patterns $patterns "\$RECYCLE.BIN" "desktop.ini" "Thumbs.db" "Icon?" ".DS_Store"
             case '--help' '-h'
-                echo "Usage: kill_files [options] [pattern|shortcut]..."
+                echo "Usage: killfiles [options] [pattern|shortcut]..."
                 echo ""
                 echo "Options:"
                 echo "  -d, --directory DIR    Directory to search (default: current)"
                 echo ""
                 echo "Shortcuts:"
+                echo "  junk                  Windows and macOS junk files"
                 echo "  ds, dsstore           .DS_Store files"
                 echo "  sc, sync-conflict     Sync conflict files"
-                echo "  pkf                   .pkf files"
-                echo "  pyc, python-cache     Python cache files"
-                echo "  junk, windows-junk    Windows junk files"
+                echo "  pkf                   Audition .pkf files"
+                echo "  py, python-cache      Python cache files"
                 echo ""
                 echo "Examples:"
-                echo "  kill_files ds                    # Delete .DS_Store files"
-                echo "  kill_files '*.tmp'               # Delete .tmp files"
-                echo "  kill_files -d ~/Downloads sc     # Delete sync conflicts in Downloads"
-                echo "  kill_files junk pyc              # Delete both junk and Python cache files"
+                echo "  killfiles ds                    # Delete .DS_Store files"
+                echo "  killfiles '*.tmp'               # Delete .tmp files"
+                echo "  killfiles -d ~/Downloads sc     # Delete sync conflicts in Downloads"
+                echo "  killfiles junk py               # Delete both junk and Python cache files"
                 return 0
             case '*'
                 # Treat as a literal pattern
