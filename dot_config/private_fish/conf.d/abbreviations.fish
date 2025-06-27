@@ -13,7 +13,7 @@ command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && bre
 
 # Shell abbreviations
 function eza
-    command eza -bg --no-permissions --no-quotes --smart-group --time-style='+%Y-%m-%d %I:%M %p' --group-directories-first --icons $argv
+    command eza -bg --no-permissions --no-quotes --smart-group --time-style='+%Y-%m-%d %I:%M %p' --group-directories-first --git --icons $argv
 end
 abbr -a ls eza --oneline
 abbr -a l eza -l
@@ -21,6 +21,7 @@ abbr -a ll eza -l
 abbr -a la eza -la
 abbr -a lz eza -l --total-size
 abbr -a lzs eza -l --total-size -s size -r
+abbr -a lg eza -l --git-repos
 abbr -a lt eza --tree --level=1
 abbr -a lp command eza -lbg --no-quotes --time-style=long-iso
 abbr -a cat bat -p
@@ -45,6 +46,7 @@ if command -v git &>/dev/null
     abbr -a gc git commit -m
     abbr -a gp git push
     abbr -a gsc git stash clear
+    abbr -a grhh git reset --hard HEAD
     abbr -a gfp "git fetch && git pull"
     abbr -a gac "git add -A && git commit -m"
 end
