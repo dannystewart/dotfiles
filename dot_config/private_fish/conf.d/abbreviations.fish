@@ -30,6 +30,7 @@ abbr -a ll eza -l --icons --no-user
 abbr -a llf eza -l --icons --no-user --group-directories-first # directories first
 abbr -a lz eza -l --icons --no-user --total-size -rs size # with folder sizes, sorted by size
 abbr -a lg eza -l --git --git-repos --total-size # with git repos and folder sizes
+abbr -a lgz eza -l --git --git-repos --total-size -rs size # with repos, sorted by size
 
 # eza: detailed list
 abbr -a la eza -lga --git
