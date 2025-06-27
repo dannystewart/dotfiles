@@ -17,7 +17,11 @@ $golang\
 $java\
 $ruby\
 $php\
-$username$hostname$cmd_duration$jobs$time\
+$username\
+$hostname\
+$cmd_duration\
+$jobs\
+$time\
 $line_break\
 $character """
 
@@ -51,11 +55,13 @@ stashed = '[*$count](#00DA00) '
 
 [cmd_duration]
 min_time = 1000
+show_notifications = true
+min_time_to_notify = 45000
 format = "[ $duration]($style) "
 style = "#88865A"
 
 [character]
-success_symbol = "[❯](green)"
+success_symbol = "[❯](#00DA00)"
 format = "[$symbol($version )]($style)"
 error_symbol = "[❯](red)"
 
@@ -76,7 +82,7 @@ read_only = " 󰌾"
 truncation_length = 5
 truncate_to_repo = false
 truncation_symbol = "…/"
-style = "#00B2FF bold"
+style = "#008AB3 bold"
 
 [directory.substitutions]
 "~" = "󰋜 ~"
