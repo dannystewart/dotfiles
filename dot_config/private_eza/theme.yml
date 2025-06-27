@@ -42,11 +42,11 @@ size:
   unit_huge: {foreground: "#61AFEF"}
 
 users:
-  user_you: {foreground: "#ABB2BF"}
+  user_you: {foreground: "#8A9299"}
   user_root: {foreground: "#E06C75"}
   user_other: {foreground: "#C678DD"}
-  group_yours: {foreground: "#9DA5B4"}
-  group_other: {foreground: "#5C6370"}
+  group_yours: {foreground: "#798089"}
+  group_other: {foreground: "#474A52"}
   group_root: {foreground: "#E06C75"}
 
 links:
