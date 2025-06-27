@@ -56,6 +56,8 @@ end
 if command -v docker &>/dev/null
     abbr -a dcu docker compose up -d
     abbr -a dcd docker compose down --remove-orphans
+    abbr -a dcdu "docker compose down --remove-orphans && docker compose up -d"
+    abbr -a dcdpu "docker compose down --remove-orphans && docker system prune -a -f -v && docker compose up -d"
     abbr -a dcr docker compose restart
     abbr -a dcl docker compose logs
     abbr -a dcp docker compose pull
