@@ -30,23 +30,23 @@ perms:
 size:
   major: {foreground: "#5C6370"}
   minor: {foreground: "#56B6C2"}
-  number_byte: {foreground: "#5C6370"}
-  number_kilo: {foreground: "#8A9299"}
+  number_byte: {foreground: "#798089"}
+  number_kilo: {foreground: "#ABB2BF"}
   number_mega: {foreground: "#61AFEF"}
   number_giga: {foreground: "#C678DD"}
   number_huge: {foreground: "#C678DD"}
-  unit_byte: {foreground: "#4A4F5C"}
+  unit_byte: {foreground: "#798089"}
   unit_kilo: {foreground: "#61AFEF"}
   unit_mega: {foreground: "#C678DD"}
   unit_giga: {foreground: "#C678DD"}
   unit_huge: {foreground: "#61AFEF"}
 
 users:
-  user_you: {foreground: "#8A9299"}
+  user_you: {foreground: "#ABB2BF"}
   user_root: {foreground: "#E06C75"}
   user_other: {foreground: "#C678DD"}
-  group_yours: {foreground: "#798089"}
-  group_other: {foreground: "#474A52"}
+  group_yours: {foreground: "#8A9299"}
+  group_other: {foreground: "#798089"}
   group_root: {foreground: "#E06C75"}
 
 links:
