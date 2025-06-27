@@ -12,17 +12,17 @@ end
 command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && brew cleanup"
 
 # Shell abbreviations
-abbr -a ls eza --oneline
-abbr -a ll eza -l --no-user --no-permissions --icons
-abbr -a la eza -la --no-user --no-permissions --icons
-abbr -a lt eza --tree --level=1
-abbr -a cat bat -p
-abbr -a dud du -d 1 -h
-
-# Disk usage by size
-function duds --description 'Display disk usage sorted by size'
-    du -d 1 -h $argv | sort -hr
+function eza
+    command eza --no-user --no-permissions --no-quotes --time-style='+%Y-%m-%d %I:%M %p' --group-directories-first --icons $argv
 end
+abbr -a ls "eza --oneline"
+abbr -a l "eza -l"
+abbr -a ll "eza -l"
+abbr -a la "eza -la"
+abbr -a lz "eza -lrs size --total-size"
+abbr -a lt "eza --tree --level=1"
+abbr -a lo "command eza -lbg --smart-group --no-quotes"
+abbr -a cat bat -p
 
 # Python abbreviations
 if command -v pip &>/dev/null
