@@ -45,6 +45,7 @@ if command -v git &>/dev/null
     abbr -a ga git add -A
     abbr -a gc git commit -m
     abbr -a gp git push
+    abbr -a gpf git push --force
     abbr -a gsc git stash clear
     abbr -a grhh git reset --hard HEAD
     abbr -a gfp "git fetch && git pull"
