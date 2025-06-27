@@ -27,6 +27,7 @@ abbr -a lt eza --tree --level=1
 abbr -a cat bat -p
 abbr -a cu chezmoi update
 abbr -a ca chezmoi apply
+abbr -a rt trash
 
 # Python abbreviations
 if command -v pip &>/dev/null
