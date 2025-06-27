@@ -12,19 +12,18 @@ end
 command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && brew cleanup"
 
 # Shell abbreviations
-function eza
-    command eza -bg --no-permissions --no-quotes --smart-group --time-style='+%Y-%m-%d %I:%M %p' --group-directories-first --git --icons $argv
-end
 set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
+function eza
+    command eza -b --no-quotes --smart-group --time-style='+%Y.%m.%d %I:%M %p' --group-directories-first --git --icons $argv
+end
 abbr -a ls eza
 abbr -a l eza --oneline
 abbr -a ll eza -l
-abbr -a la eza -la
+abbr -a la eza -lga
 abbr -a lz eza -l --total-size
 abbr -a lzs eza -l --total-size -s size -r
 abbr -a lg eza -l --git-repos
 abbr -a lt eza --tree --level=1
-abbr -a lp command eza -lbg --no-quotes --time-style=long-iso
 abbr -a cat bat -p
 abbr -a cu chezmoi update
 abbr -a ca chezmoi apply
