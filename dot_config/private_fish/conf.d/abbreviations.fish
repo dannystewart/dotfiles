@@ -57,14 +57,12 @@ end
 set -l current_hostname (hostname)
 switch $current_hostname
     case web
-        if command -v prismlens &>/dev/null
-            abbr -a prp prismlens
-            abbr -a prd prismlens dev
-            abbr -a prrp prismlens restart
-            abbr -a prrd prismlens dev restart
-            abbr -a prra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
-            abbr -a prl "cd ~/prism/dev/prismlens && pip install -e ."
-        end
+        abbr -a prp prismlens
+        abbr -a prd prismlens dev
+        abbr -a prrp prismlens restart
+        abbr -a prrd prismlens dev restart
+        abbr -a prra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
+        abbr -a prli "cd ~/prism/dev/prismlens && pip install -e ."
 end
 
 # PowerShell abbreviations
