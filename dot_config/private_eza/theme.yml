@@ -31,7 +31,7 @@ size:
   major: {foreground: "#5C6370"}
   minor: {foreground: "#56B6C2"}
   number_byte: {foreground: "#798089"}
-  number_kilo: {foreground: "#ABB2BF"}
+  number_kilo: {foreground: "#8A9299"}
   number_mega: {foreground: "#61AFEF"}
   number_giga: {foreground: "#C678DD"}
   number_huge: {foreground: "#C678DD"}
