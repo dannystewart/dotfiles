@@ -21,10 +21,12 @@ function uatt --description "Update all the things"
             # apt (Debian/Ubuntu)
             sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
             set updated true
+            echo -e "" # line break for visual consistency
         else if command -v pacman &>/dev/null
             # pacman (Arch)
             sudo pacman -Syu --noconfirm
             set updated true
+            echo -e "" # line break for visual consistency
         else if command -v dnf &>/dev/null
             # dnf (Fedora)
             sudo dnf update -y
@@ -32,7 +34,6 @@ function uatt --description "Update all the things"
         else
             echo -e "$red"No supported Linux package manager found (apt, pacman, dnf)."$nc"
         end
-        echo -e "" # line break for visual consistency
     else if test "$os_type" != "Darwin"
         echo -e "$red"Unsupported operating system: $os_type"$nc"
     end
