@@ -55,8 +55,6 @@ stashed = '[*$count](#00DA00) '
 
 [cmd_duration]
 min_time = 1000
-show_notifications = true
-min_time_to_notify = 45000
 format = "[ $duration]($style) "
 style = "#88865A"
 
