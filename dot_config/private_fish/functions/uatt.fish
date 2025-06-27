@@ -25,6 +25,7 @@ function uatt --description "Update all the things"
         else if command -v pacman &>/dev/null
             # pacman (Arch)
             sudo pacman -Syu --noconfirm
+            echo -e "" # line break for visual consistency
             set updated true
         else if command -v dnf &>/dev/null
             # dnf (Fedora)
