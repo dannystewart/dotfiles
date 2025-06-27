@@ -20,22 +20,21 @@ function eza
 end
 
 # eza: list
+abbr -a l eza --oneline --icons
 abbr -a ls eza
-abbr -a l eza --oneline
-abbr -a lf eza --oneline --group-directories-first # directories first
+abbr -a lf eza --oneline --icons --group-directories-first # directories first
 abbr -a lt eza --tree --level=1 # tree view
 
 # eza: long list
-abbr -a ll eza -l --no-user --icons
-abbr -a llf eza -l --no-user --icons --group-directories-first # directories first
-abbr -a llz eza -l --no-user --icons --total-size # with folder sizes
-abbr -a lg eza -l --total-size --git --git-repos # with git repos and folder sizes
+abbr -a ll eza -l --icons --no-user
+abbr -a llf eza -l --icons --no-user --group-directories-first # directories first
+abbr -a lz eza -l --icons --no-user --total-size -rs size # with folder sizes, sorted by size
+abbr -a lg eza -l --git --git-repos --total-size # with git repos and folder sizes
 
-# eza: hidden + details
+# eza: detailed list
 abbr -a la eza -lga --git
 abbr -a laf eza -lga --git --group-directories-first # directories first
-abbr -a lz eza -lga --git --total-size # with folder sizes
-abbr -a lzs eza -lga --git --total-size -rs size # sorted by size
+abbr -a laz eza -lga --git --total-size -rs size # with folder sizes, sorted by size
 
 # Other shell abbreviations
 abbr -a cat bat -p
