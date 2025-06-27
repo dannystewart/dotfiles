@@ -16,8 +16,8 @@ function eza
     command eza -bg --no-permissions --no-quotes --smart-group --time-style='+%Y-%m-%d %I:%M %p' --group-directories-first --git --icons $argv
 end
 set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
-abbr -a ls eza --oneline
-abbr -a l eza -l
+abbr -a ls eza
+abbr -a l eza --oneline
 abbr -a ll eza -l
 abbr -a la eza -la
 abbr -a lz eza -l --total-size
