@@ -16,11 +16,10 @@ function uatt --description "Update all the things"
     echo -e "$cyan$bold" Updating all the things!"$nc"
     echo -e "$green" Hang tight, here we go...\n"$nc"
 
-
     if test "$os_type" = "Linux"
         if command -v apt-get &>/dev/null
             # apt (Debian/Ubuntu)
-            sudo apt update && sudo apt upgrade -y
+            sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
             set updated true
         else if command -v pacman &>/dev/null
             # pacman (Arch)
