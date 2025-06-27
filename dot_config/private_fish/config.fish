@@ -51,11 +51,6 @@ if status is-interactive
     # Bind Tab to complete-and-search
     bind \t complete-and-search
 
-    # Warp terminal integration (SSH sessions only)
-    if set -q SSH_CONNECTION
-        printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "fish", "uname": "'$CACHED_UNAME'" }}�'
-    end
-
     # Initialize Starship
     set -l starship_cache ~/.cache/fish/starship_init
     if not test -f $starship_cache; or test (which starship) -nt $starship_cache
