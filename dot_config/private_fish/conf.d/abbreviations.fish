@@ -14,7 +14,7 @@ command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && bre
 # Shell abbreviations
 set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
 function eza
-    command eza -b --no-quotes --smart-group --time-style='+%Y.%m.%d %I:%M %p' --group-directories-first --icons $argv
+    command eza -b --no-quotes --time-style='+%Y.%m.%d %I:%M %p' --group-directories-first --icons $argv
 end
 abbr -a ls eza
 abbr -a l eza --oneline
