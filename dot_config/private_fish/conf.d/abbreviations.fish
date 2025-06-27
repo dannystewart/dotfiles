@@ -11,19 +11,33 @@ end
 # Homebrew abbreviations
 command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && brew cleanup"
 
-# Shell abbreviations
+# eza configuration
 set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
+
+# eza base command
 function eza
-    command eza --no-quotes --time-style='+%Y.%m.%d %I:%M %p' --group-directories-first --icons $argv
+    command eza --no-quotes --time-style='+%Y.%m.%d %I:%M %p' $argv
 end
+
+# eza: list
 abbr -a ls eza
 abbr -a l eza --oneline
-abbr -a ll eza -l
+abbr -a lf eza --oneline --group-directories-first # directories first
+abbr -a lt eza --tree --level=1 # tree view
+
+# eza: long list
+abbr -a ll eza -l --no-user --icons
+abbr -a llf eza -l --no-user --icons --group-directories-first # directories first
+abbr -a llz eza -l --no-user --icons --total-size # with folder sizes
+abbr -a lg eza -l --total-size --git --git-repos # with git repos and folder sizes
+
+# eza: hidden + details
 abbr -a la eza -lga --git
-abbr -a lz eza -l --total-size
-abbr -a lzs eza -l --total-size -s size -r
-abbr -a lg eza -l --git --git-repos
-abbr -a lt eza --tree --level=1
+abbr -a laf eza -lga --git --group-directories-first # directories first
+abbr -a lz eza -lga --git --total-size # with folder sizes
+abbr -a lzs eza -lga --git --total-size -rs size # sorted by size
+
+# Other shell abbreviations
 abbr -a cat bat -p
 abbr -a cu chezmoi update
 abbr -a ca chezmoi apply
