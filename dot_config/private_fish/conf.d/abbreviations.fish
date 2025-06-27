@@ -13,16 +13,19 @@ command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && bre
 
 # Shell abbreviations
 function eza
-    command eza --no-user --no-permissions --no-quotes --time-style='+%Y-%m-%d %I:%M %p' --group-directories-first --icons $argv
+    command eza -bg --no-permissions --no-quotes --smart-group --time-style='+%Y-%m-%d %I:%M %p' --group-directories-first --icons $argv
 end
-abbr -a ls "eza --oneline"
-abbr -a l "eza -l"
-abbr -a ll "eza -l"
-abbr -a la "eza -la"
-abbr -a lz "eza -lrs size --total-size"
-abbr -a lt "eza --tree --level=1"
-abbr -a lo "command eza -lbg --smart-group --no-quotes"
+abbr -a ls eza --oneline
+abbr -a l eza -l
+abbr -a ll eza -l
+abbr -a la eza -la
+abbr -a lz eza -l --total-size
+abbr -a lzs eza -l --total-size -s size -r
+abbr -a lt eza --tree --level=1
+abbr -a lp command eza -lbg --no-quotes --time-style=long-iso
 abbr -a cat bat -p
+abbr -a cu chezmoi update
+abbr -a ca chezmoi apply
 
 # Python abbreviations
 if command -v pip &>/dev/null
