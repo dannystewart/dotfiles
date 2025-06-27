@@ -52,6 +52,16 @@ if command -v git &>/dev/null
     abbr -a gac "git add -A && git commit -m"
 end
 
+# Docker abbreviations
+if command -v docker &>/dev/null
+    abbr -a dcu docker compose up -d
+    abbr -a dcd docker compose down --remove-orphans
+    abbr -a dcr docker compose restart
+    abbr -a dcl docker compose logs
+    abbr -a dcp docker compose pull
+    abbr -a dsp docker system prune -a -f -v
+end
+
 # Server-specific abbreviations
 set -l current_hostname (hostname)
 switch $current_hostname
