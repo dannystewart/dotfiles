@@ -57,6 +57,7 @@ switch $current_hostname
     case web
         command -v prismlens &>/dev/null; and abbr -a pra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
         command -v prismlens &>/dev/null; and abbr -a prd prismlens dev restart
+        abbr -a prl "cd ~/prism/dev/prismlens && pip install -e ."
 end
 
 # PowerShell abbreviations
