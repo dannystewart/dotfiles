@@ -4,7 +4,7 @@ switch (uname)
         command -v mas &>/dev/null; and abbr -a macup mas upgrade
     case Linux
         command -v apt &>/dev/null; and abbr -a aptup "sudo apt update && sudo apt upgrade -y"
-        command -v pacman &>/dev/null; and abbr -a pacup sudo pacman -Syu
+        command -v pacman &>/dev/null; and abbr -a pacup sudo pacman -Syu --noconfirm
         command -v dnf &>/dev/null; and abbr -a dnfup sudo dnf update -y
 end
 
