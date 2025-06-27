@@ -1,6 +1,6 @@
 {{ if not (eq .chezmoi.os "windows") -}}
 #!/bin/bash
-# shellcheck disable=SC2086
+# shellcheck disable=all
 
 # Install x86 Homebrew on ARM64 if not already present
 if [ "$(uname -a | grep ARM64)" ] && [ ! -f /usr/local/bin/brew ]; then

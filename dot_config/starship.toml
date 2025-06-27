@@ -73,15 +73,14 @@ style = "#00B2FF bold"
 
 [directory.substitutions]
 "~" = "󰋜 ~"
+"~/Desktop" = "󰇄 ~/Desktop"
+"~/Developer" = "󰲋 ~/Developer"
 "~/Documents" = "󰈙 ~/Documents"
 "~/Downloads" = "󰇚 ~/Downloads"
-"~/Music" = "󰝚 ~/Music"
 "~/Logic" = "󰝚 ~/Logic"
+"~/Music" = "󰝚 ~/Music"
 "~/Pictures" = "󰋩 ~/Pictures"
 "~/Videos" = "󰕧 ~/Videos"
-"~/Desktop" = "󰇄 ~/Desktop"
-"~/Projects" = "󰲋 ~/Projects"
-"~/Developer" = "󰲋 ~/Developer"
 "~/dev" = "󰲋 ~/dev"
 
 [username]

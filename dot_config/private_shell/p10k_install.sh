@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ensure ZSH_CUSTOM is set
-ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
+ZSH_CUSTOM=${ZSH_CUSTOM:-$HOME/.config/oh-my-zsh/custom}
 
 # Clone powerlevel10k if it doesn't exist
 if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then

@@ -1,6 +1,6 @@
 __pycache__
+.config/oh-my-zsh/custom/plugins/zsh-autosuggestions*
 .DS_Store
-.oh-my-zsh/custom/plugins/zsh-autosuggestions*
 *.code-workspace
 **/__pycache__
 key.txt.age

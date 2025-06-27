@@ -1,22 +1,4 @@
 #!/bin/bash
-# shellcheck disable=SC1090,SC1091
+# shellcheck disable=SC1091
 
-# Source common profile
-source "$HOME/.profile"
-
-# Visual Studio Code shell integration
-vscode_shell_integration() {
-  . "$(code --locate-shell-integration-path bash)"
-  unfunction vscode_shell_integration
-}
-[[ "$TERM_PROGRAM" == "vscode" ]] && zle -N vscode_shell_integration
-
-# Other shell integrations
-fzf_integration() {
-  source ~/.fzf.bash
-  unfunction fzf_integration
-}
-[ -f ~/.fzf.bash ] && zle -N fzf_integration
-
-# Import aliases
-[ -f "$HOME/.aliases" ] && source "$HOME/.aliases"
+source "$HOME/.config/shell/bashrc"

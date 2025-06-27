@@ -74,15 +74,15 @@ alias killsc='kill_files . "*.sync-conflict-*"'
 alias killpkf='kill_files . "*.pkf"'
 
 # Load more aliases
-source "$HOME/.aliases_shell"
+source "$HOME/.config/shell/aliases_shell"
 if [[ "$(uname)" == "Darwin" ]]; then
-  source "$HOME/.aliases_mac"
+  source "$HOME/.config/shell/aliases_mac"
 elif [[ "$(uname)" == "Linux" ]]; then
-  source "$HOME/.aliases_linux"
+  source "$HOME/.config/shell/aliases_linux"
 fi
 
 # Additional aliases for development
-source "$HOME/.aliases_dev"
+source "$HOME/.config/shell/aliases_dev"
 
 # Update all the things
 uatt() {
