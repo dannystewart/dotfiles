@@ -46,9 +46,9 @@ abbr -a rt trash
 # Python abbreviations
 if command -v pip &>/dev/null
     # pip commands
-    abbr -a pipin pip install -U
-    abbr -a pipun pip uninstall -y
-    abbr -a pipie pip install -e .
+    abbr -a pin pip install -U
+    abbr -a pun pip uninstall -y
+    abbr -a pie pip install -e .
     # Personal packages
     abbr -a pipds "pip uninstall -y dsbin && pip install -U dsbin"
     abbr -a pipdev "pip uninstall -y dsbin && pip install -U git+ssh://git@github.com/dannystewart/dsbin.git"
