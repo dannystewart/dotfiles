@@ -1,12 +1,6 @@
 #!/bin/bash
 # shellcheck disable=SC1091
 
-# Bypass old profile unless needed for something specific
-# source "$HOME/.config/shell/bashrc"
-
-# Bypass old aliases unless needed for something specific
-# [ -f "$HOME/.config/shell/aliases" ] && source "$HOME/.config/shell/aliases"
-
 # Basic ls aliases
 if command -v eza &>/dev/null; then
     alias ls='eza -bg'
