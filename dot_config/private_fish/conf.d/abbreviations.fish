@@ -19,7 +19,7 @@ function eza
     command eza --no-quotes --time-style='+%Y.%m.%d %I:%M %p' $argv
 end
 
-# eza: list
+# eza: simple list
 abbr -a l eza -1 --icons
 abbr -a ls eza
 abbr -a lf eza -1 --icons --group-directories-first # directories first
@@ -28,15 +28,11 @@ abbr -a lt eza --tree --level=1 # tree view
 # eza: long list
 abbr -a ll eza -l --icons --no-user
 abbr -a la eza -la --icons --no-user # same as above, just with hidden files
-abbr -a llf eza -l --icons --no-user --group-directories-first # directories first
+abbr -a laf eza -la --icons --no-user --group-directories-first # directories first
 abbr -a lz eza -l --icons --no-user --total-size -rs size # with folder sizes, sorted by size
-abbr -a lg eza -l --git --git-repos --total-size # with git repos and folder sizes
-abbr -a lgz eza -l --git --git-repos --total-size -rs size # with repos, sorted by size
-
-# eza: detailed list
-abbr -a lv eza -lga --git
-abbr -a laf eza -lga --git --group-directories-first # directories first
-abbr -a laz eza -lga --git --total-size -rs size # with folder sizes, sorted by size
+abbr -a lv eza -lga --git # verbose (includes user, group, and git status)
+abbr -a lvf eza -lga --git --group-directories-first # verbose with directories first
+abbr -a lvz eza -lga --git --total-size -rs size # with folder sizes, sorted by size
 
 # rsync abbreviations
 abbr -a rsync-copy rsync -avz --progress -h
