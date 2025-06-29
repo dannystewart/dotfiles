@@ -9,8 +9,10 @@ if not set -q FISH_CONFIG_LOADED
     set -gx CACHED_HOSTNAME (hostname)
 end
 
-# Set timezone
+# Set timezone and environment variables
 set -x TZ America/New_York
+set -gx LESSHISTFILE /dev/null
+set -gx HOMEBREW_NO_ENV_HINTS true
 
 # Initialize Homebrew if not already initialized
 if not set -q HOMEBREW_PREFIX
@@ -18,9 +20,6 @@ if not set -q HOMEBREW_PREFIX
     test -f /opt/homebrew/bin/brew; and eval "$(/opt/homebrew/bin/brew shellenv)"
     test -f /home/linuxbrew/.linuxbrew/bin/brew; and eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 end
-
-# Disable Homebrew hints
-set -gx HOMEBREW_NO_ENV_HINTS true
 
 # Configure paths
 source ~/.config/fish/conf.d/paths.fish
