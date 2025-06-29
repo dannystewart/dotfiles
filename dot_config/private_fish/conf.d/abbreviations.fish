@@ -38,6 +38,12 @@ abbr -a la eza -lga --git
 abbr -a laf eza -lga --git --group-directories-first # directories first
 abbr -a laz eza -lga --git --total-size -rs size # with folder sizes, sorted by size
 
+# rsync abbreviations
+abbr -a rsync-copy rsync -avz --progress -h
+abbr -a rsync-move rsync -avz --progress -h --remove-source-files
+abbr -a rsync-update rsync -avzu --progress -h
+abbr -a rsync-synchronize rsync -avzu --delete --progress -h
+
 # Other shell abbreviations
 abbr -a cat bat -p
 abbr -a cu chezmoi update
