@@ -11,7 +11,9 @@ function czman --description "Find potential orphaned files in Chezmoi-managed d
     set ignore_patterns \
         ".bash_history" \
         ".bashrc" \
+        ".claude.json" \
         ".env" \
+        ".git-credentials" \
         ".local/share/*" \
         ".nuke_count" \
         ".pypirc" \
