@@ -27,14 +27,14 @@ abbr -a lt eza --tree --level=1 # tree view
 
 # eza: long list
 abbr -a ll eza -l --icons --no-user
-abbr -a lh eza -la --icons --no-user # same as above, just with hidden files
+abbr -a la eza -la --icons --no-user # same as above, just with hidden files
 abbr -a llf eza -l --icons --no-user --group-directories-first # directories first
 abbr -a lz eza -l --icons --no-user --total-size -rs size # with folder sizes, sorted by size
 abbr -a lg eza -l --git --git-repos --total-size # with git repos and folder sizes
 abbr -a lgz eza -l --git --git-repos --total-size -rs size # with repos, sorted by size
 
 # eza: detailed list
-abbr -a la eza -lga --git
+abbr -a lv eza -lga --git
 abbr -a laf eza -lga --git --group-directories-first # directories first
 abbr -a laz eza -lga --git --total-size -rs size # with folder sizes, sorted by size
 
