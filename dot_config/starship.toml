@@ -30,51 +30,6 @@ format = "[$symbol]($style)"
 style = "gray"
 disabled = false
 
-[git_branch]
-symbol = "  "
-format = "[$symbol$branch]($style) "
-style = "#00DA00"
-
-[git_commit]
-tag_symbol = '  '
-format = "[$symbol($version )]($style)"
-
-[git_status]
-format = '([$ahead_behind$all_status]($style) )'
-style = "#00DA00"
-ahead = '[⇡$count](#00DA00) '
-behind = '[⇣$count](#00DA00) '
-diverged = '[⇡$ahead_count⇣$behind_count](#00DA00) '
-conflicted = '[=$count](#00DA00) '
-untracked = '[?$count](#00B2FF) '
-modified = '[!$count](#DFAC00) '
-staged = '[+$count](#00DA00) '
-renamed = '[»$count](#00DA00) '
-deleted = '[✘$count](#00DA00) '
-stashed = '[*$count](#00DA00) '
-
-[cmd_duration]
-min_time = 1000
-format = "[ $duration]($style) "
-style = "#88865A"
-
-[character]
-success_symbol = "[❯](#00DA00)"
-format = "[$symbol($version )]($style)"
-error_symbol = "[❯](red)"
-
-[jobs]
-symbol = "+ "
-number_threshold = 1
-symbol_threshold = 1
-
-[time]
-disabled = false
-format = "[ $time]($style) "
-time_format = "%r"
-style = "#518987"
-use_12hr = true
-
 [directory]
 read_only = " 󰌾"
 truncation_length = 5
@@ -94,6 +49,32 @@ style = "#008AB3 bold"
 "~/Videos" = "󰕧 ~/Videos"
 "~/dev" = "󰲋 ~/dev"
 
+[git_branch]
+symbol = "  "
+format = "[$symbol$branch]($style) "
+style = "#00DA00"
+
+[git_commit]
+tag_symbol = '  '
+format = "[$symbol($version )]($style)"
+
+[git_status]
+format = '([$ahead_behind$all_status]($style) )'
+style = "#00DA00"
+ahead = '[⇡$count](#00DA00) '
+behind = '[⇣$count](#00DA00) '
+diverged = '[⇡$ahead_count⇣$behind_count](#00DA00) '
+conflicted = '[=$count](#00DA00) '
+untracked = '[?$count](#00B2FF) '
+modified = '[!$count](#DFAC00) '
+staged = '[+$count](#00DA00) '
+renamed = '[→$count](#00DA00) '
+deleted = '[✘$count](#00DA00) '
+stashed = '[*$count](#00DA00) '
+
+[fill]
+symbol = " "
+
 [username]
 style_user = "#DFAD81"
 style_root = "red bold"
@@ -107,8 +88,74 @@ format = "[@$hostname]($style) "
 style = "#DFAD81"
 disabled = false
 
-[fill]
-symbol = " "
+[cmd_duration]
+min_time = 1000
+format = "[ $duration]($style) "
+style = "#88865A"
+
+[jobs]
+symbol = "+ "
+number_threshold = 1
+symbol_threshold = 1
+
+[time]
+disabled = false
+format = "[ $time]($style) "
+time_format = "%r"
+style = "#518987"
+use_12hr = true
+
+[character]
+success_symbol = "[❯](#00DA00)"
+format = "[$symbol($version )]($style)"
+error_symbol = "[❯](red)"
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CachyOS = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+Nobara = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
 
 [aws]
 symbol = "  "
@@ -229,53 +276,6 @@ format = "[$symbol($version )]($style)"
 [ocaml]
 symbol = " "
 format = "[$symbol($version )]($style)"
-
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-AlmaLinux = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CachyOS = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Kali = " "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-Nobara = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-RockyLinux = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Void = " "
-Windows = "󰍲 "
 
 [package]
 symbol = "󰏗 "
