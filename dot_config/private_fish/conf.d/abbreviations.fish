@@ -42,6 +42,7 @@ abbr -a cat bat -p
 abbr -a cu chezmoi update
 abbr -a ca chezmoi apply
 abbr -a rt trash
+abbr -a q exit
 
 # Python abbreviations
 if command -v pip &>/dev/null
