@@ -46,6 +46,7 @@ function czman --description "Find potential orphaned files in Chezmoi-managed d
 
     printf '%s\n' $managed_files | sort >$temp_managed
 
+    set found_any false
     for dir in $managed_dirs
         set abs_dir "$HOME/$dir"
         if test -d $abs_dir
@@ -72,6 +73,7 @@ function czman --description "Find potential orphaned files in Chezmoi-managed d
             end
 
             if test -n "$orphans"
+                set found_any true
                 echo -e "$blue$bold📁 Potential orphans in: ~/$dir"$nc
                 for orphan in $orphans
                     echo -e "$cyan  $orphan"$nc
@@ -79,6 +81,11 @@ function czman --description "Find potential orphaned files in Chezmoi-managed d
                 echo
             end
         end
+    end
+
+    # Show no results message if nothing found
+    if not $found_any
+        echo -e "$green✨ No orphaned files found! Your home directory is clean!"$nc
     end
 
     # Clean up temp files
