@@ -1,0 +1,89 @@
+{{ if not (eq .chezmoi.os "windows") -}}
+#!/bin/bash
+# shellcheck disable=all
+
+# Function to check if fish is working
+test_fish() {
+    if command -v fish > /dev/null 2>&1; then
+        # Test that fish can actually run
+        if fish -c "echo 'Fish test successful'" > /dev/null 2>&1; then
+            return 0
+        fi
+    fi
+    return 1
+}
+
+# Function to get current shell
+get_current_shell() {
+    if [ -n "$SHELL" ]; then
+        basename "$SHELL"
+    else
+        echo "unknown"
+    fi
+}
+
+# Function to safely change shell
+change_shell() {
+    local fish_path="$1"
+    local current_shell
+    current_shell=$(get_current_shell)
+
+    echo "Current shell: $current_shell"
+    echo "Attempting to change shell to: $fish_path"
+
+    # Check if fish is in /etc/shells
+    if ! grep -q "^$fish_path$" /etc/shells 2>/dev/null; then
+        echo "Adding $fish_path to /etc/shells..."
+        if command -v sudo > /dev/null 2>&1; then
+            echo "$fish_path" | sudo tee -a /etc/shells > /dev/null
+        else
+            echo "Warning: Cannot add fish to /etc/shells (no sudo). Shell change may fail."
+        fi
+    fi
+
+    # Attempt to change shell
+    if command -v chsh > /dev/null 2>&1; then
+        if chsh -s "$fish_path" 2>/dev/null; then
+            echo "✅ Successfully changed default shell to fish!"
+            echo "   New sessions will use fish. Current session still uses $current_shell."
+            return 0
+        else
+            echo "❌ chsh failed. Trying alternative methods..."
+        fi
+    fi
+
+    # Alternative method: try usermod for some Linux systems
+    if command -v usermod > /dev/null 2>&1 && command -v sudo > /dev/null 2>&1; then
+        if sudo usermod -s "$fish_path" "$USER" 2>/dev/null; then
+            echo "✅ Successfully changed shell via usermod!"
+            return 0
+        fi
+    fi
+
+    return 1
+}
+
+if test_fish; then
+    # Find fish path
+    FISH_PATH=$(command -v fish)
+
+    # Check if we're already using fish
+    if [ "$(get_current_shell)" = "fish" ]; then
+        exit 0
+    fi
+
+    # Attempt to change shell
+    if change_shell "$FISH_PATH"; then
+        echo ""
+        echo "🐟 Fish setup complete! Restart your terminal or run 'exec fish' to start using fish."
+    else
+        echo ""
+        echo "⚠️  Could not automatically change default shell."
+        echo "   You can manually change it by running: chsh -s $FISH_PATH"
+    fi
+else
+    echo "❌ Fish is not available or not working properly."
+    echo "   Please ensure fish is installed and functional. Your shell is unchanged."
+    exit 1
+fi
+{{- end -}}
