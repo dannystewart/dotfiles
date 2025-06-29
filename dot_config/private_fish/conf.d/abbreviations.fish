@@ -20,9 +20,9 @@ function eza
 end
 
 # eza: list
-abbr -a l eza --oneline --icons
+abbr -a l eza -1 --icons
 abbr -a ls eza
-abbr -a lf eza --oneline --icons --group-directories-first # directories first
+abbr -a lf eza -1 --icons --group-directories-first # directories first
 abbr -a lt eza --tree --level=1 # tree view
 
 # eza: long list

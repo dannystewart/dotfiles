@@ -19,6 +19,9 @@ if not set -q HOMEBREW_PREFIX
     test -f /home/linuxbrew/.linuxbrew/bin/brew; and eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 end
 
+# Disable Homebrew hints
+set -gx HOMEBREW_NO_ENV_HINTS true
+
 # Configure paths
 source ~/.config/fish/conf.d/paths.fish
 
