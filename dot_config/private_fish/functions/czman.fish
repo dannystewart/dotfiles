@@ -9,18 +9,18 @@ function czman --description "Find potential orphaned files in Chezmoi-managed d
 
     # Files to ignore (known non-orphans)
     set ignore_patterns \
-        "*/.bash_history" \
-        "*/.bashrc" \
-        "*/.env" \
-        "*/.local/share/*" \
-        "*/.nuke_count" \
-        "*/.pypirc" \
-        "*/.python_build_mode" \
-        "*/.zsh_history" \
-        "*/.zshrc" \
-        "*/fish_history" \
-        "*/known_hosts" \
-        "*/telegram-upload*"
+        ".bash_history" \
+        ".bashrc" \
+        ".env" \
+        ".local/share/*" \
+        ".nuke_count" \
+        ".pypirc" \
+        ".python_build_mode" \
+        ".ssh/known_hosts" \
+        ".zsh_history" \
+        ".zshrc" \
+        "*/telegram-upload*" \
+        "fish_history"
 
     echo -e "$green$bold🔍 Finding potential orphaned files in Chezmoi-managed directories..."$nc
     echo -e "$yellow   NOTE: "(count $ignore_patterns)" file patterns are being ignored."$nc
@@ -49,7 +49,7 @@ function czman --description "Find potential orphaned files in Chezmoi-managed d
         if test -d $abs_dir
 
             # Get all files in this directory (non-recursive, convert to relative paths)
-            find $abs_dir -maxdepth 1 -type f | sed "s|$HOME/||" | sort >$temp_actual
+            find $abs_dir -maxdepth 1 -type f | sed "s|$HOME/||" | sed "s|^\./||" | sort >$temp_actual
 
             # Find files in directory that are NOT managed by Chezmoi
             set all_orphans (comm -23 $temp_actual $temp_managed)
