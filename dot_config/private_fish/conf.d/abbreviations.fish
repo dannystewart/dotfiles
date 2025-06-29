@@ -51,6 +51,9 @@ abbr -a ca chezmoi apply
 abbr -a rt trash
 abbr -a q exit
 
+# Add Touch ID as allowable for sudo
+abbr -a touchid sudo su root -c '/opt/homebrew/bin/gsed -i "2iauth       sufficient     pam_tid.so" /etc/pam.d/sudo'
+
 # Python abbreviations
 if command -v pip &>/dev/null
     # pip commands
