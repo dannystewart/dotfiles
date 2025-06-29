@@ -1,8 +1,8 @@
-__pycache__
-.config/oh-my-zsh/custom/plugins/zsh-autosuggestions*
+__pycache__/
 .DS_Store
+.ruff_cache/
+.sync.ffs_db
 *.code-workspace
 **/__pycache__
 key.txt.age
 README.md
-tempCodeRunnerFile.shellscript
