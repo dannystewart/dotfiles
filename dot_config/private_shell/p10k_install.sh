@@ -9,4 +9,4 @@ if [ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
 fi
 
 # Reload zsh configuration
-zsh -c "source $HOME/.zshrc"
+zsh -c "source $HOME/.config/shell/zshrc"

@@ -1,4 +1,4 @@
 #!/bin/bash
 # shellcheck disable=SC1091
 
-source "$HOME/.config/shell/bashrc"
+source "$HOME/.config/shell/bash_profile"
