@@ -9,30 +9,29 @@ fi
 
 # Package list (os:package_name:command_to_check)
 packages=(
-    "all:age:age"
-    "all:bat:bat"
-    "all:broot:broot"
-    "all:chafa:chafa"
-    "all:chezmoi:chezmoi"
+    "brew:bat:bat"
+    "brew:broot:broot"
+    "brew:chafa:chafa"
+    "brew:chezmoi:chezmoi"
     "all:curl:curl"
-    "all:exiftool:exiftool"
-    "all:eza:eza"
-    "all:fd:fd"
-    "all:fish:fish"
-    "all:gcc:gcc"
-    "all:gh:gh"
-    "all:git-lfs:git-lfs"
-    "all:htop:htop"
+    "brew:exiftool:exiftool"
+    "brew:eza:eza"
+    "brew:fd:fd"
+    "brew:fish:fish"
+    "brew:gcc:gcc"
+    "brew:gh:gh"
+    "brew:git-lfs:git-lfs"
+    "brew:htop:htop"
     "all:inetutils:ftp"
     "all:lesspipe:lesspipe.sh"
-    "all:mosh:mosh"
-    "all:pyenv:pyenv"
+    "brew:mosh:mosh"
+    "brew:pyenv:pyenv"
     "all:rsync:rsync"
     "all:sed:sed"
-    "all:starship:starship"
-    "all:tmux-mem-cpu-load:tmux-mem-cpu-load"
-    "all:tmux:tmux"
-    "all:tmuxinator:tmuxinator"
+    "brew:starship:starship"
+    "brew:tmux-mem-cpu-load:tmux-mem-cpu-load"
+    "brew:tmux:tmux"
+    "brew:tmuxinator:tmuxinator"
     "all:wget:wget"
     "mac:displayplacer:displayplacer"
 )
@@ -62,6 +61,25 @@ install_packages() {
         fi
     done
 }
+
+# Function to install brew-priority packages
+install_brew_packages() {
+    if ! command -v brew > /dev/null 2>&1; then
+        return
+    fi
+
+    for pkg_info in "${packages[@]}"; do
+        IFS=':' read -r os_support pkg cmd_to_check <<< "$pkg_info"
+        if [ "$os_support" = "brew" ]; then
+            if ! command -v "$cmd_to_check" > /dev/null 2>&1; then
+                brew install "$pkg"
+            fi
+        fi
+    done
+}
+
+# Install brew-priority packages first (if Homebrew is available)
+install_brew_packages
 
 # Use APT if Debian-based
 if command -v apt-get > /dev/null 2>&1; then
