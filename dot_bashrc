@@ -1,4 +1,24 @@
 #!/bin/bash
 # shellcheck disable=SC1091
 
-source "$HOME/.config/shell/bashrc"
+# Bypass old profile unless needed for something specific
+# source "$HOME/.config/shell/bashrc"
+
+# Bypass old aliases unless needed for something specific
+# [ -f "$HOME/.config/shell/aliases" ] && source "$HOME/.config/shell/aliases"
+
+# Basic ls aliases
+if command -v eza &>/dev/null; then
+    alias ls='eza -bg'
+    alias ll='eza -laFb'
+    alias l='eza -1'
+    alias la='eza -1a'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -l'
+    alias l='ls -lFh'
+    alias la='ls -lAFh'
+fi
+
+# Initialize Starship
+eval "$(starship init bash)"

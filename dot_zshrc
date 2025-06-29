@@ -1,4 +1,21 @@
 #!/bin/zsh
 # shellcheck disable=SC1071
 
-source "$HOME/.config/shell/zshrc"
+# Bypass old zshrc unless needed for something specific
+# source "$HOME/.config/shell/zshrc"
+
+# Basic ls aliases
+if command -v eza &>/dev/null; then
+    alias ls='eza -bg'
+    alias ll='eza -laFb'
+    alias l='eza -1'
+    alias la='eza -1a'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -l'
+    alias l='ls -lFh'
+    alias la='ls -lAFh'
+fi
+
+# Initialize Starship
+eval "$(starship init zsh)"
