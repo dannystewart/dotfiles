@@ -83,6 +83,7 @@ end
 set -l current_hostname (hostname)
 switch $current_hostname
     case web
+        abbr -a prl prismlens
         abbr -a prp prismlens
         abbr -a prd prismlens dev
         abbr -a prrp prismlens restart
