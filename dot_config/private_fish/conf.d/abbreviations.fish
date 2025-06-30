@@ -7,6 +7,8 @@ switch (uname)
         abbr -a pim pwsh "/Users/danny/Developer/iri/iri-powershell/Azure/Set-PIM.ps1"
         # Add Touch ID as allowable for sudo
         abbr -a touchid sudo su root -c '/opt/homebrew/bin/gsed -i "2iauth       sufficient     pam_tid.so" /etc/pam.d/sudo'
+        # Bluetooth reset
+        abbr -a btreset "blueutil -p 0 && sleep 1 && blueutil -p 1"
     case Linux
         # Linux package managers
         command -v apt &>/dev/null; and abbr -a aptup "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
