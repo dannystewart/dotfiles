@@ -46,7 +46,8 @@ change_shell() {
 
     # Attempt to change shell
     if command -v chsh > /dev/null 2>&1; then
-        if chsh -s "$fish_path" 2>/dev/null; then
+        echo "Need password to change shell:"
+        if chsh -s "$fish_path"; then
             echo "✅ Successfully changed default shell to fish!"
             echo "   New sessions will use fish. Current session still uses $current_shell."
             return 0
@@ -66,6 +67,34 @@ change_shell() {
     return 1
 }
 
+# Function to ensure starship is available
+ensure_starship() {
+    if ! command -v starship > /dev/null 2>&1; then
+        echo "Starship not found. Installing via official installer..."
+        if command -v curl > /dev/null 2>&1; then
+            # Create user bin directory if it doesn't exist
+            mkdir -p "$HOME/.local/bin"
+            # Use the official installer with auto-approval and user bin directory
+            curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir "$HOME/.local/bin" --yes
+            # Add to PATH if not already there
+            if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+                export PATH="$HOME/.local/bin:$PATH"
+            fi
+        else
+            echo "❌ Cannot install starship (curl not available)"
+            return 1
+        fi
+    fi
+    return 0
+}
+
+# Ensure starship is available first (before any sudo operations)
+if ! ensure_starship; then
+    echo "⚠️  Starship installation failed."
+    echo "   Please install starship manually before proceeding."
+    exit 1
+fi
+
 if test_fish; then
     # Find fish path
     FISH_PATH=$(command -v fish)
@@ -74,6 +103,9 @@ if test_fish; then
     if [ "$(get_current_shell)" = "fish" ]; then
         exit 0
     fi
+
+    # Ensure fish cache directory exists
+    mkdir -p "$HOME/.cache/fish"
 
     # Attempt to change shell
     if change_shell "$FISH_PATH"; then
