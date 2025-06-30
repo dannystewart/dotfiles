@@ -54,7 +54,7 @@ install_packages() {
 
     for pkg_info in "${packages[@]}"; do
         IFS=':' read -r os_support pkg cmd_to_check <<< "$pkg_info"
-        if [ "$os_support" = "all" ] || [ "$os_support" = "$current_os" ]; then
+        if [ "$os_support" = "all" ] || [ "$os_support" = "$current_os" ] || [ "$os_support" = "brew" ]; then
             if ! command -v "$cmd_to_check" > /dev/null 2>&1; then
                 $install_cmd "$pkg"
             fi
