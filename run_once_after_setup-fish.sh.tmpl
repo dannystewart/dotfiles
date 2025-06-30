@@ -31,11 +31,14 @@ change_shell() {
     echo "Current shell: $current_shell"
     echo "Attempting to change shell to: $fish_path"
 
-    # Check if fish is in /etc/shells
+        # Check if fish is in /etc/shells
     if ! grep -q "^$fish_path$" /etc/shells 2>/dev/null; then
         echo "Adding $fish_path to /etc/shells..."
         if command -v sudo > /dev/null 2>&1; then
-            echo "$fish_path" | sudo tee -a /etc/shells > /dev/null
+            if ! echo "$fish_path" | sudo -n tee -a /etc/shells > /dev/null 2>&1; then
+                echo "Need sudo access to add fish to /etc/shells. Please enter your password:"
+                echo "$fish_path" | sudo tee -a /etc/shells > /dev/null
+            fi
         else
             echo "Warning: Cannot add fish to /etc/shells (no sudo). Shell change may fail."
         fi
@@ -54,7 +57,7 @@ change_shell() {
 
     # Alternative method: try usermod for some Linux systems
     if command -v usermod > /dev/null 2>&1 && command -v sudo > /dev/null 2>&1; then
-        if sudo usermod -s "$fish_path" "$USER" 2>/dev/null; then
+        if sudo -n usermod -s "$fish_path" "$USER" 2>/dev/null || sudo usermod -s "$fish_path" "$USER" 2>/dev/null; then
             echo "✅ Successfully changed shell via usermod!"
             return 0
         fi
