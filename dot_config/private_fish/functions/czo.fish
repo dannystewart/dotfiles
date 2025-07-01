@@ -1,4 +1,4 @@
-function czman --description "Find potential orphaned files in Chezmoi-managed directories"
+function czo --description "Find potential orphaned files in Chezmoi-managed directories"
     # Colors
     set -l yellow '\033[0;33m'
     set -l green '\033[0;32m'
