@@ -14,8 +14,8 @@
           "properties": {
             "time_format": "3:04:05 PM"
           },
-          "template": " {{ .CurrentDate | date .Format }} ",
-          "foreground": "#00C5C7",
+          "template": "  {{ .CurrentDate | date .Format }} ",
+          "foreground": "#518987",
           "type": "time",
           "style": "plain"
         }
@@ -43,19 +43,19 @@
             "style": "full"
           },
           "template": "{{ .Path }} ",
-          "foreground": "#77E4F7",
+          "foreground": "#008AB3",
           "type": "path",
-          "style": "plain"
+          "style": "bold"
         },
         {
           "template": "{{ .HEAD }} ",
-          "foreground": "#FFE700",
+          "foreground": "#5fd700",
           "type": "git",
           "style": "plain"
         },
         {
           "template": "❯ ",
-          "foreground": "#43D426",
+          "foreground": "#5fd700",
           "type": "text",
           "style": "plain"
         }
