@@ -101,7 +101,8 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
     function gac { git add -A; git commit -m @args }
 }
 
-# Initialize oh-my-posh
-if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
-    oh-my-posh init pwsh --config ~/.config/powershell/powerlevel10k.json | Invoke-Expression
+# Initialize starship
+if (Get-Command starship -ErrorAction SilentlyContinue) {
+    $ENV:STARSHIP_CONFIG = "$HOME/.config/powershell/starship_pwsh.toml"
+    Invoke-Expression (&starship init powershell)
 }
