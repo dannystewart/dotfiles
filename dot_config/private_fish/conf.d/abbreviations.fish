@@ -24,12 +24,12 @@ abbr -a cu chezmoi update
 abbr -a ca chezmoi apply
 
 # ls abbreviations
-abbr -a l ls -1
-abbr -a ll ls -l --no-user
-abbr -a lt ls --tree --level=1 # tree view
-abbr -a la ls -la --no-user # same as above, just with hidden files
-abbr -a lz ls -l --no-user --total-size -rs size # with folder sizes, sorted by size
-abbr -a lv ls -lga --git # verbose (includes user, group, and git status)
+abbr -a l ls -1 --group-directories-first
+abbr -a ll ls -l --no-user --group-directories-first
+abbr -a lt ls --tree --level=1 --group-directories-first # tree view
+abbr -a la ls -la --no-user --group-directories-first # same as above, just with hidden files
+abbr -a lz ls -la --no-user --total-size -rs size # with folder sizes, sorted by size
+abbr -a lv ls -lga --git --group-directories-first # verbose (includes user, group, and git status)
 abbr -a lvz ls -lga --git --total-size -rs size # with folder sizes, sorted by size
 
 # Other shell helpers
