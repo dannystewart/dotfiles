@@ -26,7 +26,7 @@ end
 source ~/.config/fish/conf.d/paths.fish
 
 # Configure Python build dependencies
-source ~/.config/fish/conf.d/python-build.fish
+source ~/.config/fish/conf.d/pythonbuild.fish
 
 # Initialize pyenv
 if command -v pyenv &>/dev/null
