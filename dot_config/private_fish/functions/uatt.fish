@@ -50,17 +50,6 @@ function uatt --description "Update all the things"
         set updated true
     end
 
-    # softwareupdate (macOS)
-    if command -v softwareupdate &>/dev/null
-        echo -e "$blue"\n'==> '"$nc$bold"'Updating macOS...'"$nc"
-        if sudo -n true 2>/dev/null
-            sudo softwareupdate --background
-            set updated true
-        else
-            echo -e "Run with sudo to update macOS."
-        end
-    end
-
     # Chezmoi
     if command -v chezmoi &>/dev/null
         echo -e "$blue"\n'==> '"$nc$bold"'Updating Chezmoi...'"$nc"
