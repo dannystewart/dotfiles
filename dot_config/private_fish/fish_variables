@@ -1,6 +1,25 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export ABBR_TIPS_PROMPT:\x5cn\U0001f4a1\x20\x5ce\x5b1m\x7b\x7b\x20\x2eabbr\x20\x7d\x7d\x5ce\x5b0m\x20\x3d\x3e\x20\x7b\x7b\x20\x2ecmd\x20\x7d\x7d
+SETUVAR --export ABBR_TIPS_REGEXES:\x28\x5e\x28\x5cw\x2b\x5cs\x2b\x29\x2b\x28\x2d\x7b1\x2c2\x7d\x29\x5cw\x2b\x29\x28\x5cs\x5cS\x2b\x29\x1e\x28\x5e\x28\x5cs\x3f\x28\x5cw\x2d\x3f\x29\x2b\x29\x7b3\x7d\x29\x2e\x2a\x1e\x28\x5e\x28\x5cs\x3f\x28\x5cw\x2d\x3f\x29\x2b\x29\x7b2\x7d\x29\x2e\x2a\x1e\x28\x5e\x28\x5cs\x3f\x28\x5cw\x2d\x3f\x29\x2b\x29\x7b1\x7d\x29\x2e\x2a
+SETUVAR ZO_CMD:zo
+SETUVAR Z_CMD:z
+SETUVAR Z_DATA:/Users/danny/\x2elocal/share/z/data
+SETUVAR Z_DATA_DIR:/Users/danny/\x2elocal/share/z
+SETUVAR Z_EXCLUDE:\x5e/Users/danny\x24
+SETUVAR --export __ABBR_TIPS_KEYS:macup\x1epim\x1etouchid\x1ebtreset\x1ebru\x1ecu\x1eca\x1el\x1ell\x1elt\x1ela\x1elz\x1elv\x1elvz\x1ert\x1ersync\x2dcopy\x1ersync\x2dmove\x1ersync\x2dupdate\x1ersync\x2dsynchronize\x1epin\x1epun\x1epie\x1epipds\x1epipdev\x1egs\x1ega\x1egc\x1egp\x1egpf\x1egsc\x1egrhh\x1egfp\x1egac\x1edcu\x1edcd\x1edcdu\x1edcdpu\x1edcr\x1edcl\x1edcp\x1edsp\x1edotdot
+SETUVAR --export __ABBR_TIPS_VALUES:mas\x20upgrade\x1epwsh\x20/Users/danny/Developer/iri/iri\x2dpowershell/Azure/Set\x2dPIM\x2eps1\x1esudo\x20su\x20root\x20\x2dc\x20/opt/homebrew/bin/gsed\x20\x2di\x20\x222iauth\x20\x20\x20\x20\x20\x20\x20sufficient\x20\x20\x20\x20\x20pam_tid\x2eso\x22\x20/etc/pam\x2ed/sudo\x1eblueutil\x20\x2dp\x200\x20\x26\x26\x20sleep\x201\x20\x26\x26\x20blueutil\x20\x2dp\x201\x1ebrew\x20update\x20\x26\x26\x20brew\x20upgrade\x20\x26\x26\x20brew\x20cleanup\x1echezmoi\x20update\x1echezmoi\x20apply\x1els\x20\x2d1\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x1els\x20\x2dl\x20\x2d\x2dno\x2duser\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x1els\x20\x2d\x2dtree\x20\x2d\x2dlevel\x3d1\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x1els\x20\x2dla\x20\x2d\x2dno\x2duser\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x1els\x20\x2dla\x20\x2d\x2dno\x2duser\x20\x2d\x2dtotal\x2dsize\x20\x2drs\x20size\x1els\x20\x2dlga\x20\x2d\x2dgit\x20\x2d\x2dgroup\x2ddirectories\x2dfirst\x1els\x20\x2dlga\x20\x2d\x2dgit\x20\x2d\x2dtotal\x2dsize\x20\x2drs\x20size\x1etrash\x1ersync\x20\x2davz\x20\x2d\x2dprogress\x20\x2dh\x1ersync\x20\x2davz\x20\x2d\x2dprogress\x20\x2dh\x20\x2d\x2dremove\x2dsource\x2dfiles\x1ersync\x20\x2davzu\x20\x2d\x2dprogress\x20\x2dh\x1ersync\x20\x2davzu\x20\x2d\x2ddelete\x20\x2d\x2dprogress\x20\x2dh\x1epip\x20install\x20\x2dU\x1epip\x20uninstall\x20\x2dy\x1epip\x20install\x20\x2de\x20\x2e\x1epip\x20uninstall\x20\x2dy\x20dsbin\x20\x26\x26\x20pip\x20install\x20\x2dU\x20dsbin\x1epip\x20uninstall\x20\x2dy\x20dsbin\x20\x26\x26\x20pip\x20install\x20\x2dU\x20git\x2bssh\x3a//git\x40github\x2ecom/dannystewart/dsbin\x2egit\x1egit\x20status\x1egit\x20add\x20\x2dA\x1egit\x20commit\x20\x2dm\x1egit\x20push\x1egit\x20push\x20\x2d\x2dforce\x1egit\x20stash\x20clear\x1egit\x20reset\x20\x2d\x2dhard\x20HEAD\x1egit\x20fetch\x20\x26\x26\x20git\x20pull\x1egit\x20add\x20\x2dA\x20\x26\x26\x20git\x20commit\x20\x2dm\x1edocker\x20compose\x20up\x20\x2dd\x1edocker\x20compose\x20down\x20\x2d\x2dremove\x2dorphans\x1edocker\x20compose\x20down\x20\x2d\x2dremove\x2dorphans\x20\x26\x26\x20docker\x20compose\x20up\x20\x2dd\x1edocker\x20compose\x20down\x20\x2d\x2dremove\x2dorphans\x20\x26\x26\x20docker\x20system\x20prune\x20\x2da\x20\x2df\x20\x2dv\x20\x26\x26\x20docker\x20compose\x20up\x20\x2dd\x1edocker\x20compose\x20restart\x1edocker\x20compose\x20logs\x1edocker\x20compose\x20pull\x1edocker\x20system\x20prune\x20\x2da\x20\x2df\x20\x2dv\x1e
 SETUVAR __fish_initialized:3800
+SETUVAR _fisher_franciscolourenco_2F_done_files:\x7e/\x2econfig/fish/conf\x2ed/done\x2efish
+SETUVAR _fisher_gazorby_2F_fish_2D_abbreviation_2D_tips_files:\x7e/\x2econfig/fish/functions/__abbr_tips_bind_newline\x2efish\x1e\x7e/\x2econfig/fish/functions/__abbr_tips_bind_space\x2efish\x1e\x7e/\x2econfig/fish/functions/__abbr_tips_clean\x2efish\x1e\x7e/\x2econfig/fish/functions/__abbr_tips_init\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/abbr_tips\x2efish
+SETUVAR _fisher_jethrokuan_2F_z_files:\x7e/\x2econfig/fish/functions/__z\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_add\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_clean\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_complete\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/z\x2efish
+SETUVAR _fisher_jorgebucaran_2F_autopair_2E_fish_files:\x7e/\x2econfig/fish/functions/_autopair_backspace\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_left\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_right\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_insert_same\x2efish\x1e\x7e/\x2econfig/fish/functions/_autopair_tab\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/autopair\x2efish
+SETUVAR _fisher_laughedelic_2F_brew_2D_completions_files:\x7e/\x2econfig/fish/completions/brew\x2efish
+SETUVAR _fisher_meaningful_2D_ooo_2F_sponge_files:\x7e/\x2econfig/fish/functions/_sponge_clear_state\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_exit\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_postexec\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_preexec\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_remove_from_history\x2efish\x1e\x7e/\x2econfig/fish/functions/sponge_filter_failed\x2efish\x1e\x7e/\x2econfig/fish/functions/sponge_filter_matched\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/sponge\x2efish
+SETUVAR _fisher_oh_2D_my_2D_fish_2F_plugin_2D_bang_2D_bang_files:\x7e/\x2econfig/fish/functions/__history_previous_command\x2efish\x1e\x7e/\x2econfig/fish/functions/__history_previous_command_arguments\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/plugin\x2dbang\x2dbang\x2efish
+SETUVAR _fisher_oh_2D_my_2D_fish_2F_plugin_2D_extract_files:\x7e/\x2econfig/fish/functions/extract\x2efish
+SETUVAR _fisher_patrickf1_2F_colored__man__pages_2E_fish_files:\x7e/\x2econfig/fish/functions/cless\x2efish\x1e\x7e/\x2econfig/fish/functions/man\x2efish
+SETUVAR _fisher_plugins:franciscolourenco/done\x1egazorby/fish\x2dabbreviation\x2dtips\x1emeaningful\x2dooo/sponge\x1eoh\x2dmy\x2dfish/plugin\x2dbang\x2dbang\x1eoh\x2dmy\x2dfish/plugin\x2dextract\x1ejethrokuan/z\x1epatrickf1/colored_man_pages\x2efish\x1ejorgebucaran/autopair\x2efish\x1elaughedelic/brew\x2dcompletions
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:\x23565f89
 SETUVAR fish_color_cancel:\x23c0cefc
@@ -11,6 +30,15 @@ SETUVAR fish_color_cwd_root:red
 SETUVAR fish_color_end:\x23ff9e64
 SETUVAR fish_color_error:\x23ff9e64
 SETUVAR fish_color_escape:\x232ac3de
+SETUVAR fish_color_hg_added:green
+SETUVAR fish_color_hg_clean:green
+SETUVAR fish_color_hg_copied:magenta
+SETUVAR fish_color_hg_deleted:red
+SETUVAR fish_color_hg_dirty:red
+SETUVAR fish_color_hg_modified:yellow
+SETUVAR fish_color_hg_renamed:magenta
+SETUVAR fish_color_hg_unmerged:red
+SETUVAR fish_color_hg_untracked:yellow
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host:\x23c0cefc
 SETUVAR fish_color_host_remote:yellow
@@ -42,3 +70,9 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d\x230066aa
 SETUVAR fish_pager_color_selected_completion:\x23ffffff
 SETUVAR fish_pager_color_selected_description:\x23ffffff
 SETUVAR fish_pager_color_selected_prefix:\x2389ddff
+SETUVAR sponge_allow_previously_successful:true
+SETUVAR sponge_delay:2
+SETUVAR sponge_filters:sponge_filter_failed\x1esponge_filter_matched
+SETUVAR sponge_purge_only_on_exit:false
+SETUVAR sponge_regex_patterns:\x1d
+SETUVAR sponge_successful_exit_codes:0
