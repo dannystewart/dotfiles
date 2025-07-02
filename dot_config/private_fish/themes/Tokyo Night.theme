@@ -1,0 +1,50 @@
+# name: 'Tokyo Night'
+# preferred_background: black
+
+fish_color_autosuggestion '#565f89'
+fish_color_cancel '#c0cefc'
+fish_color_command 'green'  '--bold'
+fish_color_comment '#565f89'
+fish_color_cwd '#008AB3'
+fish_color_cwd_root red
+fish_color_end '#ff9e64'
+fish_color_error '#ff9e64'
+fish_color_escape '#2ac3de'
+fish_color_hg_added green
+fish_color_hg_clean green
+fish_color_hg_copied magenta
+fish_color_hg_deleted red
+fish_color_hg_dirty red
+fish_color_hg_modified yellow
+fish_color_hg_renamed magenta
+fish_color_hg_unmerged red
+fish_color_hg_untracked yellow
+fish_color_history_current --bold
+fish_color_host '#c0cefc'
+fish_color_host_remote yellow
+fish_color_keyword '#7aa2f7'
+fish_color_match '#f7768e'
+fish_color_normal normal
+fish_color_operator '#ff9e64'
+fish_color_option '#2ac3de'
+fish_color_param '#c0cefc'
+fish_color_quote '#9ece6a'
+fish_color_redirection '#2ac3de'
+fish_color_search_match '--background=#0088cc'
+fish_color_selection '--background=#0066aa'
+fish_color_status '#c0cefc'
+fish_color_user '#c0cefc'
+fish_color_valid_path --underline
+fish_pager_color_background normal
+fish_pager_color_completion '#a9b1d6'
+fish_pager_color_description '#787c99'
+fish_pager_color_prefix '#89ddff'
+fish_pager_color_progress '#2ac3de'  '--background=#414868'
+fish_pager_color_secondary_background normal
+fish_pager_color_secondary_completion '#a9b1d6'
+fish_pager_color_secondary_description '#787c99'
+fish_pager_color_secondary_prefix '#89ddff'
+fish_pager_color_selected_background '--background=#0066aa'
+fish_pager_color_selected_completion '#ffffff'
+fish_pager_color_selected_description '#ffffff'
+fish_pager_color_selected_prefix '#89ddff'
