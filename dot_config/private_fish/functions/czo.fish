@@ -22,7 +22,7 @@ function czo --description "Find potential orphaned files in Chezmoi-managed dir
         ".zsh_history" \
         ".zshrc" \
         "*/telegram-upload*" \
-        "fish_history"
+        fish_history
 
     echo -e "$green$bold🔍 Finding potential orphaned files in Chezmoi-managed directories..."$clear
     echo -e "$yellow   NOTE: "(count $ignore_patterns)" file patterns are being ignored."$clear
