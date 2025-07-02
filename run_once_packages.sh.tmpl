@@ -1,6 +1,7 @@
-{{ if not (eq .chezmoi.os "windows") -}}
+{{ if (eq .chezmoi.os "windows") }}
+exit 0
+{{ end -}}
 #!/bin/bash
-# shellcheck disable=all
 
 # Install x86 Homebrew on ARM64 if not already present
 if [ "$(uname -a | grep ARM64)" ] && [ ! -f /usr/local/bin/brew ]; then
@@ -102,4 +103,3 @@ if command -v brew > /dev/null 2>&1; then
     install_packages "brew install" "brew update" ""
     brew cleanup
 fi
-{{- end -}}
