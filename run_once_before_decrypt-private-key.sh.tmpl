@@ -20,7 +20,7 @@ if ! command -v age; then
     # Else if 'pacman' exists
     elif command -v pacman; then
         echo "Using 'pacman' to install 'age'..."
-        sudo pacman -Syu age
+        sudo pacman -Syu --noconfirm age
 
     else
         echo "No known package manager found on your system. Please install 'age' manually."

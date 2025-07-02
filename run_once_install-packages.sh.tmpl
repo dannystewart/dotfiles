@@ -88,7 +88,7 @@ fi
 
 # Use Pacman if Arch-based
 if command -v pacman > /dev/null 2>&1; then
-    install_packages "sudo pacman -S --noconfirm" "sudo pacman -Syu" "sudo pacman -S --noconfirm base-devel"
+    install_packages "sudo pacman -S --noconfirm" "sudo pacman -Syu --noconfirm" "sudo pacman -S --noconfirm base-devel"
 fi
 
 # Use DNF if Fedora-based
