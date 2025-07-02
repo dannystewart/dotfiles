@@ -2,13 +2,13 @@
 # VERSION: 3.0
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
-{{ if (eq .chezmoi.os "darwin") -}}
+{{- if (eq .chezmoi.os "darwin") }}
 SETUVAR Z_DATA:/Users/danny/\x2elocal/share/z/data
 SETUVAR Z_DATA_DIR:/Users/danny/\x2elocal/share/z
-{{ else if (eq .chezmoi.os "linux") -}}
+{{- else if (eq .chezmoi.os "linux") }}
 SETUVAR Z_DATA:/home/danny/\x2elocal/share/z/data
 SETUVAR Z_DATA_DIR:/home/danny/\x2elocal/share/z
-{{- end -}}
+{{- end }}
 SETUVAR Z_EXCLUDE:\x5e/Users/danny\x24\x7c\x5e/home/danny\x24
 SETUVAR __fish_initialized:3800
 SETUVAR _fisher_franciscolourenco_2F_done_files:\x7e/\x2econfig/fish/conf\x2ed/done\x2efish
