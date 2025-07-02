@@ -84,6 +84,7 @@ install_brew_packages
 # Use APT if Debian-based
 if command -v apt-get > /dev/null 2>&1; then
     install_packages "sudo apt -y install" "sudo apt update" "sudo apt -y install build-essential"
+    echo -e "" # line break for visual consistency
 fi
 
 # Use Pacman if Arch-based
