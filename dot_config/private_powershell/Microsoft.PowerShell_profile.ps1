@@ -16,7 +16,7 @@ foreach ($path in $pathsToAdd) {
     }
 }
 
-# Initialize Homebrew if not already initialized
+# Initialize Homebrew
 if (-not $env:HOMEBREW_PREFIX) {
     $brewPaths = @(
         "C:/Program Files/Homebrew/bin/brew.exe",
@@ -35,6 +35,9 @@ if (-not $env:HOMEBREW_PREFIX) {
         }
     }
 }
+else {
+    function bru { brew update; brew upgrade; brew cleanup }
+}
 
 # Initialize pyenv
 if (Get-Command pyenv -ErrorAction SilentlyContinue) {
@@ -48,17 +51,6 @@ if (Get-Command pyenv -ErrorAction SilentlyContinue) {
             $env:PATH = "$shimsPath$([IO.Path]::PathSeparator)$env:PATH"
         }
     }
-}
-
-# Homebrew functions
-if (Get-Command brew -ErrorAction SilentlyContinue) {
-    function bru { brew update; brew upgrade; brew cleanup }
-}
-
-# Chezmoi functions
-if (Get-Command chezmoi -ErrorAction SilentlyContinue) {
-    function cu { chezmoi update }
-    function ca { chezmoi apply }
 }
 
 # cat replacement wrapper using bat with smart fallback
@@ -81,6 +73,10 @@ function ls {
     }
 }
 
+# Chezmoi functions
+function cu { chezmoi update }
+function ca { chezmoi apply }
+
 # ls functions
 function l { ls -1 --group-directories-first @args }
 function ll { ls -l --no-user --group-directories-first @args }
@@ -91,17 +87,15 @@ function lv { ls -lga --git --group-directories-first @args }
 function lvz { ls -lga --git --total-size -rs size @args }
 
 # Git functions
-if (Get-Command git -ErrorAction SilentlyContinue) {
-    function gs { git status @args }
-    function ga { git add -A @args }
-    function gc { git commit -m @args }
-    function gp { git push @args }
-    function gpf { git push --force @args }
-    function gsc { git stash clear @args }
-    function grhh { git reset --hard HEAD @args }
-    function gfp { git fetch; git pull @args }
-    function gac { git add -A; git commit -m @args }
-}
+function gs { git status @args }
+function ga { git add -A @args }
+function gc { git commit -m @args }
+function gp { git push @args }
+function gpf { git push --force @args }
+function gsc { git stash clear @args }
+function grhh { git reset --hard HEAD @args }
+function gfp { git fetch; git pull @args }
+function gac { git add -A; git commit -m @args }
 
 # Initialize Starship
 if (Get-Command starship -ErrorAction SilentlyContinue) {
