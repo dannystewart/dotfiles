@@ -2,7 +2,7 @@
 switch (uname)
     case Darwin
         # Mac App Store updater
-        command -v mas &>/dev/null; and abbr -a macup mas upgrade
+        abbr -a macup mas upgrade
         # PowerShell abbreviations
         abbr -a pim pwsh "/Users/danny/Developer/iri/iri-powershell/Azure/Set-PIM.ps1"
         # Add Touch ID as allowable for sudo
@@ -17,7 +17,7 @@ switch (uname)
 end
 
 # Homebrew abbreviations
-command -v brew &>/dev/null; and abbr -a bru "brew update && brew upgrade && brew cleanup"
+abbr -a bru "brew update && brew upgrade && brew cleanup"
 
 # Chezmoi abbreviations
 abbr -a cu chezmoi update
@@ -39,44 +39,38 @@ abbr -a rsync-move rsync -avz --progress -h --remove-source-files
 abbr -a rsync-update rsync -avzu --progress -h
 abbr -a rsync-synchronize rsync -avzu --delete --progress -h
 
-# Python
-if command -v pip &>/dev/null
-    # pip commands
-    abbr -a pin pip install -U
-    abbr -a pun pip uninstall -y
-    abbr -a pie pip install -e .
-    # Personal packages
-    abbr -a pipds "pip uninstall -y dsbin && pip install -U dsbin"
-    abbr -a pipdev "pip uninstall -y dsbin && pip install -U git+ssh://git@github.com/dannystewart/dsbin.git"
-end
+# Python commands
+abbr -a pin pip install -U
+abbr -a pun pip uninstall -y
+abbr -a pie pip install -e .
+
+# Personal Python packages
+abbr -a pipds "pip uninstall -y dsbin && pip install -U dsbin"
+abbr -a pipdev "pip uninstall -y dsbin && pip install -U git+ssh://git@github.com/dannystewart/dsbin.git"
 
 # Git
-if command -v git &>/dev/null
-    abbr -a gs git status
-    abbr -a ga git add -A
-    abbr -a gc git commit -m
-    abbr -a gp git push
-    abbr -a gpf git push --force
-    abbr -a gsc git stash clear
-    abbr -a grhh git reset --hard HEAD
-    abbr -a gfp "git fetch && git pull"
-    abbr -a gac "git add -A && git commit -m"
-end
+abbr -a gs git status
+abbr -a ga git add -A
+abbr -a gc git commit -m
+abbr -a gp git push
+abbr -a gpf git push --force
+abbr -a gsc git stash clear
+abbr -a grhh git reset --hard HEAD
+abbr -a gfp "git fetch && git pull"
+abbr -a gac "git add -A && git commit -m"
 
 # Docker
-if command -v docker &>/dev/null
-    abbr -a dcu docker compose up -d
-    abbr -a dcd docker compose down --remove-orphans
-    abbr -a dcdu "docker compose down --remove-orphans && docker compose up -d"
-    abbr -a dcdpu "docker compose down --remove-orphans && docker system prune -a -f -v && docker compose up -d"
-    abbr -a dcr docker compose restart
-    abbr -a dcl docker compose logs
-    abbr -a dcp docker compose pull
-    abbr -a dsp docker system prune -a -f -v
-end
+abbr -a dcu docker compose up -d
+abbr -a dcd docker compose down --remove-orphans
+abbr -a dcdu "docker compose down --remove-orphans && docker compose up -d"
+abbr -a dcdpu "docker compose down --remove-orphans && docker system prune -a -f -v && docker compose up -d"
+abbr -a dcr docker compose restart
+abbr -a dcl docker compose logs
+abbr -a dcp docker compose pull
+abbr -a dsp docker system prune -a -f -v
 
 # Server-specific
-switch $CACHED_HOSTNAME
+switch hostname
     case web
         # Prism
         abbr -a prl prismlens
