@@ -1,6 +1,10 @@
 # Configure Python and Ruby to use Homebrew dependencies
 # Prerequisites: brew install openssl@3 readline sqlite3 zlib gettext tcl-tk libb2
 
+# Skip if already loaded this session
+set -q PYTHON_BUILD_CONFIG_LOADED; and return
+set -gx PYTHON_BUILD_CONFIG_LOADED 1
+
 # Set BREW_PREFIX based on the system
 if test -f /opt/homebrew/bin/brew
     set -gx BREW_PREFIX /opt/homebrew
