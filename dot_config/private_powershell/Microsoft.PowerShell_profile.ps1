@@ -53,23 +53,17 @@ if (Get-Command pyenv -ErrorAction SilentlyContinue) {
     }
 }
 
-# cat replacement wrapper using bat with smart fallback
-function cat {
-    if (Get-Command bat -ErrorAction SilentlyContinue) {
+# cat replacement wrapper using bat if available
+if (Get-Command bat -ErrorAction SilentlyContinue) {
+    function cat {
         bat -p @args
-    }
-    else {
-        Get-Content @args
     }
 }
 
-# ls replacement wrapper using eza with smart fallback
-function ls {
-    if (Get-Command eza -ErrorAction SilentlyContinue) {
+# ls replacement wrapper using eza if available
+if (Get-Command eza -ErrorAction SilentlyContinue) {
+    function ls {
         eza --no-quotes --time-style='+%Y.%m.%d %I:%M %p' --icons @args
-    }
-    else {
-        Get-ChildItem @args
     }
 }
 
