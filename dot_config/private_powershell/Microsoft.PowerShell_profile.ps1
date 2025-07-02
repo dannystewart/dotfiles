@@ -65,7 +65,8 @@ if (Get-Command chezmoi -ErrorAction SilentlyContinue) {
 function cat {
     if (Get-Command bat -ErrorAction SilentlyContinue) {
         bat -p @args
-    } else {
+    }
+    else {
         Get-Content @args
     }
 }
@@ -74,7 +75,8 @@ function cat {
 function ls {
     if (Get-Command eza -ErrorAction SilentlyContinue) {
         eza --no-quotes --time-style='+%Y.%m.%d %I:%M %p' --icons @args
-    } else {
+    }
+    else {
         Get-ChildItem @args
     }
 }
@@ -101,8 +103,15 @@ if (Get-Command git -ErrorAction SilentlyContinue) {
     function gac { git add -A; git commit -m @args }
 }
 
-# Initialize starship
+# Initialize Starship
 if (Get-Command starship -ErrorAction SilentlyContinue) {
     $ENV:STARSHIP_CONFIG = "$HOME/.config/powershell/starship_pwsh.toml"
+
+    # Set up transient prompt for Starship
+    function Invoke-Starship-TransientFunction {
+        &starship module character
+    }
+
     Invoke-Expression (&starship init powershell)
+    Enable-TransientPrompt
 }
