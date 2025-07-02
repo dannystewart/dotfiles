@@ -5,7 +5,7 @@ function czo --description "Find potential orphaned files in Chezmoi-managed dir
     set -l blue '\033[0;34m'
     set -l cyan '\033[0;36m'
     set -l bold '\033[1m'
-    set -l nc '\033[0m' # No Color
+    set -l clear '\033[0m' # clear formatting
 
     # Files to ignore (known non-orphans)
     set ignore_patterns \
@@ -24,8 +24,8 @@ function czo --description "Find potential orphaned files in Chezmoi-managed dir
         "*/telegram-upload*" \
         "fish_history"
 
-    echo -e "$green$bold🔍 Finding potential orphaned files in Chezmoi-managed directories..."$nc
-    echo -e "$yellow   NOTE: "(count $ignore_patterns)" file patterns are being ignored."$nc
+    echo -e "$green$bold🔍 Finding potential orphaned files in Chezmoi-managed directories..."$clear
+    echo -e "$yellow   NOTE: "(count $ignore_patterns)" file patterns are being ignored."$clear
     echo
 
     # Get all files Chezmoi manages (as relative paths from home)
@@ -74,9 +74,9 @@ function czo --description "Find potential orphaned files in Chezmoi-managed dir
 
             if test -n "$orphans"
                 set found_any true
-                echo -e "$blue$bold📁 Potential orphans in: ~/$dir"$nc
+                echo -e "$blue$bold📁 Potential orphans in: ~/$dir"$clear
                 for orphan in $orphans
-                    echo -e "$cyan  $orphan"$nc
+                    echo -e "$cyan  $orphan"$clear
                 end
                 echo
             end
@@ -85,7 +85,7 @@ function czo --description "Find potential orphaned files in Chezmoi-managed dir
 
     # Show no results message if nothing found
     if not $found_any
-        echo -e "$green✨ No orphaned files found! Your home directory is clean!"$nc
+        echo -e "$green✨ No orphaned files found! Your home directory is clean!"$clear
     end
 
     # Clean up temp files
