@@ -1,5 +1,6 @@
 set -gx TZ America/New_York
 set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
+set -gx EZA_ICONS_AUTO true
 set -gx LESSHISTFILE /dev/null
 set -gx HOMEBREW_NO_ENV_HINTS true
 
