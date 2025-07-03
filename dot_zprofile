@@ -1,0 +1,5 @@
+#!/bin/zsh
+# shellcheck disable=SC1071
+
+# Source common profile
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"

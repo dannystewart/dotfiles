@@ -1,0 +1,84 @@
+{{ if not (eq .chezmoi.os "windows") -}}
+#!/bin/bash
+# shellcheck disable=SC2086
+
+# Install x86 Homebrew on ARM64 if not already present
+if [ "$(uname -a | grep ARM64)" ] && [ ! -f /usr/local/bin/brew ]; then
+    arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+# Package list (package_name:os:command_to_check)
+packages=(
+    "age:all:age"
+    "bat:all:bat"
+    "broot:all:broot"
+    "chafa:all:chafa"
+    "chezmoi:all:chezmoi"
+    "curl:all:curl"
+    "displayplacer:mac:displayplacer"
+    "exiftool:all:exiftool"
+    "eza:all:eza"
+    "fd:all:fd"
+    "gcc:all:gcc"
+    "gh:all:gh"
+    "git-lfs:all:git-lfs"
+    "htop:all:htop"
+    "inetutils:all:ftp"
+    "lesspipe:all:lesspipe.sh"
+    "mosh:all:mosh"
+    "pyenv:all:pyenv"
+    "rsync:all:rsync"
+    "sed:all:sed"
+    "tmux-mem-cpu-load:all:tmux-mem-cpu-load"
+    "tmux:all:tmux"
+    "tmuxinator:all:tmuxinator"
+    "wget:all:wget"
+)
+
+# Detect OS
+if [ "$(uname)" = "Darwin" ]; then
+    current_os="mac"
+else
+    current_os="linux"
+fi
+
+# Function to install packages
+install_packages() {
+    local install_cmd="$1"
+    local update_cmd="$2"
+    local extra_cmd="$3"
+
+    $update_cmd
+    [ -n "$extra_cmd" ] && $extra_cmd
+
+    for pkg_info in "${packages[@]}"; do
+        IFS=':' read -r pkg os_support cmd_to_check <<< "$pkg_info"
+        if [ "$os_support" = "all" ] || [ "$os_support" = "$current_os" ]; then
+            if ! command -v "$cmd_to_check" > /dev/null 2>&1; then
+                $install_cmd "$pkg"
+            fi
+        fi
+    done
+}
+
+# Use APT if Debian-based
+if command -v apt-get > /dev/null 2>&1; then
+    install_packages "sudo apt -y install" "sudo apt update" "sudo apt -y install build-essential"
+fi
+
+# Use Pacman if Arch-based
+if command -v pacman > /dev/null 2>&1; then
+    install_packages "sudo pacman -S --noconfirm" "sudo pacman -Syu" "sudo pacman -S --noconfirm base-devel"
+fi
+
+# Use DNF if Fedora-based
+if command -v dnf > /dev/null 2>&1; then
+    install_packages "sudo dnf -y install" "sudo dnf check-update" "sudo dnf -y install @development-tools"
+fi
+
+# Use Homebrew as fallback if present
+if command -v brew > /dev/null 2>&1; then
+    install_packages "brew install" "brew update" ""
+    brew cleanup
+fi
+{{- end -}}

@@ -1,0 +1,8 @@
+__pycache__
+.DS_Store
+.oh-my-zsh/custom/plugins/zsh-autosuggestions*
+*.code-workspace
+**/__pycache__
+key.txt.age
+README.md
+tempCodeRunnerFile.shellscript

@@ -1,0 +1,9 @@
+*.tmpl linguist-language=Bash
+*.toml.tmpl linguist-language=TOML
+dot_bash_profile linguist-language=Bash
+dot_bashrc linguist-language=Bash
+dot_local/bin/executable_* linguist-language=Bash
+dot_local/bin/node/executable_* linguist-language=JavaScript
+dot_profile linguist-language=Bash
+dot_zshrc linguist-language=Bash
+private_dot_ssh/config.tmpl linguist-language=OpenSSH

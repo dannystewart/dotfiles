@@ -1,0 +1,64 @@
+#!/bin/bash
+# shellcheck disable=SC1090,SC1091
+
+# Color definitions
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+# YELLOW='\033[0;33m'
+# BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+HOST_CHECK=$(hostname)
+# Confirm reboot on Proxmox servers
+[ "${HOST_CHECK:0:4}" = pve- ] && alias reboot='confirm "Are you sure you want to reboot $(hostname)?" && reboot'
+
+if [ "$HOST_CHECK" = steamdeck ]; then
+    alias code='flatpak run com.visualstudio.code'                       # alias for Flatpak install
+    alias steampac='sudo pacman --ignore="$(pacman -Slq holo)" --needed' # Steam Deck updater
+fi
+unset HOST_CHECK
+
+# apt update function
+aptup() {
+    if command -v apt-get &>/dev/null; then
+        echo -e "${GREEN}Updating APT packages...${NC}"
+        if [ "$EUID" -eq 0 ]; then
+            apt update && apt upgrade -y
+        else
+            sudo apt update && sudo apt upgrade -y
+        fi
+        echo -e "${GREEN}APT update complete!${NC}"
+    else
+        echo -e "${RED}Error: apt-get not found. Are you sure you're on a Debian-based system?${NC}"
+    fi
+}
+
+# pacman update function
+pacup() {
+    if command -v pacman &>/dev/null; then
+        echo -e "${GREEN}Updating Pacman packages...${NC}"
+        if [ "$EUID" -eq 0 ]; then
+            pacman -Syu --noconfirm
+        else
+            sudo pacman -Syu --noconfirm
+        fi
+        echo -e "${GREEN}Pacman update complete!${NC}"
+    else
+        echo -e "${RED}Error: Pacman not found. Are you sure you're on an Arch-based system?${NC}"
+    fi
+}
+
+# dnf update function
+dnfup() {
+    if command -v dnf &>/dev/null; then
+        echo -e "${GREEN}Updating DNF packages...${NC}"
+        if [ "$EUID" -eq 0 ]; then
+            dnf update -y
+        else
+            sudo dnf update -y
+        fi
+        echo -e "${GREEN}DNF update complete!${NC}"
+    else
+        echo -e "${RED}Error: DNF not found. Are you sure you're on a Fedora-based system?${NC}"
+    fi
+}

@@ -1,0 +1,74 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Danny Stewart
+	email = danny@stewart.cc
+	signingkey = ~/.ssh/id_ed25519.pub
+[commit]
+	gpgsign = true
+[gpg]
+	format = ssh
+{{- if eq .chezmoi.os "darwin" }}
+[gpg "ssh"]
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+	trustExitCode = true
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope
+[merge]
+	tool = Kaleidoscope
+{{- end}}
+{{- if eq .chezmoi.os "linux" }}
+[diff]
+    tool = difftastic
+    colorMoved = default
+    colorMovedWS = allow-indentation-change
+{{- end}}
+[alias]
+    sync = "!f() { git fetch origin && git update-ref refs/heads/$1 origin/$1; }; f"
+[pull]
+	rebase = true
+	autostash = true
+[rebase]
+	autoStash = true
+[submodule]
+	recurse = true
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[credential]
+	helper = store
+[fetch]
+    prune = true
+    pruneTags = true
+	tagOpt = --force --tags
+[core]
+	editor = code --wait
+	fileMode = false
+{{ if eq .chezmoi.os "darwin" -}}
+	askpass = git-gui--askpass
+{{- end }}
+{{ if eq .chezmoi.os "linux" -}}
+[safe]
+	directory = /home/linuxbrew/.linuxbrew
+	directory = /home/danny/prism/prod
+{{- end }}
+{{ if eq .chezmoi.os "windows" -}}
+[safe]
+	directory = C:/Users/danny/.local/share/chezmoi
+{{- end }}
+{{- if eq .chezmoi.hostname "defiant" }}
+[includeIf "gitdir:/Users/danny/Developer/iriit/"]
+    path = .gitconfig-iri
+{{- end }}

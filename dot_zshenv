@@ -1,0 +1,14 @@
+#!/bin/zsh
+# shellcheck disable=SC1071
+
+export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
+export ZSH_DISABLE_COMPFIX="true"
+export HIST_STAMPS="yyyy-mm-dd"
+export DISABLE_UPDATE_PROMPT="true"
+export DISABLE_UNTRACKED_FILES_DIRTY="true"
+export ZSH_TMUX_ITERM2="true"                  # set the -CC option for iTerm2 tmux integration
+export ZSH_TMUX_DEFAULT_SESSION_NAME="0"       # set tmux default session name when autostart is enabled
+export HOMEBREW_NO_ENV_HINTS="true"            # disable Homebrew hints
+export COLOR_PROMPT="yes"

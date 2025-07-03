@@ -1,0 +1,195 @@
+#!/bin/bash
+# shellcheck disable=SC1090,SC1091
+
+# iCloud Drive
+alias icd='cd "$HOME/Library/Mobile Documents/com~apple~CloudDocs"'
+
+# Empty the Trash
+empty() {
+  if [[ $1 == "-y" ]] || confirm "Are you sure you want to empty the Trash? [y/N]"; then
+    initial_count=$(find ~/.Trash -mindepth 1 | wc -l)
+
+    find ~/.Trash -mindepth 1 -delete
+
+    final_count=$(find ~/.Trash -mindepth 1 | wc -l)
+    ((deleted_count = initial_count - final_count))
+
+    echo -e "\033[0;32m\u2714 Trash emptied! $deleted_count items deleted.\033[0m"
+  else
+    echo "Operation cancelled."
+  fi
+}
+
+# Nuke Downloads folder and empty the Trash
+nuke() {
+  if [[ $1 == "-y" ]] || confirm "Are you sure you want to empty the Trash and delete all files in the Downloads folder? [y/N]"; then
+    initial_trash_count=$(find ~/.Trash -mindepth 1 | wc -l)
+    initial_downloads_count=$(find ~/Downloads -mindepth 1 | wc -l)
+
+    find ~/.Trash -mindepth 1 -delete
+    find ~/Downloads -mindepth 1 -delete
+
+    final_trash_count=$(find ~/.Trash -mindepth 1 | wc -l)
+    final_downloads_count=$(find ~/Downloads -mindepth 1 | wc -l)
+
+    ((deleted_trash_count = initial_trash_count - final_trash_count))
+    ((deleted_downloads_count = initial_downloads_count - final_downloads_count))
+    ((total_deleted_count = deleted_trash_count + deleted_downloads_count))
+
+    echo -e "\033[0;32m\u2714 Trash and Downloads folder emptied! $total_deleted_count items deleted.\033[0m"
+  else
+    echo "Operation cancelled."
+  fi
+}
+
+# MagSafe charging light control
+magsafe() {
+  GREEN='\033[0;32m'
+  YELLOW='\033[0;33m'
+  NC='\033[0m'
+  color=$1
+
+  if [[ "$color" == "green" ]]; then
+    sudo smc -k ACLC -w 03
+    echo -e "MagSafe set to ${GREEN}green${NC}"
+  elif [[ "$color" == "orange" ]]; then
+    sudo smc -k ACLC -w 04
+    echo -e "MagSafe set to ${YELLOW}orange${NC}"
+  else
+    sudo smc -k ACLC -w 00
+    echo -e "MagSafe set to default behavior"
+  fi
+}
+
+# Installer function
+inst() {
+  local processed_files=()
+
+  for file in "$@"; do
+    if [[ $file == *.dmg ]]; then
+      sudo installpkg -i "$file" && processed_files+=("$file")
+    elif [[ $file == *.pkg ]]; then
+      sudo installer -pkg "$file" -target / && processed_files+=("$file")
+    else
+      echo "Unsupported file type: $file"
+    fi
+  done
+
+  if [ ${#processed_files[@]} -gt 0 ]; then
+    echo ""
+    echo -e "\033[0;32mThe following files have been processed:\033[0m"
+    printf '    %s\n' "${processed_files[@]}"
+    echo ""
+
+    if confirm "Do you want to move these files to trash? [y/N]"; then
+      for file in "${processed_files[@]}"; do
+        trash "$file"
+      done
+      echo -e "\033[0;32mFiles moved to trash!\033[0m"
+    fi
+  fi
+}
+
+# Bluetooth reset
+[ "$(command -v blueutil)" ] && alias btreset='blueutil -p 0 && sleep 1 && blueutil -p 1'
+
+# list/purge local Time Machine snapshots
+if [ "$(command -v tmutil)" ]; then
+  alias tmlist='tmutil listlocalsnapshots /'
+  tmpurge() {
+    echo "Purging Time Machine snapshots..."
+    for d in $(tmutil listlocalsnapshotdates | grep "-"); do
+      tmutil deletelocalsnapshots "$d"
+    done
+    echo "Time Machine snapshots purged!"
+  }
+fi
+
+# add Touch ID as allowable for sudo
+alias touchid="sudo su root -c '/opt/homebrew/bin/gsed -i \"2iauth       sufficient     pam_tid.so\" /etc/pam.d/sudo'"
+
+# Function to run Get-DeviceDetails in PowerShell
+if [[ -f "$HOME/Developer/iri/iri-powershell/Devices/Get-DeviceDetails.ps1" ]]; then
+  function Get-DeviceDetails() {
+      pwsh -File "$HOME/Developer/iri/iri-powershell/Devices/Get-DeviceDetails.ps1" "$@"
+  }
+fi
+
+# clear "Open With" menu and reset LaunchServices database
+# info: https://ss64.com/osx/lsregister.html and https://eclecticlight.co/2019/03/25/lsregister-a-valuable-undocumented-command-for-launchservices/
+[ -d "/System/Library" ] && alias lscheck='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -gc -R -v -apps u'
+[ -d "/System/Library" ] && alias lscheckall='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -gc -R -v -apps u,s,l'
+[ -d "/System/Library" ] && alias lsclean='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -v -apps u'
+[ -d "/System/Library" ] && alias lscleanall='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -v -seed -apps u,s,l'
+[ -d "/System/Library" ] && alias lsnuke='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -v -all u,s,l'
+
+# FreeFileSync
+[ -d "/Applications/FreeFileSync.app" ] && alias ffs='/Applications/FreeFileSync.app/Contents/MacOS/FreeFileSync'
+
+# Tailscale
+[ -d "/Applications/Tailscale.app" ] && alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+
+# Get upcoming calendar events (argument for number of days, defaults to one week)
+calevents() {
+    days=${1:-7}
+    full_days=$((days - 1))
+    if [ $days -eq 1 ]; then
+        day_word="day"
+    else
+        day_word="days"
+    fi
+
+    (echo -n "Today is $(date "+%A, %B %-d, %Y"). Events for the next $days $day_word:"; echo; icalbuddy -nc -ic "Personal,Home,Calendar" -sd -npn -nrd -b "" -po "datetime,title" -eep "notes,attendees,location,url,calendar" eventsToday+$full_days) |
+      sed -e 's/^------------------------$//' -e 's/^    //' |
+      awk '
+        BEGIN {
+          skip_patterns[++s] = "(Sr|Senior) Staff"
+          skip_patterns[++s] = "Coffee Time"
+        }
+
+        function should_skip(text) {
+          for (i in skip_patterns) {
+            if (text ~ skip_patterns[i]) return 1
+          }
+          return 0
+        }
+
+        function format_date(date) {
+          split(date, parts, " ")
+          month = parts[1]
+          day = parts[2]
+          sub(/,/, "", day)
+          year = parts[3]
+
+          cmd = sprintf("date -j -f \"%%b %%d %%Y\" \"%s %s %s\" \"+%%A, %%B %%d, %%Y\"", month, day, year)
+          cmd | getline formatted
+          close(cmd)
+          return formatted
+        }
+
+        /^Today/ { print; next }
+        /^[A-Za-z]/ && /:$/ {
+          if (NR > 1) printf "\n"
+          date=$0
+          sub(/:$/, "", date)
+          printf "%s\n", format_date(date)
+          delete seen
+          next
+        }
+        /^[0-9]/ {
+          time=$0
+          getline title
+          event = time ": " title
+          if (!should_skip(title) && !(event in seen)) {
+            print event
+            seen[event] = 1
+          }
+          next
+        }
+        /^[^ ]/ && !/^$/ && !/^Failed/ && !/^date:/ && !/^usage:/ {
+          if (!should_skip($0) && !seen[$0]) {
+            print "(All day) " $0
+            seen[$0] = 1
+          }
+        }'
+}

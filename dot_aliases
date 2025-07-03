@@ -1,0 +1,172 @@
+#!/bin/bash
+# shellcheck disable=SC1090,SC1091,SC2034
+
+# Color definitions
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Confirm function
+confirm() {
+    if [ -n "$ZSH_VERSION" ]; then
+        echo -n "${1:-Are you sure? [y/N]} "
+        read -rs -k1 response
+        echo
+    elif [ -n "$BASH_VERSION" ]; then
+        read -rp "${1:-Are you sure? [y/N]} " -n1 response
+        echo
+    else
+        echo -n "${1:-Are you sure? [y/N]} "
+        read -rs -n1 response
+        echo
+    fi
+    case "$response" in
+    [yY])
+        true
+        ;;
+    *)
+        false
+        ;;
+    esac
+}
+
+# Homebrew updates
+brewup() {
+  if command -v brew &>/dev/null; then
+    echo -e "${GREEN}Updating Homebrew...${NC}"
+    brew update
+    echo -e "${GREEN}Installing updates...${NC}"
+    brew upgrade
+    echo -e "${GREEN}Cleaning up...${NC}"
+    brew cleanup
+    echo -e "${GREEN}Homebrew update complete!${NC}"
+  else
+    echo -e "${RED}Error: Homebrew not found. Are you sure it's installed?${NC}"
+  fi
+}
+
+# General shortcuts
+alias bru='brewup'       # Shorter Homebrew updater
+alias vscode='code'      # Visual Studio Code
+alias powershell='pwsh'  # PowerShell
+alias timeout='gtimeout' # timeout
+
+# Function to kill specified types of files
+kill_files() {
+  local directory="$1"
+  local name="$2"
+
+  if [ -z "$directory" ]; then directory="."; fi
+  if [ -z "$name" ]; then
+    echo "No file type specified."
+    return 1
+  fi
+
+  find "$directory" -name "$name" -print -delete
+}
+
+# Aliases for specific file types
+alias killds='kill_files . ".DS_Store"'
+alias killjunk='kill_files . "\$RECYCLE.BIN" -o -name "desktop.ini" -o -name "Thumbs.db" -o -name "Icon\?" -o -name ".DS_Store"'
+alias killsc='kill_files . "*.sync-conflict-*"'
+alias killpkf='kill_files . "*.pkf"'
+
+# Load more aliases
+source "$HOME/.aliases_shell"
+if [[ "$(uname)" == "Darwin" ]]; then
+  source "$HOME/.aliases_mac"
+elif [[ "$(uname)" == "Linux" ]]; then
+  source "$HOME/.aliases_linux"
+fi
+
+# Additional aliases for development
+source "$HOME/.aliases_dev"
+
+# Update all the things
+uatt() {
+  local updated=false
+  local os_type
+  os_type=$(uname -s)
+
+  echo -e "${BLUE}Updating all the things...${NC}"
+
+  if [ "$os_type" = "Linux" ]; then
+    if command -v apt-get &>/dev/null; then
+      aptup
+      updated=true
+    elif command -v pacman &>/dev/null; then
+      pacup
+      updated=true
+    elif command -v dnf &>/dev/null; then
+      dnfup
+      updated=true
+    elif command -v softwareupdate &>/dev/null; then
+      sudo softwareupdate --background
+      updated=true
+    else
+      echo -e "${RED}No supported Linux package manager found (apt, pacman, dnf).${NC}"
+    fi
+  elif [ "$os_type" != "Darwin" ]; then
+    echo -e "${RED}Unsupported operating system: $os_type${NC}"
+  fi
+
+  if command -v brew &>/dev/null; then
+    brewup
+    updated=true
+  fi
+
+  if command -v chezmoi &>/dev/null; then
+    echo -e "${GREEN}Updating Chezmoi...${NC}"
+    chezmoi update
+    echo -e "${GREEN}Chezmoi updated!${NC}"
+    updated=true
+  fi
+
+  if [ "$updated" = false ]; then
+    echo -e "${RED}No updates were performed. Unsupported system or missing tools.${NC}"
+  else
+    echo -e "${BLUE}All updates complete!${NC}"
+  fi
+}
+
+# Update pip packages
+function pip() {
+  if [ "$1" = "update" ]; then
+    printf "\033[0;36m==> \033[1;36mUpdating pip packages...\033[0m\n"
+    # shellcheck disable=SC2046
+    command pip install -U pip $(command pip freeze | grep -v '@' | cut -d'=' -f1) 2>&1 |
+      grep -v "Requirement already satisfied:" |
+      grep -v -E "dulwich|keyring"
+    printf "\033[0;32m==> \033[1;32mUpdates complete!\033[0m\n"
+  else
+    command pip "$@"
+  fi
+}
+
+# Install DS packages from PyPI or GitHub
+dsinstall() {
+  local package=${1:-dsbin} # Default to dsbin if no argument
+
+  echo -e "${GREEN}Installing ${package}...${NC}"
+  pip uninstall -y "${package}" 2>/dev/null
+
+  echo -e "${GREEN}Attempting to install ${package} from PyPI...${NC}"
+  if pip install -U "${package}" 2>/dev/null; then
+    echo -e "${GREEN}${package} installed successfully from PyPI${NC}"
+  else
+    echo -e "${YELLOW}Package not found on PyPI, installing from GitHub...${NC}"
+    pip install -U "git+ssh://git@github.com/dannystewart/${package}.git" || {
+      echo "Failed to install ${package}"
+      return 1
+    }
+    echo -e "${GREEN}${package} installed successfully from GitHub${NC}"
+  fi
+}
+
+# Aliases to install packages directly
+alias dsbin='dsinstall dsbin'
+alias dsbase='dsinstall dsbase'
+alias dsuninstall='pip uninstall -y dsbase dsbin dsupdater evremixes iplooker pybumper'
+alias dsreinstall='pip install dsbase dsbin dsupdater evremixes iplooker pybumper'

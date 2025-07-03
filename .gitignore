@@ -1,0 +1,10 @@
+**/.env
+.DS_Store
+.history
+.idea
+.mypy_cache
+.nova
+.vscode
+__pycache__
+chezmoi.code-workspace
+tempCodeRunnerFile.shellscript

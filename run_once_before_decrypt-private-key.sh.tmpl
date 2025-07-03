@@ -1,0 +1,35 @@
+{{ if not (eq .chezmoi.os "windows") -}}
+#!/bin/sh
+
+if [ ! -f "$HOME/.config/chezmoi/key.txt" ]; then
+
+# Check if 'age' command exists
+if ! command -v age; then
+    echo "'age' command not found. Attempting to install..."
+
+    # If 'apt-get' exists
+    if command -v apt-get; then
+        echo "Using 'apt-get' to install 'age'..."
+        sudo apt-get update && sudo apt-get install -y age
+
+    # Else if 'pacman' exists
+    elif command -v pacman; then
+        echo "Using 'pacman' to install 'age'..."
+        sudo pacman -Syu age
+
+    # Else if 'brew' exists
+    elif command -v brew; then
+        echo "Using 'brew' to install 'age'..."
+        brew install age
+
+    else
+        echo "No known package manager found on your system. Please install 'age' manually."
+        exit 1
+    fi
+fi
+
+    echo "Enter your Chezmoi encryption passphrase below."
+    age --decrypt --output "$HOME/.config/chezmoi/key.txt" "{{ .chezmoi.sourceDir }}/key.txt.age"
+    chmod 600 "$HOME/.config/chezmoi/key.txt"
+fi
+{{- end -}}
