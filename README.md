@@ -12,6 +12,8 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply dannystewart
 
 ## What's Inside?
 
+I use [Fish](https://fishshell.com/) for my shell and [Starship](https://starship.rs/) for my prompt, and have a fully tricked out configuration for both.
+
 ### 🐟 Fish + 🚀 Starship
 
 - Modular config in `conf.d/` (paths, Homebrew, pyenv, abbreviations, and more).
@@ -50,6 +52,6 @@ One of my favorite things here is the trio of setup scripts that handle almost e
 
 - `run_once_packages.sh.tmpl` installs all my essential packages, no matter the OS or package manager (Homebrew, apt, pacman, dnf, etc.). It  handles Homebrew on Apple Silicon and x86, and ensures all my favorite CLI tools are ready to go.
 
-- `run_once_after_fish.sh.tmpl` makes sure Fish is installed, sets it as the default shell (with all the right permissions and `/etc/shells` tweaks), and ensures the [Starship](https://starship.rs/) is available and configured.
+- `run_once_after_fish.sh.tmpl` makes sure Fish is installed, sets it as the default shell (with all the right permissions and `/etc/shells` tweaks), and ensures that Starship is available and configured.
 
 With these, I just clone the repo and the whole thing basically sets itself up for me in just a minute or two, with almost zero manual intervention.
