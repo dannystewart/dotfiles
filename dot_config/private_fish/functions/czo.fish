@@ -50,8 +50,6 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         end
     end
 
-
-
     if $delete_mode
         echo -e "$red$bold🗑️  Deleting orphaned files in ~/$target_dir"$clear
         echo
@@ -76,11 +74,6 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         # Create temp files for comparison
         set temp_managed (mktemp)
         set temp_actual (mktemp)
-
-        # Clean up temp files when function exits
-        function cleanup --on-event fish_exit
-            rm -f $temp_managed $temp_actual
-        end
 
         printf '%s\n' $managed_files | sort >$temp_managed
 
@@ -148,11 +141,6 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         # Create temp files for comparison
         set temp_managed (mktemp)
         set temp_actual (mktemp)
-
-        # Clean up temp files when function exits
-        function cleanup --on-event fish_exit
-            rm -f $temp_managed $temp_actual
-        end
 
         printf '%s\n' $managed_files | sort >$temp_managed
 
