@@ -11,9 +11,9 @@ switch (uname)
         abbr -a btreset "blueutil -p 0 && sleep 1 && blueutil -p 1"
     case Linux
         # Linux package managers
-        command -v apt &>/dev/null; and abbr -a aptup "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
-        command -v pacman &>/dev/null; and abbr -a pacup sudo pacman -Syu --noconfirm
-        command -v dnf &>/dev/null; and abbr -a dnfup sudo dnf update -y
+        command -q apt; and abbr -a aptup "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
+        command -q pacman; and abbr -a pacup sudo pacman -Syu --noconfirm
+        command -q dnf; and abbr -a dnfup sudo dnf update -y
 end
 
 # Homebrew abbreviations

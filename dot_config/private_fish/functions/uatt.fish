@@ -17,17 +17,17 @@ function uatt --description "Update all the things"
     echo -e "$green" Hang tight, here we go...\n"$clear"
 
     if test "$os_type" = Linux
-        if command -v apt-get &>/dev/null
+        if command -q apt-get
             # apt (Debian/Ubuntu)
             sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
             set updated true
             echo -e "" # line break for visual consistency
-        else if command -v pacman &>/dev/null
+        else if command -q pacman
             # pacman (Arch)
             sudo pacman -Syu --noconfirm
             set updated true
             echo -e "" # line break for visual consistency
-        else if command -v dnf &>/dev/null
+        else if command -q dnf
             # dnf (Fedora)
             sudo dnf update -y
             set updated true
@@ -39,19 +39,19 @@ function uatt --description "Update all the things"
     end
 
     # mas (Mac App Store)
-    if command -v mas &>/dev/null
+    if command -q mas
         mas upgrade
         set updated true
     end
 
     # Homebrew
-    if command -v brew &>/dev/null
+    if command -q brew
         brew update && brew upgrade && brew cleanup
         set updated true
     end
 
     # Chezmoi
-    if command -v chezmoi &>/dev/null
+    if command -q chezmoi
         echo -e "$blue"\n'==> '"$clear$bold"'Updating Chezmoi...'"$clear"
         chezmoi update
         set updated true

@@ -1,5 +1,5 @@
 function cat --description "cat replacement wrapper using bat with smart fallback"
-    if command -v bat &>/dev/null
+    if command -q bat
         command bat -p $argv
     else
         command cat $argv
