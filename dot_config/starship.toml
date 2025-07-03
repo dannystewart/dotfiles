@@ -105,7 +105,7 @@ use_12hr = true
 [character]
 format = "[$symbol($version )]($style)"
 success_symbol = "[❯](#5fd700)"
-error_symbol = "[❯](red)"
+error_symbol = "[❯](#ff0000)"
 
 [package]
 symbol = "󰏗 "
