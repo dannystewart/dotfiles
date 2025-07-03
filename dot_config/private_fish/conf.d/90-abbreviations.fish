@@ -26,7 +26,7 @@ abbr -a ca chezmoi apply
 # ls abbreviations
 abbr -a l ls -1 --group-directories-first
 abbr -a ll ls -l --no-user --group-directories-first
-abbr -a lt ls --group-directories-first --tree --level=1  # tree view
+abbr -a lt ls --group-directories-first --tree --level=1 # tree view
 abbr -a la ls -la --no-user --group-directories-first # same as above, just with hidden files
 abbr -a lz ls -la --no-user --total-size -rs size # with folder sizes, sorted by size
 abbr -a lv ls -lga --git --group-directories-first # verbose (includes user, group, and git status)
@@ -71,7 +71,7 @@ abbr -a dcp docker compose pull
 abbr -a dsp docker system prune -a -f -v
 
 # Server-specific
-switch hostname
+switch (hostname)
     case web
         # Prism
         abbr -a prl prismlens
