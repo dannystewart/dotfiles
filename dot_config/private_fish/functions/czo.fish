@@ -1,13 +1,4 @@
 function czo --description "Find or delete potential orphaned files in Chezmoi-managed directories"
-    # Colors
-    set -l yellow '\033[0;33m'
-    set -l green '\033[0;32m'
-    set -l blue '\033[0;34m'
-    set -l cyan '\033[0;36m'
-    set -l red '\033[0;31m'
-    set -l bold '\033[1m'
-    set -l clear '\033[0m' # clear formatting
-
     # Files to ignore (known non-orphans)
     set ignore_patterns \
         ".bash_history" \

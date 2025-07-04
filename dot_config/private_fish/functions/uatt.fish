@@ -1,13 +1,4 @@
 function uatt --description "Update all the things"
-    # Colors
-    set -l red '\033[0;31m'
-    set -l green '\033[0;32m'
-    set -l blue '\033[0;34m'
-    set -l cyan '\033[0;36m'
-    set -l bold '\033[1m'
-    set -l clear '\033[0m' # clear formatting
-
-    # Variables
     set -l updated false
     set -l os_type (uname -s)
     set -l start_time (date +%s)
