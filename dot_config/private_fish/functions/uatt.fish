@@ -22,6 +22,12 @@ function uatt --description "Update all the things"
             # dnf (Fedora)
             sudo dnf update -y
             set updated true
+            echo -e "" # line break for visual consistency
+        else if command -q zypper
+            # zypper (openSUSE)
+            sudo zypper --non-interactive update
+            set updated true
+            echo -e "" # line break for visual consistency
         else
             error "No supported Linux package manager found (apt, pacman, dnf)."
         end

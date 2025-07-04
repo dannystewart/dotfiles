@@ -14,6 +14,7 @@ switch (uname)
         command -q apt; and abbr -a aptup "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
         command -q pacman; and abbr -a pacup sudo pacman -Syu --noconfirm
         command -q dnf; and abbr -a dnfup sudo dnf update -y
+        command -q zypper; and abbr -a zup sudo zypper --non-interactive update
 end
 
 # Homebrew abbreviations
