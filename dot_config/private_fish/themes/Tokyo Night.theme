@@ -2,13 +2,13 @@
 # preferred_background: black
 
 fish_color_autosuggestion '#565f89'
-fish_color_cancel '#c0cefc'
-fish_color_command '#9ece6a'  '--bold'
+fish_color_cancel normal
+fish_color_command green  '--bold'
 fish_color_comment '#565f89'
 fish_color_cwd '#008AB3'
 fish_color_cwd_root red
 fish_color_end '#ff9e64'
-fish_color_error '#db4b4b'
+fish_color_error red
 fish_color_escape '#89ddff'
 fish_color_hg_added green
 fish_color_hg_clean green
@@ -20,20 +20,20 @@ fish_color_hg_renamed magenta
 fish_color_hg_unmerged red
 fish_color_hg_untracked yellow
 fish_color_history_current --bold
-fish_color_host '#c0cefc'
+fish_color_host normal
 fish_color_host_remote yellow
 fish_color_keyword '#7aa2f7'
 fish_color_match '#f7768e'
-fish_color_normal '#c0cefc'
-fish_color_operator '#2ac3de'
+fish_color_normal normal
+fish_color_operator '#ff9e64'
 fish_color_option '#e0af68'
 fish_color_param '#a9b1d6'
 fish_color_quote '#9ece6a'
 fish_color_redirection '#2ac3de'
 fish_color_search_match '--background=#0088cc'
 fish_color_selection '--background=#0088cc'
-fish_color_status '#c0cefc'
-fish_color_user '#c0cefc'
+fish_color_status normal
+fish_color_user normal
 fish_color_valid_path --underline
 fish_pager_color_background normal
 fish_pager_color_completion '#a9b1d6'
