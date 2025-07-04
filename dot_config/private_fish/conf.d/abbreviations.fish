@@ -23,6 +23,13 @@ abbr -a bru "brew update && brew upgrade && brew cleanup"
 abbr -a cu chezmoi update
 abbr -a ca chezmoi apply
 
+# Function to re-apply Chezmoi state
+function _chezmoi_apply
+    chezmoi apply
+    echo -e $green"Chezmoi applied!"$clear
+    fish_prompt
+end
+
 # ls abbreviations
 abbr -a l ls -1 --group-directories-first
 abbr -a ll ls -l --no-user --group-directories-first
@@ -38,6 +45,12 @@ abbr -a rsync-copy rsync -avz --progress -h
 abbr -a rsync-move rsync -avz --progress -h --remove-source-files
 abbr -a rsync-update rsync -avzu --progress -h
 abbr -a rsync-synchronize rsync -avzu --delete --progress -h
+
+# Function to find and kill a process
+function _kill_process
+    ps aux | fzf --header="Select process to kill" | awk \'{print $2}\' | xargs kill
+    commandline -f repaint
+end
 
 # Python commands
 abbr -a pin pip install -U
