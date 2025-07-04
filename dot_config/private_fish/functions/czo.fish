@@ -42,11 +42,11 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
     end
 
     if $delete_mode
-        echo -e "$red$bold🗑️  Deleting orphaned files in ~/$target_dir"$clear
+        error --bold "🗑️  Deleting orphaned files in ~/$target_dir"
         echo
     else
-        echo -e "$green$bold🔍 Finding potential orphaned files in Chezmoi-managed directories..."$clear
-        echo -e "$yellow   NOTE: "(count $ignore_patterns)" file patterns are being ignored."$clear
+        success --bold "🔍 Finding potential orphaned files in Chezmoi-managed directories..."
+        warning "   NOTE: "(count $ignore_patterns)" file patterns are being ignored."
         echo
     end
 
@@ -58,7 +58,7 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         set abs_target_dir "$HOME/$target_dir"
 
         if not test -d $abs_target_dir
-            echo -e "$red❌ Directory ~/$target_dir does not exist!"$clear
+            error "❌ Directory ~/$target_dir does not exist!"
             return 1
         end
 
@@ -90,42 +90,41 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         end
 
         if test -z "$orphans"
-            echo -e "$green✨ No orphaned files found in ~/$target_dir!"$clear
+            success "✨ No orphaned files found in ~/$target_dir!"
             rm -f $temp_managed $temp_actual
             return 0
         end
 
         # Show what will be deleted
-        echo -e "$blue$bold📁 Found "(count $orphans)" orphaned file(s) in ~/$target_dir:"$clear
+        info --bold "📁 Found "(count $orphans)" orphaned file(s) in ~/$target_dir:"
         for orphan in $orphans
             echo -e "$cyan  $orphan"$clear
         end
         echo
 
         # Confirm deletion
-        set -l prompt_text (printf "$red$bold⚠️  WARNING: This will permanently delete these files! Proceed? (y/N) $clear")
+        set -l prompt_text (error"⚠️  WARNING: This will permanently delete these files! Proceed? (y/N)")
         read -l -P "$prompt_text" confirmation
 
         if test "$confirmation" = Y || test "$confirmation" = y
             set deleted_count 0
             for orphan in $orphans
                 if rm "$HOME/$orphan" 2>/dev/null
-                    echo -e "$green✓ Deleted: $orphan"$clear
+                    success "✓ Deleted: $orphan"
                     set deleted_count (math $deleted_count + 1)
                 else
-                    echo -e "$red✗ Failed to delete: $orphan"$clear
+                    error "✗ Failed to delete: $orphan"
                 end
             end
             echo
-            echo -e "$green$bold🗑️ Successfully deleted $deleted_count orphaned file(s)!"$clear
+            success --bold "🗑️ Successfully deleted "(pluralize $deleted_count 'orphaned file')"!"
         else
-            echo -e "$yellow⏹️  Deletion canceled."$clear
+            warning "⏹️  Deletion canceled."
         end
 
         # Clean up temp files
         rm -f $temp_managed $temp_actual
     else
-        # Original behavior - scan all managed directories
         # Extract unique directories where Chezmoi manages files (relative to home)
         set managed_dirs (for file in $managed_files; dirname $file; end | sort -u)
 
@@ -163,7 +162,7 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
 
                 if test -n "$orphans"
                     set found_any true
-                    echo -e "$blue$bold📁 Potential orphans in: ~/$dir"$clear
+                    info --bold "📁 Potential orphans in: ~/$dir"
                     for orphan in $orphans
                         echo -e "$cyan  $orphan"$clear
                     end
@@ -174,9 +173,9 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
 
         # Show no results message if nothing found
         if not $found_any
-            echo -e "$green✨ No orphaned files found! Your home directory is clean!"$clear
+            success "✨ No orphaned files found! Your home directory is clean!"
         else
-            echo -e "$yellow💡 To delete orphans in a specific directory, run: czo <directory>"$clear
+            warning "💡 To delete orphans in a specific directory, run: czo <directory>"
         end
 
         # Clean up temp files

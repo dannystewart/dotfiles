@@ -4,8 +4,8 @@ function uatt --description "Update all the things"
     set -l start_time (date +%s)
 
     # Update all the things
-    echo -e "$cyan$bold" Updating all the things!"$clear"
-    echo -e "$green" Hang tight, here we go...\n"$clear"
+    info --bold " Updating all the things!"
+    success " Hang tight, here we go...\n"
 
     if test "$os_type" = Linux
         if command -q apt-get
@@ -23,7 +23,7 @@ function uatt --description "Update all the things"
             sudo dnf update -y
             set updated true
         else
-            echo -e "$red"No supported Linux package manager found (apt, pacman, dnf)."$clear"
+            error "No supported Linux package manager found (apt, pacman, dnf)."
         end
     else if test "$os_type" != Darwin
         echo -e "$red"Unsupported operating system: $os_type"$clear"
@@ -48,41 +48,14 @@ function uatt --description "Update all the things"
         set updated true
     end
 
-    # Function to format elapsed completion time
-    function format_duration --argument-names total_seconds
-        set -l minutes (math --scale=0 "$total_seconds / 60")
-        set -l seconds (math "$total_seconds % 60")
-
-        # Handle pluralization
-        set -l sec_word second
-        set -l min_word minute
-
-        if test $seconds -ne 1
-            set sec_word seconds
-        end
-
-        if test $minutes -ne 1
-            set min_word minutes
-        end
-
-        # Format based on values
-        if test $minutes -eq 0
-            echo "$seconds $sec_word"
-        else if test $seconds -eq 0
-            echo "$minutes $min_word"
-        else
-            echo "$minutes $min_word and $seconds $sec_word"
-        end
-    end
-
     # Calculate elapsed time
     set -l end_time (date +%s)
     set -l elapsed_time (math $end_time - $start_time)
     set -l duration_text (format_duration $elapsed_time)
 
     if test "$updated" = false
-        echo -e "$red" No updates performed. Unsupported system or missing tools."$clear"
+        error " No updates performed. Unsupported system or missing tools."
     else
-        echo -e "$green"\n󰸞 All updates completed in "$duration_text"!"$clear"
+        success "\n󰸞 All updates completed in "$duration_text"!"
     end
 end

@@ -26,7 +26,7 @@ abbr -a ca chezmoi apply
 # Function to re-apply Chezmoi state
 function _chezmoi_apply
     chezmoi apply
-    echo -e $green"Chezmoi applied!"$clear
+    success "Chezmoi applied!"
     fish_prompt
 end
 
