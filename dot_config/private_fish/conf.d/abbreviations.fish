@@ -21,8 +21,8 @@ end
 abbr -a bru "brew update && brew upgrade && brew cleanup"
 
 # Chezmoi abbreviations
-abbr -a cu chezmoi update
-abbr -a ca chezmoi apply
+abbr -a czu chezmoi update
+abbr -a cza chezmoi apply
 
 # Function to re-apply Chezmoi state
 function _chezmoi_apply
