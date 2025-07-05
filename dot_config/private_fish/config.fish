@@ -1,3 +1,4 @@
+set -gx BAT_CONFIG_PATH "$HOME/.config/bat/config"
 set -gx EDITOR cursor
 set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
 set -gx EZA_ICONS_AUTO true
