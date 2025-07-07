@@ -12,9 +12,9 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply dannystewart
 
 ## What's Inside?
 
-I use [Fish](https://fishshell.com/) for my shell and [Starship](https://starship.rs/) for my prompt, and have a fully tricked out configuration for both.
+I use [Fish](https://fishshell.com/) for my shell with prompts configured for both [Tide](https://github.com/IlanCosman/tide) and [Starship](https://starship.rs/),fully tricked out for all three.
 
-### 🐟 Fish + 🚀 Starship
+### 🐟 Fish + 🌊 Tide + 🚀 Starship
 
 - Modular config in `conf.d/` (paths, Homebrew, pyenv, abbreviations, and more).
 - Plugin management via [fisher](https://github.com/jorgebucaran/fisher) and a curated set of plugins (see `fish_plugins`).
@@ -40,7 +40,7 @@ I use [Fish](https://fishshell.com/) for my shell and [Starship](https://starshi
 
 ### 🛠️ Other Goodies
 
-- PowerShell customizations for cross-platform shell consistency (`Microsoft.PowerShell_profile.ps1`), including its own Starship prompt variant (`starship_pwsh.toml`).
+- PowerShell customizations for cross-platform shell consistency (`Microsoft.PowerShell_profile.ps1`), including its own Starship prompt variant (`starship_pwsh.toml`) and [Oh My Posh](https://ohmyposh.dev/) support (`powerlevel10k.json`).
 - Completions for my own scripts and tools (in `completions/`).
 - macOS, Linux, and even some Windows-specific helpers and abbreviations.
 
