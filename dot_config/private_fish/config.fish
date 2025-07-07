@@ -15,4 +15,7 @@ if status is-interactive
 
     # Bind Ctrl+Alt+K to select a process to kill
     bind ctrl-alt-k _kill_process
+
+    # Initialize Starship
+    starship init fish | source
 end
