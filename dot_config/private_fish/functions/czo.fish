@@ -4,7 +4,6 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         ".bash_history" \
         ".bashrc" \
         ".claude.json" \
-        ".env" \
         ".git-credentials" \
         ".local/share/*" \
         ".nuke_count" \
@@ -13,8 +12,11 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         ".ssh/known_hosts" \
         ".zsh_history" \
         ".zshrc" \
+        "*/.env" \
+        "*/fish_history" \
+        "*/fish_variables" \
         "*/telegram-upload*" \
-        fish_history
+        "*/updater"
 
     # Parse arguments
     set -l target_dir ""
@@ -103,7 +105,7 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         echo
 
         # Confirm deletion
-        set -l prompt_text (error"⚠️  WARNING: This will permanently delete these files! Proceed? (y/N)")
+        set -l prompt_text (error "⚠️  WARNING: This will permanently delete these files! Proceed? (y/N) ")
         read -l -P "$prompt_text" confirmation
 
         if test "$confirmation" = Y || test "$confirmation" = y
