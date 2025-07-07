@@ -15,7 +15,7 @@
             "time_format": "3:04:05 PM"
           },
           "template": "  {{ .CurrentDate | date .Format }} ",
-          "foreground": "#518987",
+          "foreground": "#2ac3de",
           "type": "time",
           "style": "plain"
         }
@@ -32,7 +32,7 @@
           "trailing_diamond": "\uE0B0",
           "foreground": "#ffffff",
           "background": "#0577BD",
-          "template": ">_",
+          "template": ">_ ",
           "properties": {
             "prefix": "",
             "postfix": ""
