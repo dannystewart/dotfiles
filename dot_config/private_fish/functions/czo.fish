@@ -35,6 +35,16 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
         else if string match -q './*' $target_dir
             # Handle relative paths from current directory
             set target_dir (string replace './' '' (realpath $target_dir | string replace "$HOME/" ''))
+        else if test "$target_dir" = "."
+            # Handle current directory case
+            set current_abs (realpath .)
+            if test "$current_abs" = "$HOME"
+                # Current directory is home directory
+                set target_dir ""
+            else
+                # Current directory is somewhere else, convert to relative from home
+                set target_dir (string replace "$HOME/" '' $current_abs)
+            end
         else
             # Assume it's already relative to home or handle other cases
             if test -d "$PWD/$target_dir"
@@ -110,16 +120,46 @@ function czo --description "Find or delete potential orphaned files in Chezmoi-m
 
         if test "$confirmation" = Y || test "$confirmation" = y
             set deleted_count 0
+            set failed_count 0
             for orphan in $orphans
-                if rm "$HOME/$orphan" 2>/dev/null
-                    success "✓ Deleted: $orphan"
+                echo -n "Deleting $orphan... "
+
+                # Try to delete the file, capturing both stdout and stderr
+                set rm_output (rm "$HOME/$orphan" 2>&1)
+                set rm_status $status
+
+                if test $rm_status -eq 0
+                    success "✓ Deleted"
                     set deleted_count (math $deleted_count + 1)
                 else
-                    error "✗ Failed to delete: $orphan"
+                    # Check if it's a permission/interactive prompt issue
+                    if string match -q "*override*" $rm_output; or string match -q "*remove*" $rm_output
+                        warning "⚠️  Permission prompt detected"
+                        echo "   $rm_output"
+                        echo -n "   Retrying with interactive mode... "
+
+                        # Try again with interactive mode (rm -i is default, but let's be explicit)
+                        if rm -i "$HOME/$orphan"
+                            success "✓ Deleted"
+                            set deleted_count (math $deleted_count + 1)
+                        else
+                            error "✗ Failed or canceled"
+                            set failed_count (math $failed_count + 1)
+                        end
+                    else
+                        error "✗ Failed: $rm_output"
+                        set failed_count (math $failed_count + 1)
+                    end
                 end
             end
             echo
-            success --bold "🗑️ Successfully deleted "(pluralize $deleted_count 'orphaned file')"!"
+
+            if test $deleted_count -gt 0
+                success --bold "🗑️ Successfully deleted "(pluralize $deleted_count 'orphaned file')"!"
+            end
+            if test $failed_count -gt 0
+                warning "⚠️  Failed to delete "(pluralize $failed_count 'file')"."
+            end
         else
             warning "⏹️  Deletion canceled."
         end
