@@ -1,7 +1,3 @@
-# Skip if already loaded this session
-set -q PATHS_LOADED; and return
-set -gx PATHS_LOADED 1
-
 # Clear and rebuild PATH
 set -e fish_user_paths # Clear user paths
 set -g fish_user_paths # Reset to empty
