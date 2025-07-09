@@ -41,7 +41,7 @@
         {
           "type": "path",
           "template": " {{ .PWD }} ",
-          "foreground": "#008AB3",
+          "foreground": "#0577BD",
           "properties": {
             "style": "folder"
           }
