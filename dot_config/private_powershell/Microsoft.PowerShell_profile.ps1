@@ -3,6 +3,7 @@ $env:TZ = "America/New_York"
 $env:EZA_CONFIG_DIR = "$HOME/.config/eza"
 $env:LESSHISTFILE = "/dev/null"
 $env:HOMEBREW_NO_ENV_HINTS = "true"
+$env:STARSHIP_CONFIG = "$HOME/.config/powershell/starship_pwsh.toml"
 
 # Simple path additions
 $pathsToAdd = @(
@@ -91,7 +92,7 @@ function grhh { git reset --hard HEAD @args }
 function gfp { git fetch; git pull @args }
 function gac { git add -A; git commit -m @args }
 
-# Initialize oh-my-posh
-if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
-    oh-my-posh init pwsh --config ~/.config/powershell/powerlevel10k.json | Invoke-Expression
+# Initialize starship
+if (Get-Command starship -ErrorAction SilentlyContinue) {
+    Invoke-Expression (&starship init powershell)
 }

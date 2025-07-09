@@ -22,7 +22,7 @@ function lz { ls -la --no-user --total-size -rs size @args }
 function lv { ls -lga --git --group-directories-first @args }
 function lvz { ls -lga --git --total-size -rs size @args }
 
-# Initialize oh-my-posh
-if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
-    oh-my-posh init pwsh --config ~/.config/powershell/powerlevel10k.json | Invoke-Expression
+# Initialize starship
+if (Get-Command starship -ErrorAction SilentlyContinue) {
+    Invoke-Expression (&starship init powershell)
 }

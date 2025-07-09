@@ -20,13 +20,12 @@ $character """
 
 [os]
 disabled = false
-format = "[ >_ ]($style)"
+format = "[ >_ ]($style)[\uE0B0](bg:#000000 fg:#0577BD) "
 style = "bg:#0577BD fg:#ffffff bold"
 
 [directory]
-format = "[$path ]($style)[$read_only]($read_only_style)[\uE0B0](bg:#000000 fg:#0577BD)"
 read_only = " 󰌾"
-style = "bg:#0577BD fg:#ffffff"
+style = "#2ac3de bold"
 truncate_to_repo = false
 truncation_length = 5
 truncation_symbol = "…/"
@@ -47,9 +46,9 @@ ahead = '[⇡$count](#FFE700) '
 behind = '[⇣$count](#FFE700) '
 diverged = '[⇡$ahead_count⇣$behind_count](#FFE700) '
 conflicted = '[=$count](#ff007c) '
-untracked = '[?$count](#2ac3de) '
-modified = '[!$count](#e0af68) '
-staged = '[+$count](#e0af68) '
+untracked = '[?$count](#22FFAA) '
+modified = '[!$count](#FF9900) '
+staged = '[+$count](#FF9900) '
 renamed = '[→$count](#FFE700) '
 deleted = '[✘$count](#FFE700) '
 stashed = '[*$count](#FFE700) '
@@ -61,19 +60,19 @@ symbol = " "
 disabled = false
 format = "[$user]($style)"
 style_root = "red bold"
-style_user = "#ff9e64"
+style_user = "#FF9900"
 
 [hostname]
 disabled = false
 format = "[@$hostname]($style) "
 ssh_only = true
 ssh_symbol = " "
-style = "#ff9e64"
+style = "#FF9900"
 
 [cmd_duration]
 format = "[ $duration]($style) "
 min_time = 1000
-style = "#bb9af7"
+style = "#0099FF"
 
 [jobs]
 symbol = "+ "
