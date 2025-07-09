@@ -97,7 +97,7 @@ symbol_threshold = 1
 
 [time]
 disabled = false
-format = "[ $time]($style)"
+format = "[ $time]($style) "
 style = "#518987"
 time_format = "%r"
 use_12hr = true
