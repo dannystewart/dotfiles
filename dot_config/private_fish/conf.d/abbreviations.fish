@@ -25,13 +25,12 @@ abbr -a czu chezmoi update
 abbr -a cza chezmoi apply
 
 # ls abbreviations
-abbr -a l ls -1 --group-directories-first
-abbr -a ll ls -l --no-user --group-directories-first
-abbr -a lt ls --group-directories-first --tree --level=1 # tree view
-abbr -a la ls -la --no-user --group-directories-first # same as above, just with hidden files
-abbr -a lz ls -la --no-user --total-size -rs size # with folder sizes, sorted by size
-abbr -a lv ls -lga --git --group-directories-first # verbose (includes user, group, and git status)
-abbr -a lvz ls -lga --git --total-size -rs size # with folder sizes, sorted by size
+abbr -a l ls -1 # basic vertical list
+abbr -a ll ls -l --no-user # ls + times, sizes, and permissions
+abbr -a la ls -la --no-user # ll + hidden files
+abbr -a lz ls -la --no-user --total-size -rs size # la + sort by size
+abbr -a lv ls -lga --git # la + group and git status (verbose)
+abbr -a lt ls --tree --level=1 # tree view
 
 # Other shell helpers
 abbr -a rt trash # like rm, but to the trash
