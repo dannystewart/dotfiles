@@ -62,9 +62,12 @@ if (Get-Command bat -ErrorAction SilentlyContinue) {
 }
 
 # ls replacement wrapper using eza if available
-if (Get-Command eza -ErrorAction SilentlyContinue) {
-    function ls {
-        eza --no-quotes --time-style='+%Y.%m.%d %I:%M %p' --icons @args
+function ls {
+    if (Get-Command eza -ErrorAction SilentlyContinue) {
+        eza --no-quotes --group-directories-first --icons @args
+    }
+    else {
+        Get-ChildItem @args
     }
 }
 
@@ -73,12 +76,12 @@ function czu { chezmoi update }
 function cza { chezmoi apply }
 
 # ls functions
-function l { ls -1 --group-directories-first @args }
-function ll { ls -l --no-user --group-directories-first @args }
-function lt { ls --tree --level=1 --group-directories-first @args }
-function la { ls -la --no-user --group-directories-first @args }
+function l { ls -1 @args }
+function ll { ls -l --no-user @args }
+function lt { ls --tree --level=1 @args }
+function la { ls -la --no-user @args }
 function lz { ls -la --no-user --total-size -rs size @args }
-function lv { ls -lga --git --group-directories-first @args }
+function lv { ls -lga --git @args }
 function lvz { ls -lga --git --total-size -rs size @args }
 
 # Git functions
