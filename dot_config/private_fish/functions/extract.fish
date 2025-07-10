@@ -1,12 +1,12 @@
 function extract --description "Expand or extract bundled and compressed files"
     if test (count $argv) -eq 0
-        echo "Usage: extract <archive_file>"
-        echo "Supported formats: tar, tar.gz, tgz, tar.bz2, rar, zip, 7z"
+        info "Usage: extract <archive_file>"
+        info "Supported formats: tar, tar.gz, tgz, tar.bz2, rar, zip, 7z"
         return 1
     end
 
     if not test -f $argv[1]
-        echo "Error: '$argv[1]' is not a file or does not exist"
+        error "Error: '$argv[1]' is not a file or does not exist"
         return 1
     end
 
@@ -39,7 +39,7 @@ function extract --description "Expand or extract bundled and compressed files"
         case 7z
             7z x $argv[1]
         case '*'
-            echo "Unknown extension '$ext'. Supported formats: tar, tar.gz, tgz, tar.bz2, rar, zip, 7z"
+            error "Unknown extension '$ext'. Supported formats: tar, tar.gz, tgz, tar.bz2, rar, zip, 7z"
             return 1
     end
 end

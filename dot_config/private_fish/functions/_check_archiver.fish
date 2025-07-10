@@ -5,7 +5,7 @@ function _check_archiver --description "Check if archive command is available fo
         case tar gz tgz bz2
             set --local cmd tar
             if not command -v $cmd >/dev/null
-                echo "Error: '$cmd' command not found. Please install tar."
+                error "Error: '$cmd' command not found. Please install tar."
                 return 1
             end
         case rar
@@ -17,7 +17,7 @@ function _check_archiver --description "Check if archive command is available fo
                 end
             end
             if test (count $missing_cmds) -gt 0
-                echo "Error: '$missing_cmds' command(s) not found. Please install rar/unrar (try: brew install rar unrar)."
+                error "Error: '$missing_cmds' command(s) not found. Please install rar/unrar (try: brew install rar unrar)."
                 return 1
             end
         case zip
@@ -29,23 +29,23 @@ function _check_archiver --description "Check if archive command is available fo
                 end
             end
             if test (count $missing_cmds) -gt 0
-                echo "Error: '$missing_cmds' command(s) not found. Please install zip/unzip."
+                error "Error: '$missing_cmds' command(s) not found. Please install zip/unzip."
                 return 1
             end
         case 7z
             set --local cmd 7z
             if not command -v $cmd >/dev/null
-                echo "Error: '$cmd' command not found. Please install p7zip (try: brew install p7zip)."
+                error "Error: '$cmd' command not found. Please install p7zip (try: brew install p7zip)."
                 return 1
             end
         case gz_single
             set --local cmd gunzip
             if not command -v $cmd >/dev/null
-                echo "Error: '$cmd' command not found. Please install gzip."
+                error "Error: '$cmd' command not found. Please install gzip."
                 return 1
             end
         case '*'
-            echo "Error: Unknown format '$format' for command checking."
+            error "Error: Unknown format '$format' for command checking."
             return 1
     end
     return 0
