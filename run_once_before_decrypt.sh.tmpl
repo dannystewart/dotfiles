@@ -31,6 +31,7 @@ if ! command -v age; then
 fi
 
     echo "Enter your Chezmoi encryption passphrase below."
+    mkdir -p "$HOME/.config/chezmoi"
     age --decrypt --output "$HOME/.config/chezmoi/key.txt" "{{ .chezmoi.sourceDir }}/key.txt.age"
     chmod 600 "$HOME/.config/chezmoi/key.txt"
 fi
