@@ -1,0 +1,45 @@
+{{ if (ne .chezmoi.os "windows") }}
+exit 0
+{{ end -}}
+# PowerShell version of decrypt script for Windows
+
+$keyPath = "$env:USERPROFILE\.config\chezmoi\key.txt"
+
+if (-not (Test-Path $keyPath)) {
+    # Check if 'age' command exists
+    if (-not (Get-Command age -ErrorAction SilentlyContinue)) {
+        Write-Host "'age' command not found. Attempting to install..."
+
+        # Try to install with scoop first, then chocolatey, then homebrew
+        if (Get-Command scoop -ErrorAction SilentlyContinue) {
+            Write-Host "Using 'scoop' to install 'age'..."
+            scoop install age
+        }
+        elseif (Get-Command choco -ErrorAction SilentlyContinue) {
+            Write-Host "Using 'chocolatey' to install 'age'..."
+            choco install age -y
+        }
+        elseif (Get-Command brew -ErrorAction SilentlyContinue) {
+            Write-Host "Using 'brew' to install 'age'..."
+            brew install age
+        }
+        else {
+            Write-Host "No known package manager found. Please install 'age' manually from https://github.com/FiloSottile/age"
+            exit 1
+        }
+    }
+
+    Write-Host "Enter your Chezmoi encryption passphrase below."
+    $configDir = "$env:USERPROFILE\.config\chezmoi"
+    New-Item -ItemType Directory -Path $configDir -Force | Out-Null
+
+    $sourceFile = "{{ .chezmoi.sourceDir }}\key.txt.age"
+    age --decrypt --output $keyPath $sourceFile
+
+    # Set file permissions (Windows equivalent of chmod 600)
+    $acl = Get-Acl $keyPath
+    $acl.SetAccessRuleProtection($true, $false)
+    $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($env:USERNAME, "FullControl", "Allow")
+    $acl.SetAccessRule($accessRule)
+    Set-Acl -Path $keyPath -AclObject $acl
+}
