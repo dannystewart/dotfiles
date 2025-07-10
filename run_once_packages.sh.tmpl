@@ -103,3 +103,6 @@ if command -v brew > /dev/null 2>&1; then
     install_packages "brew install" "brew update" ""
     brew cleanup
 fi
+
+# Build bat cache so it sees themes
+bat cache --build
