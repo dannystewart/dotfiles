@@ -21,7 +21,7 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
             case pkf
                 set patterns $patterns "*.pkf"
             case py python-cache
-                set patterns $patterns "*.egg-info" ".idea" ".mypy_cache" ".pytest_cache" ".ruff_cache" ".tox" ".coverage" ".coverage""__pycache__" "*.pyc" "*.pyo"
+                set patterns $patterns "*.egg-info" ".idea" ".mypy_cache" ".pytest_cache" ".ruff_cache" ".tox" ".coverage" "__pycache__" "*.pyc" "*.pyo"
             case junk windows-junk
                 set patterns $patterns "\$RECYCLE.BIN" "desktop.ini" "Thumbs.db" "Icon?" ".DS_Store"
             case --help -h
