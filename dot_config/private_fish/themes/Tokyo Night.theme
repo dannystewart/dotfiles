@@ -28,7 +28,7 @@ fish_color_normal normal
 fish_color_operator '#ff9e64'
 fish_color_option '#8a92b8'
 fish_color_param '#a9b1d6'
-fish_color_quote '#9ece6a'
+fish_color_quote '#2ac3de'
 fish_color_redirection '#2ac3de'
 fish_color_search_match '--background=#0088cc'
 fish_color_selection '--background=#0088cc'
