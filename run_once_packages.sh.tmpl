@@ -1,6 +1,4 @@
-{{ if (eq .chezmoi.os "windows") }}
-exit 0
-{{ end -}}
+{{ if ne .chezmoi.os "windows" -}}
 #!/bin/bash
 
 # Install x86 Homebrew on ARM64 if not already present
@@ -106,3 +104,4 @@ fi
 
 # Build bat cache so it sees themes
 bat cache --build
+{{ end -}}

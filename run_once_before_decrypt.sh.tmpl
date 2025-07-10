@@ -1,6 +1,4 @@
-{{ if (eq .chezmoi.os "windows") }}
-exit 0
-{{ end -}}
+{{ if ne .chezmoi.os "windows" -}}
 #!/bin/bash
 
 if [ ! -f "$HOME/.config/chezmoi/key.txt" ]; then
@@ -35,3 +33,4 @@ fi
     age --decrypt --output "$HOME/.config/chezmoi/key.txt" "{{ .chezmoi.sourceDir }}/key.txt.age"
     chmod 600 "$HOME/.config/chezmoi/key.txt"
 fi
+{{ end -}}

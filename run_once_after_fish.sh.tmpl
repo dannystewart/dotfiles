@@ -1,6 +1,4 @@
-{{ if (eq .chezmoi.os "windows") }}
-exit 0
-{{ end -}}
+{{ if ne .chezmoi.os "windows" -}}
 #!/bin/bash
 
 # Function to check if fish is working
@@ -122,3 +120,4 @@ else
     echo "   Please ensure fish is installed and functional. Your shell is unchanged."
     exit 1
 fi
+{{ end -}}

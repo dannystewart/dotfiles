@@ -2,10 +2,10 @@
 # VERSION: 3.0
 SETUVAR ZO_CMD:zo
 SETUVAR Z_CMD:z
-{{- if (eq .chezmoi.os "darwin") }}
+{{- if eq .chezmoi.os "darwin" }}
 SETUVAR Z_DATA:/Users/danny/\x2elocal/share/z/data
 SETUVAR Z_DATA_DIR:/Users/danny/\x2elocal/share/z
-{{- else if (eq .chezmoi.os "linux") }}
+{{- else if eq .chezmoi.os "linux" }}
 SETUVAR Z_DATA:/home/danny/\x2elocal/share/z/data
 SETUVAR Z_DATA_DIR:/home/danny/\x2elocal/share/z
 {{- end }}

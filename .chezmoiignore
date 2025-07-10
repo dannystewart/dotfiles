@@ -6,8 +6,3 @@ __pycache__/
 **/__pycache__
 key.txt.age
 README.md
-
-{{- if eq .chezmoi.os "windows" }}
-# Ignore shell scripts on Windows since they can't execute
-run_once_*.sh.tmpl
-{{- end }}
