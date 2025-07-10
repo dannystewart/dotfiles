@@ -17,26 +17,17 @@ function archive --description "Create bundled and compressed archives from dire
     # Check for required commands early
     _check_archiver $ext; or return
 
-    # Generate output filename
+    # Generate output filename based on extension
     set --local output_file
-    switch $ext
-        case tar
-            set output_file "$source_dir.tar"
-        case gz
-            set output_file "$source_dir.tar.gz"
-        case tgz
-            set output_file "$source_dir.tgz"
-        case bz2
-            set output_file "$source_dir.tar.bz2"
-        case rar
-            set output_file "$source_dir.rar"
-        case zip
-            set output_file "$source_dir.zip"
-        case 7z
-            set output_file "$source_dir.7z"
-        case '*'
-            echo "Unknown extension '$ext'. Supported formats: tar, gz, tgz, bz2, rar, zip, 7z"
-            return
+    if test $ext = gz
+        set output_file "$source_dir.tar.gz"
+    else if test $ext = bz2
+        set output_file "$source_dir.tar.bz2"
+    else if contains $ext tar tgz rar zip 7z
+        set output_file "$source_dir.$ext"
+    else
+        echo "Unknown extension '$ext'. Supported formats: tar, gz, tgz, bz2, rar, zip, 7z"
+        return
     end
 
     # Check if output file already exists
