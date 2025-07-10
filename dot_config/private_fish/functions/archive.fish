@@ -52,5 +52,10 @@ function archive --description "Create bundled and compressed archives from dire
             7z a $output_file $source_dir
     end
 
-    success "Created: $output_file"
+    # Only show success if the command actually succeeded
+    if test $status -eq 0
+        success "Created: $output_file"
+    else
+        error "Failed to create archive"
+    end
 end
