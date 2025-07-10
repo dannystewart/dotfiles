@@ -1,8 +1,8 @@
 function archive --description "Create bundled and compressed archives from directories"
     if test (count $argv) -ne 2
-        echo "Usage: archive <directory> <extension>"
-        echo "Example: archive my_folder zip"
-        echo "Supported extensions: tar, gz, tgz, bz2, rar, zip"
+            echo "Usage: archive <directory> <extension>"
+    echo "Example: archive my_folder zip"
+    echo "Supported extensions: tar, gz, tgz, bz2, rar, zip, 7z"
         return 1
     end
 
@@ -25,12 +25,14 @@ function archive --description "Create bundled and compressed archives from dire
             set output_file "$source_dir.tgz"
         case bz2
             set output_file "$source_dir.tar.bz2"
-        case rar
-            set output_file "$source_dir.rar"
-        case zip
-            set output_file "$source_dir.zip"
-        case '*'
-            echo "Unknown extension '$ext'. Supported formats: tar, gz, tgz, bz2, rar, zip"
+            case rar
+      set output_file "$source_dir.rar"
+    case zip
+      set output_file "$source_dir.zip"
+    case 7z
+      set output_file "$source_dir.7z"
+    case '*'
+      echo "Unknown extension '$ext'. Supported formats: tar, gz, tgz, bz2, rar, zip, 7z"
             return 1
     end
 
@@ -66,12 +68,18 @@ function archive --description "Create bundled and compressed archives from dire
                 return 1
             end
             rar a $output_file $source_dir
-        case zip
-            if not command -v zip >/dev/null
-                echo "Error: 'zip' command not found. Please install zip."
-                return 1
-            end
-            zip -r $output_file $source_dir
+            case zip
+      if not command -v zip >/dev/null
+        echo "Error: 'zip' command not found. Please install zip."
+        return 1
+      end
+      zip -r $output_file $source_dir
+    case 7z
+      if not command -v 7z >/dev/null
+        echo "Error: '7z' command not found. Please install p7zip (try: brew install p7zip)."
+        return 1
+      end
+      7z a $output_file $source_dir
     end
 
     echo "Created: $output_file"
