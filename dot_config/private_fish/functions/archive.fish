@@ -1,85 +1,76 @@
 function archive --description "Create bundled and compressed archives from directories"
     if test (count $argv) -ne 2
-            echo "Usage: archive <directory> <extension>"
-    echo "Example: archive my_folder zip"
-    echo "Supported extensions: tar, gz, tgz, bz2, rar, zip, 7z"
-        return 1
+        echo "Usage: archive <directory> <extension>"
+        echo "Example: archive my_folder zip"
+        echo "Supported extensions: tar, gz, tgz, bz2, rar, zip, 7z"
+        return
     end
 
-    set --local source_dir $argv[1]
+    set --local source_dir $argv[]
     set --local ext $argv[2]
 
     if not test -d $source_dir
         echo "Error: '$source_dir' is not a directory"
-        return 1
+        return
     end
 
-    # Generate output filename based on extension
-    set --local output_file
+    # Check for required commands early
+    _check_archiver $ext; or return
+
+    # Generate output filename and create archive
     switch $ext
         case tar
-            set output_file "$source_dir.tar"
-        case gz
-            set output_file "$source_dir.tar.gz"
-        case tgz
-            set output_file "$source_dir.tgz"
-        case bz2
-            set output_file "$source_dir.tar.bz2"
-            case rar
-      set output_file "$source_dir.rar"
-    case zip
-      set output_file "$source_dir.zip"
-    case 7z
-      set output_file "$source_dir.7z"
-    case '*'
-      echo "Unknown extension '$ext'. Supported formats: tar, gz, tgz, bz2, rar, zip, 7z"
-            return 1
-    end
-
-    # Check if output file already exists
-    if test -e $output_file
-        echo "Error: '$output_file' already exists"
-        return 1
-    end
-
-    # Check for required commands and create archive
-    switch $ext
-        case tar
-            if not command -v tar >/dev/null
-                echo "Error: 'tar' command not found. Please install tar."
-                return 1
+            set --local output_file "$source_dir.tar"
+            if test -e $output_file
+                echo "Error: '$output_file' already exists"
+                return
             end
             tar -cvf $output_file $source_dir
-        case gz tgz
-            if not command -v tar >/dev/null
-                echo "Error: 'tar' command not found. Please install tar."
-                return 1
+        case gz
+            set --local output_file "$source_dir.tar.gz"
+            if test -e $output_file
+                echo "Error: '$output_file' already exists"
+                return
+            end
+            tar -czvf $output_file $source_dir
+        case tgz
+            set --local output_file "$source_dir.tgz"
+            if test -e $output_file
+                echo "Error: '$output_file' already exists"
+                return
             end
             tar -czvf $output_file $source_dir
         case bz2
-            if not command -v tar >/dev/null
-                echo "Error: 'tar' command not found. Please install tar."
-                return 1
+            set --local output_file "$source_dir.tar.bz2"
+            if test -e $output_file
+                echo "Error: '$output_file' already exists"
+                return
             end
             tar -cjvf $output_file $source_dir
         case rar
-            if not command -v rar >/dev/null
-                echo "Error: 'rar' command not found. Please install rar (try: brew install rar)."
-                return 1
+            set --local output_file "$source_dir.rar"
+            if test -e $output_file
+                echo "Error: '$output_file' already exists"
+                return
             end
             rar a $output_file $source_dir
-            case zip
-      if not command -v zip >/dev/null
-        echo "Error: 'zip' command not found. Please install zip."
-        return 1
-      end
-      zip -r $output_file $source_dir
-    case 7z
-      if not command -v 7z >/dev/null
-        echo "Error: '7z' command not found. Please install p7zip (try: brew install p7zip)."
-        return 1
-      end
-      7z a $output_file $source_dir
+        case zip
+            set --local output_file "$source_dir.zip"
+            if test -e $output_file
+                echo "Error: '$output_file' already exists"
+                return
+            end
+            zip -r $output_file $source_dir
+        case 7z
+            set --local output_file "$source_dir.7z"
+            if test -e $output_file
+                echo "Error: '$output_file' already exists"
+                return
+            end
+            7z a $output_file $source_dir
+        case '*'
+            echo "Unknown extension '$ext'. Supported formats: tar, gz, tgz, bz2, rar, zip, 7z"
+            return
     end
 
     echo "Created: $output_file"
