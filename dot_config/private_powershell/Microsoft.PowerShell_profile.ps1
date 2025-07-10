@@ -61,7 +61,8 @@ if (Get-Command bat -ErrorAction SilentlyContinue) {
     }
 }
 
-# ls replacement wrapper using eza if available
+# Remove built-in ls alias and create eza wrapper
+Remove-Item -Path Alias:ls -Force -ErrorAction SilentlyContinue
 function ls {
     if (Get-Command eza -ErrorAction SilentlyContinue) {
         eza --no-quotes --group-directories-first --icons @args

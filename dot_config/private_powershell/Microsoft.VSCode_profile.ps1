@@ -5,9 +5,10 @@ $env:LESSHISTFILE = "/dev/null"
 $env:HOMEBREW_NO_ENV_HINTS = "true"
 
 # ls replacement wrapper using eza if available
+Remove-Item -Path Alias:ls -Force -ErrorAction SilentlyContinue
 function ls {
     if (Get-Command eza -ErrorAction SilentlyContinue) {
-        eza --no-quotes --group-directories-first --icons @args
+        & eza --no-quotes --group-directories-first --icons @args
     }
     else {
         Get-ChildItem @args
