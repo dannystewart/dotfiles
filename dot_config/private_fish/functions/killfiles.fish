@@ -58,7 +58,16 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
     # Execute find commands for each pattern
     for pattern in $patterns
         echo "Searching for: $pattern"
-        find "$directory" -name "$pattern" -print -delete 2>/dev/null
+        # First find and print what will be deleted
+        set found_items (find "$directory" -name "$pattern" -print 2>/dev/null)
+        if test (count $found_items) -gt 0
+            for item in $found_items
+                echo "$item"
+            end
+            # Delete files first, then directories (in reverse order for nested structures)
+            find "$directory" -name "$pattern" -type f -delete 2>/dev/null
+            find "$directory" -name "$pattern" -type d -exec rm -rf {} + 2>/dev/null
+        end
     end
 
     echo "File cleanup complete!"
