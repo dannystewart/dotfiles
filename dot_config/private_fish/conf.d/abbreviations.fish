@@ -68,7 +68,7 @@ abbr -a dcdpu "docker compose down --remove-orphans && docker system prune -a -f
 abbr -a dcr docker compose restart
 abbr -a dcl docker compose logs
 abbr -a dcp docker compose pull
-abbr -a dsp docker system prune -a -f -v
+abbr -a dsp docker system prune -a -f --volumes
 
 # Server-specific
 if command -q hostname
