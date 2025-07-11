@@ -11,7 +11,7 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
                 if test $i -le (count $argv)
                     set directory $argv[$i]
                 else
-                    echo "Error: -d requires a directory argument"
+                    error "Error: -d requires a directory argument"
                     return 1
                 end
             case ds dsstore
@@ -51,24 +51,35 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
     end
 
     if test (count $patterns) -eq 0
-        echo "Error: No patterns specified. Use --help for usage."
+        error "No patterns specified. Use --help for usage."
         return 1
     end
 
+    set -l total_deleted 0
+
     # Execute find commands for each pattern
     for pattern in $patterns
-        echo "Searching for: $pattern"
+        info "Searching for: $pattern"
         # First find and print what will be deleted
         set found_items (find "$directory" -name "$pattern" -print 2>/dev/null)
         if test (count $found_items) -gt 0
             for item in $found_items
-                echo "$item"
+                warning "  Found: $item"
             end
             # Delete files first, then directories (in reverse order for nested structures)
             find "$directory" -name "$pattern" -type f -delete 2>/dev/null
             find "$directory" -name "$pattern" -type d -exec rm -rf {} + 2>/dev/null
+            success "  Deleted "(pluralize (count $found_items) item)" total."
+            set total_deleted (math $total_deleted + (count $found_items))
+        else
+            echo "  No matches found"
         end
+        echo ""
     end
 
-    echo "File cleanup complete!"
+    if test $total_deleted -gt 0
+        success "File cleanup complete! Deleted "(pluralize $total_deleted item)" total."
+    else
+        info "File cleanup complete! No files were deleted."
+    end
 end
