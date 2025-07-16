@@ -70,21 +70,6 @@ abbr -a dcl docker compose logs
 abbr -a dcp docker compose pull
 abbr -a dsp docker system prune -a -f --volumes
 
-# Server-specific
-if command -q hostname
-    switch (hostname)
-        case web
-            # Prism
-            abbr -a prl prismlens
-            abbr -a prp prismlens
-            abbr -a prd prismlens dev
-            abbr -a prrp prismlens restart
-            abbr -a prrd prismlens dev restart
-            abbr -a prra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
-            abbr -a prli "cd ~/prism/dev/prismlens && pip install -e ."
-    end
-end
-
 # Helper function to re-apply Chezmoi state
 function _chezmoi_apply
     chezmoi apply
