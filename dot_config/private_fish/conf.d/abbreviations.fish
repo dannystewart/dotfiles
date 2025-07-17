@@ -70,6 +70,13 @@ abbr -a dcl docker compose logs
 abbr -a dcp docker compose pull
 abbr -a dsp docker system prune -a -f --volumes
 
+# Computer-specific
+switch (hostname)
+    case web
+        # Fetch, pull, and restart both Prism instances
+        abbr -a prra "cd ~/prism/prod && git fetch && git pull && prismlens restart all"
+end
+
 # Helper function to re-apply Chezmoi state
 function _chezmoi_apply
     chezmoi apply
