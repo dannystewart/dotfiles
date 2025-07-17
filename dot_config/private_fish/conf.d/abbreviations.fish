@@ -54,7 +54,7 @@ abbr -a ga git add -A
 abbr -a gc git commit -m
 abbr -a gca git commit --amend --no-edit
 abbr -a gp git push
-abbr -a gpf git push --force
+abbr -a gpff git push --force
 abbr -a gsc git stash clear
 abbr -a grhh git reset --hard HEAD
 abbr -a gfp "git fetch && git pull"
