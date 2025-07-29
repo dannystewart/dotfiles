@@ -9,7 +9,7 @@ fish_color_cwd '#008AB3'
 fish_color_cwd_root red
 fish_color_end '#ff9e64'
 fish_color_error red
-fish_color_escape '#89ddff'
+fish_color_escape '#7aa2f7'
 fish_color_hg_added green
 fish_color_hg_clean green
 fish_color_hg_copied magenta
@@ -22,7 +22,7 @@ fish_color_hg_untracked yellow
 fish_color_history_current --bold
 fish_color_host normal
 fish_color_host_remote yellow
-fish_color_keyword '#7aa2f7'
+fish_color_keyword '#9ece6a'
 fish_color_match '#f7768e'
 fish_color_normal normal
 fish_color_operator '#ff9e64'
