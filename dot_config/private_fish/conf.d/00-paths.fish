@@ -8,6 +8,7 @@ set possible_paths \
     /opt/homebrew/opt/findutils/libexec/gnubin \
     /usr/local/opt/findutils/libexec/gnubin \
     /var/lib/snapd/snap/bin \
+    ~/.lmstudio/bin \
     ~/.cargo/bin \
     ~/.rbenv/bin \
     ~/.pyenv/shims \
