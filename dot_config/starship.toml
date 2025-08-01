@@ -22,6 +22,9 @@ $time\
 $line_break\
 $character """
 
+# Extend command timeout slightly for Git
+command_timeout = 750
+
 [os]
 disabled = false
 format = "[$symbol]($style)"
