@@ -1,0 +1,55 @@
+#!/bin/bash
+# shellcheck disable=SC1091
+
+# Reset PATH to system defaults
+PATH=$(getconf PATH)
+
+# Paths to add (lower paths come first)
+PATH_LIST="
+/opt/local/bin
+/sbin
+/System/Cryptexes/App/usr/bin
+/Library/Apple/usr/bin
+/usr/libexec
+/usr/local/bin
+$HOME/.local/bin/node
+$HOME/.local/bin
+$HOME/.bin
+$HOME/bin
+$HOME/.pyenv/bin
+$HOME/.pyenv/shims
+$HOME/.rbenv/bin
+$HOME/.cargo/bin
+$HOME/.lmstudio/bin
+/var/lib/snapd/snap/bin
+/usr/local/opt/findutils/libexec/gnubin
+/opt/homebrew/opt/findutils/libexec/gnubin
+/opt/homebrew/opt/openjdk/bin
+"
+
+# Use subshell to set PATH
+PATH=$(echo "$PATH_LIST" | while read -r dir; do
+    if [ -n "$dir" ] && [ -d "$dir" ]; then
+        echo -n "$dir:"
+    fi
+done)$PATH
+
+# Ensure critical system paths are included
+for dir in /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin; do
+    if [[ ":$PATH:" != *":$dir:"* ]]; then
+        PATH="$PATH:$dir"
+    fi
+done
+
+# Basic ls aliases
+if command -v eza &>/dev/null; then
+    alias ls='eza -bg'
+    alias ll='eza -laFb'
+    alias l='eza -1'
+    alias la='eza -1a'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -l'
+    alias l='ls -lFh'
+    alias la='ls -lAFh'
+fi

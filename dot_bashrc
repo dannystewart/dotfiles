@@ -1,18 +1,8 @@
 #!/bin/bash
 # shellcheck disable=SC1091
 
-# Basic ls aliases
-if command -v eza &>/dev/null; then
-    alias ls='eza -bg'
-    alias ll='eza -laFb'
-    alias l='eza -1'
-    alias la='eza -1a'
-else
-    alias ls='ls --color=auto'
-    alias ll='ls -l'
-    alias l='ls -lFh'
-    alias la='ls -lAFh'
-fi
+# Import common profile
+[ -f "$HOME/.profile" ] && source "$HOME/.profile"
 
 # Initialize Starship
 eval "$(starship init bash)"
