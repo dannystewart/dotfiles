@@ -1,8 +1,14 @@
 # Set timezone
 set -gx TZ America/New_York
 
-# Set Cursor as the default text editor
-set -gx EDITOR cursor
+# Set default text editor based on what's available
+if command -q cursor
+    set -gx EDITOR cursor
+else if command -q code
+    set -gx EDITOR code
+else
+    set -gx EDITOR nano
+end
 
 # Disable Homebrew environment variable hints
 set -gx HOMEBREW_NO_ENV_HINTS 1
