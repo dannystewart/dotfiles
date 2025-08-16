@@ -78,14 +78,14 @@ switch (hostname)
 end
 
 # Helper function to re-apply Chezmoi state
-function _chezmoi_apply
+function _chezmoi_apply -d "re-apply Chezmoi state"
     chezmoi apply
     success "Chezmoi applied!"
     fish_prompt
 end
 
 # Helper function to find and kill a process
-function _kill_process
+function _kill_process -d "find and kill a process"
     ps aux | fzf --header="Select process to kill" | awk \'{print $2}\' | xargs kill
     commandline -f repaint
 end
