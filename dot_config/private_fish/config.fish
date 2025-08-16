@@ -1,5 +1,6 @@
 # Environment variables
 set -gx BAT_CONFIG_PATH "$HOME/.config/bat/config"
+set -gx BUILDKIT_PROGRESS tty
 set -gx EDITOR cursor
 set -gx EVREMIXES_ADMIN 1
 set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
