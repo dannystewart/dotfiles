@@ -4,7 +4,7 @@ switch (uname)
         # Mac App Store updater
         abbr -a macup mas upgrade
         # PowerShell abbreviations
-        abbr -a pim pwsh "/Users/danny/Developer/iri/iri-powershell/Azure/Set-PIM.ps1"
+        abbr -a pim pwsh "/Users/danny/Developer/iri/iri-powershell/Azure/Set-PIM.ps1" -Enable
         # Add Touch ID as allowable for sudo
         abbr -a touchid sudo su root -c '/opt/homebrew/bin/gsed -i "2iauth       sufficient     pam_tid.so" /etc/pam.d/sudo'
         # Bluetooth reset
