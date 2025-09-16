@@ -1,33 +1,32 @@
 {{ if eq .chezmoi.os "windows" -}}
 $keyPath = "$env:USERPROFILE\.config\chezmoi\key.txt"
 if (-not (Test-Path $keyPath)) {
-    # Check if 'age' command exists
+    # Check for 'age' command and try to install if not found
     if (-not (Get-Command age -ErrorAction SilentlyContinue)) {
         Write-Host "'age' command not found. Attempting to install..."
 
-        # Try to install with scoop first, then chocolatey, then homebrew
-        if (Get-Command scoop -ErrorAction SilentlyContinue) {
-            Write-Host "Using 'scoop' to install 'age'..."
-            scoop install age
+        # Try to install using winget if available
+        if (Get-Command winget -ErrorAction SilentlyContinue) {
+            Write-Host "Installing 'age' using winget..."
+            winget install --id=FiloSottile.age -e
+
+            # Refresh PATH for current session
+            $env:PATH = [System.Environment]::GetEnvironmentVariable("PATH", "Machine") + ";" + [System.Environment]::GetEnvironmentVariable("PATH", "User")
         }
-        elseif (Get-Command choco -ErrorAction SilentlyContinue) {
-            Write-Host "Using 'chocolatey' to install 'age'..."
-            choco install age -y
-        }
-        elseif (Get-Command brew -ErrorAction SilentlyContinue) {
-            Write-Host "Using 'brew' to install 'age'..."
-            brew install age
-        }
-        else {
-            Write-Host "No known package manager found. Please install 'age' manually from https://github.com/FiloSottile/age"
+
+        # If it's still not found, exit with error
+        if (-not (Get-Command age -ErrorAction SilentlyContinue)) {
+            Write-Host "Unable to install 'age'. Please install manually from https://github.com/FiloSottile/age"
             exit 1
         }
     }
 
+    # Get the encryption passphrase
     Write-Host "Enter your Chezmoi encryption passphrase below."
     $configDir = "$env:USERPROFILE\.config\chezmoi"
     New-Item -ItemType Directory -Path $configDir -Force | Out-Null
 
+    # Decrypt the key file
     $sourceFile = "{{ .chezmoi.sourceDir }}\key.txt.age"
     age --decrypt --output $keyPath $sourceFile
 
@@ -37,5 +36,19 @@ if (-not (Test-Path $keyPath)) {
     $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($env:USERNAME, "FullControl", "Allow")
     $acl.SetAccessRule($accessRule)
     Set-Acl -Path $keyPath -AclObject $acl
+
+    # Install additional packages
+    winget install --id=cURL.cURL  -e
+    winget install --id=eza-community.eza  -e
+    winget install --id=GitHub.cli  -e
+    winget install --id=GitHub.GitLFS  -e
+    winget install --id=hpjansson.Chafa  -e
+    winget install --id=JernejSimoncic.Wget  -e
+    winget install --id=mbuilov.sed  -e
+    winget install --id=sharkdp.bat  -e
+    winget install --id=sharkdp.fd  -e
+    winget install --id=Starship.Starship  -e
+    winget install --id=twpayne.chezmoi  -e
+    winget install --id=yt-dlp.yt-dlp  -e
 }
 {{ end -}}
