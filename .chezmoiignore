@@ -1,8 +1,0 @@
-__pycache__/
-.DS_Store
-.ruff_cache/
-.sync.ffs_db
-*.code-workspace
-**/__pycache__
-key.txt.age
-README.md

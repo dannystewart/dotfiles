@@ -1,0 +1,18 @@
+__pycache__/
+.DS_Store
+.ruff_cache/
+.sync.ffs_db
+*.code-workspace
+**/__pycache__
+key.txt.age
+README.md
+{{- if eq .chezmoi.os "windows" -}}
+.bashrc
+.config/fish
+.config/htop
+.config/tmux
+.env
+.profile
+.pypirc
+.zshrc
+{{- end -}}
