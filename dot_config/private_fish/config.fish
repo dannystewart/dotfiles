@@ -25,9 +25,6 @@ set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -
 # Disable less history file
 set -gx LESSHISTFILE /dev/null
 
-# Enable TTY progress output for Docker BuildKit
-set -gx BUILDKIT_PROGRESS tty
-
 # Use admin download mode for evremixes
 set -gx EVREMIXES_ADMIN 1
 
