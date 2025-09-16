@@ -3,5 +3,5 @@ encryption = "age"
     identity = "~/.config/chezmoi/key.txt"
     recipient = "age18p9mkapr6czfz3wusd6eevw73y9hd828a2y9mqt0rx0s99gchyeqvnx4fe"
 [edit]
-    command = "code"
+    command = "cursor"
     args = ["--wait"]
