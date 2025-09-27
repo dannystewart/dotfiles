@@ -48,6 +48,9 @@ abbr -a pie pip install -e .
 abbr -a pipds "pip uninstall -y dsbin && pip install -U dsbin"
 abbr -a pipdev "pip uninstall -y dsbin && pip install -U git+ssh://git@github.com/dannystewart/dsbin.git"
 
+# Mint abbreviations
+abbr -a mintds "mint install dannystewart/dsbin-swift@main"
+
 # Git
 abbr -a gs git status
 abbr -a ga git add -A
