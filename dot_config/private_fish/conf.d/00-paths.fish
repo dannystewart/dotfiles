@@ -13,6 +13,7 @@ set possible_paths \
     ~/.rbenv/bin \
     ~/.pyenv/shims \
     ~/.pyenv/bin \
+    ~/.mint/bin \
     ~/bin \
     ~/.bin \
     ~/.local/bin \
