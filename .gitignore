@@ -1,10 +1,12 @@
-**/.env
+__pycache__
+.cursorindexingignore
 .DS_Store
 .history
 .idea
 .mypy_cache
 .nova
+.specstory
 .vscode
-__pycache__
+**/.env
 chezmoi.code-workspace
 tempCodeRunnerFile.shellscript
