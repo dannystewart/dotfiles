@@ -48,6 +48,16 @@ abbr -a pie pip install -e .
 abbr -a pipds "pip uninstall -y dsbin && pip install -U dsbin"
 abbr -a pipdev "pip uninstall -y dsbin && pip install -U git+ssh://git@github.com/dannystewart/dsbin.git"
 
+# Swift abbreviations
+abbr -a sb "swift build"
+abbr -a sr "swift run"
+abbr -a sbr "swift build --configuration release"
+abbr -a srr "swift run --configuration release"
+abbr -a spu "swift package resolve && swift package update"
+abbr -a spb "swift package clean"
+abbr -a spr "swift package reset"
+abbr -a spp "swift package purge-cache"
+
 # Mint abbreviations
 abbr -a mintds "mint install dannystewart/dsbin-swift@main"
 
