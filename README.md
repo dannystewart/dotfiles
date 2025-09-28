@@ -33,7 +33,6 @@ I use [Fish](https://fishshell.com/) for my shell and [Starship](https://starshi
 #### Fish Plugins
 
 - `z`: Smart directory jumping based on frecent (frequent + recent) folders.
-- `sponge`: Cleans up invalid commands from your Fish history.
 - `autopair`: Auto-closing brackets/quotes.
 - `done`: Desktop notifications when long-running commands finish.
 - `bang-bang`, `extract`, `colored_man_pages`, and more.
