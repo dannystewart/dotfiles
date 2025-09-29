@@ -1,22 +1,9 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR ZO_CMD:zo
-SETUVAR Z_CMD:z
-{{- if eq .chezmoi.os "darwin" }}
-SETUVAR Z_DATA:/Users/danny/\x2elocal/share/z/data
-SETUVAR Z_DATA_DIR:/Users/danny/\x2elocal/share/z
-{{- else if eq .chezmoi.os "linux" }}
-SETUVAR Z_DATA:/home/danny/\x2elocal/share/z/data
-SETUVAR Z_DATA_DIR:/home/danny/\x2elocal/share/z
-{{- end }}
-SETUVAR Z_EXCLUDE:\x5e/Users/danny\x24\x7c\x5e/home/danny\x24
 SETUVAR __fish_initialized:3800
 SETUVAR _fisher_franciscolourenco_2F_done_files:\x7e/\x2econfig/fish/conf\x2ed/done\x2efish
-SETUVAR _fisher_jethrokuan_2F_z_files:\x7e/\x2econfig/fish/functions/__z\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_add\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_clean\x2efish\x1e\x7e/\x2econfig/fish/functions/__z_complete\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/z\x2efish
-SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:\x7e/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_list\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e\x7e/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e\x7e/\x2econfig/fish/functions/nvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e\x7e/\x2econfig/fish/completions/nvm\x2efish
-SETUVAR _fisher_laughedelic_2F_brew_2D_completions_files:\x7e/\x2econfig/fish/completions/brew\x2efish
 SETUVAR _fisher_oh_2D_my_2D_fish_2F_plugin_2D_bang_2D_bang_files:\x7e/\x2econfig/fish/functions/__history_previous_command\x2efish\x1e\x7e/\x2econfig/fish/functions/__history_previous_command_arguments\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/plugin\x2dbang\x2dbang\x2efish
-SETUVAR _fisher_plugins:franciscolourenco/done\x1eoh\x2dmy\x2dfish/plugin\x2dbang\x2dbang\x1ejethrokuan/z\x1elaughedelic/brew\x2dcompletions\x1ejorgebucaran/nvm\x2efish
+SETUVAR _fisher_plugins:franciscolourenco/done\x1eoh\x2dmy\x2dfish/plugin\x2dbang\x2dbang
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:\x23565f89
 SETUVAR fish_color_cancel:normal
