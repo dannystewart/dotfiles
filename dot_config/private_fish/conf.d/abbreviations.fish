@@ -48,6 +48,9 @@ abbr -a pie pip install -e .
 abbr -a pipds "pip uninstall -y dsbin && pip install -U dsbin"
 abbr -a pipdev "pip uninstall -y dsbin && pip install -U git+ssh://git@github.com/dannystewart/dsbin.git"
 
+# Personal development commands (to be removed later)
+abbr -a pkv "pkill -f volumeHUD"
+
 # Swift abbreviations
 abbr -a xcd "cd ~/Library/Developer/Xcode/DerivedData"
 abbr -a sb "swift build"
