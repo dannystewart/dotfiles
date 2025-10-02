@@ -9,6 +9,12 @@ switch (uname)
         abbr -a touchid sudo su root -c '/opt/homebrew/bin/gsed -i "2iauth       sufficient     pam_tid.so" /etc/pam.d/sudo'
         # Bluetooth reset
         abbr -a btreset "blueutil -p 0 && sleep 1 && blueutil -p 1"
+        # Xcode DerivedData folder
+        abbr -a xcd "cd ~/Library/Developer/Xcode/DerivedData"
+        # Personal development commands (to be removed eventually)
+        abbr -a pkv "pkill -f volumeHUD"
+        # Mint abbreviations
+        abbr -a mintds "mint install dannystewart/dsbin-swift@main"
     case Linux
         # Linux package managers
         command -q apt; and abbr -a aptup "sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y"
@@ -48,11 +54,7 @@ abbr -a pie pip install -e .
 abbr -a pipds "pip uninstall -y dsbin && pip install -U dsbin"
 abbr -a pipdev "pip uninstall -y dsbin && pip install -U git+ssh://git@github.com/dannystewart/dsbin.git"
 
-# Personal development commands (to be removed later)
-abbr -a pkv "pkill -f volumeHUD"
-
 # Swift abbreviations
-abbr -a xcd "cd ~/Library/Developer/Xcode/DerivedData"
 abbr -a sb "swift build"
 abbr -a sr "swift run"
 abbr -a sbr "swift build --configuration release"
@@ -61,9 +63,6 @@ abbr -a spu "swift package resolve && swift package update"
 abbr -a spb "swift package clean"
 abbr -a spr "swift package reset"
 abbr -a spp "swift package purge-cache"
-
-# Mint abbreviations
-abbr -a mintds "mint install dannystewart/dsbin-swift@main"
 
 # Git
 abbr -a gs git status
