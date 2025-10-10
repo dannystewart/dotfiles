@@ -28,6 +28,9 @@ set -gx LESSHISTFILE /dev/null
 # Use admin download mode for evremixes
 set -gx EVREMIXES_ADMIN 1
 
+# Set signing identity for Xcode
+set -gx CODE_SIGN_IDENTITY "Apple Development: Danny Stewart (75GS56XYDQ)"
+
 # Interactive shell configuration
 if status is-interactive
     # Bind Tab to complete-and-search
