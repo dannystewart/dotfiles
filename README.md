@@ -26,7 +26,7 @@ I use [Fish](https://fishshell.com/) for my shell and [Starship](https://starshi
 
 - `ls`: Smart wrapper for `eza` with pretty output and fallback to `ls`.
 - `uatt`: One command to update all the things (OS, Homebrew, Chezmoi, etc.).
-- `killfiles`: Cleans up junk files (macOS, Windows, Python, etc.).
+- `killjunk`: Cleans up junk files (macOS, Windows, Python, etc.).
 - `czo`: Finds orphaned files in Chezmoi-managed directories.
 - Many more helpers and wrappers for daily tasks.
 

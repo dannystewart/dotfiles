@@ -1,4 +1,4 @@
-function killfiles --description 'Delete files by pattern or predefined shortcuts'
+function killjunk --description 'Delete files by pattern or predefined shortcuts'
     set directory "."
     set patterns
 
@@ -25,7 +25,7 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
             case junk windows-junk
                 set patterns $patterns "\$RECYCLE.BIN" "desktop.ini" "Thumbs.db" "Icon?" ".DS_Store"
             case --help -h
-                echo "Usage: killfiles [options] [pattern|shortcut]..."
+                echo "Usage: killjunk [options] [pattern|shortcut]..."
                 echo ""
                 echo "Options:"
                 echo "  -d, --directory DIR    Directory to search (default: current)"
@@ -38,10 +38,10 @@ function killfiles --description 'Delete files by pattern or predefined shortcut
                 echo "  py, python-cache      Python cache files"
                 echo ""
                 echo "Examples:"
-                echo "  killfiles ds                    # Delete .DS_Store files"
-                echo "  killfiles '*.tmp'               # Delete .tmp files"
-                echo "  killfiles -d ~/Downloads sc     # Delete sync conflicts in Downloads"
-                echo "  killfiles junk py               # Delete both junk and Python cache files"
+                echo "  killjunk ds                    # Delete .DS_Store files"
+                echo "  killjunk '*.tmp'               # Delete .tmp files"
+                echo "  killjunk -d ~/Downloads sc     # Delete sync conflicts in Downloads"
+                echo "  killjunk junk py               # Delete both junk and Python cache files"
                 return 0
             case '*'
                 # Treat as a literal pattern
