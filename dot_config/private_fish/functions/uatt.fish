@@ -35,12 +35,6 @@ function uatt --description "Update all the things"
         echo -e "$red"Unsupported operating system: $os_type"$clear"
     end
 
-    # mas (Mac App Store)
-    if command -q mas
-        mas upgrade
-        set updated true
-    end
-
     # Homebrew
     if command -q brew
         brew update && brew upgrade && brew cleanup
