@@ -55,7 +55,17 @@ function demurrify --description "Scrape Murray Gold off a folder of MKV files"
             continue
         end
 
-        info "[$current/$total] Processing: $file"
+        # Check audio channel layout
+        set channels (ffprobe -v error -select_streams a:0 -show_entries stream=channels -of default=noprint_wrappers=1:nokey=1 $file)
+
+        # Skip if not 6 channel
+        if test "$channels" != 6
+            set layout (ffprobe -v error -select_streams a:0 -show_entries stream=channel_layout -of default=noprint_wrappers=1:nokey=1 $file)
+            warning "[$current/$total] Skipping $file - not 5.1/6ch (detected: $channels channels, layout: $layout)"
+            continue
+        end
+
+        info "[$current/$total] Processing: $file (5.1 audio detected)"
 
         # Rename original file
         if not mv $file "$basename"_original.mkv
@@ -64,7 +74,13 @@ function demurrify --description "Scrape Murray Gold off a folder of MKV files"
         end
 
         # Process with ffmpeg (show progress but hide banner)
-        if ffmpeg -hide_banner -i "$basename"_original.mkv -map 0:v -map 0:a:0 -map 0:s\? -c:v copy -c:s copy -af "pan=stereo|c0=FC|c1=FC" $file
+        if ffmpeg -hide_banner -i "$basename"_original.mkv \
+                -map 0:v:0 -map 0:a:0 -map 0:s? \
+                -c:v copy -c:s copy \
+                -af "pan=stereo|c0=FC|c1=FC" \
+                -c:a aac -b:a 192k \
+                -max_muxing_queue_size 1024 \
+                $file
             success "✓ Completed: $file"
         else
             error "✗ Failed to process: $file"
