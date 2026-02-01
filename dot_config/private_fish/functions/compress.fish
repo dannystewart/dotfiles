@@ -68,6 +68,7 @@ function compress --description "Compress or bundle files and directories"
             case zip
                 pushd $target; and zip -r $output_abs .; and popd
             case 7z
+                # @fish-lsp-disable-next-line 7001
                 pushd $target; and 7z a $output_abs .; and popd
         end
     else
@@ -84,6 +85,7 @@ function compress --description "Compress or bundle files and directories"
             case zip
                 zip $output_abs $target
             case 7z
+                # @fish-lsp-disable-next-line 7001
                 7z a $output_abs $target
         end
     end
