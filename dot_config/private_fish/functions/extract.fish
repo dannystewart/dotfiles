@@ -37,6 +37,7 @@ function extract --description "Expand or extract bundled and compressed files"
         case zip
             unzip $argv[1]
         case 7z
+            # @fish-lsp-disable-next-line 7001
             7z x $argv[1]
         case '*'
             error "Unknown extension '$ext'. Supported formats: tar, tar.gz, tgz, tar.bz2, rar, zip, 7z"
