@@ -40,7 +40,7 @@ function compress --description "Compress or bundle files and directories"
             return 1
     end
 
-    # Find an available filename
+    # Find an available filename in current directory
     set --local output "$basename$extension"
     set --local counter 1
     while test -e $output
@@ -48,21 +48,44 @@ function compress --description "Compress or bundle files and directories"
         set counter (math $counter + 1)
     end
 
+    # Convert to absolute path for the output file
+    set --local output_abs (pwd)/$output
+
     # Perform compression
-    switch $format
-        case tar
-            tar -cvf $output $target
-        case tar.gz gz
-            tar -zcvf $output $target
-        case tgz
-            tar -zcvf $output $target
-        case tar.bz2 bz2
-            tar -jcvf $output $target
-        case zip
-            zip -r $output $target
-        case 7z
-            # @fish-lsp-disable-next-line 7001
-            7z a $output $target
+    # For directories, compress contents without nesting the folder name
+    # For files, compress the file directly
+    if test -d $target
+        # Directory: cd into it and compress contents
+        switch $format
+            case tar
+                tar -cvf $output_abs -C $target .
+            case tar.gz gz
+                tar -zcvf $output_abs -C $target .
+            case tgz
+                tar -zcvf $output_abs -C $target .
+            case tar.bz2 bz2
+                tar -jcvf $output_abs -C $target .
+            case zip
+                pushd $target; and zip -r $output_abs .; and popd
+            case 7z
+                pushd $target; and 7z a $output_abs .; and popd
+        end
+    else
+        # File: compress directly
+        switch $format
+            case tar
+                tar -cvf $output_abs $target
+            case tar.gz gz
+                tar -zcvf $output_abs $target
+            case tgz
+                tar -zcvf $output_abs $target
+            case tar.bz2 bz2
+                tar -jcvf $output_abs $target
+            case zip
+                zip $output_abs $target
+            case 7z
+                7z a $output_abs $target
+        end
     end
 
     if test $status -eq 0
