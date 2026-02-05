@@ -11,6 +11,7 @@ set possible_paths \
     ~/.lmstudio/bin \
     ~/.cargo/bin \
     ~/.rbenv/bin \
+    ~/.npm-global/bin \
     ~/.pyenv/shims \
     ~/.pyenv/bin \
     ~/.mint/bin \
