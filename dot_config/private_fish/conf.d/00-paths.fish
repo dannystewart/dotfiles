@@ -4,6 +4,7 @@ set -g fish_user_paths # Reset to empty
 
 # Add paths in reverse order (fish prepends)
 set possible_paths \
+    /Applications/Obsidian.app/Contents/MacOS \
     /opt/homebrew/opt/openjdk/bin \
     /opt/homebrew/opt/findutils/libexec/gnubin \
     /usr/local/opt/findutils/libexec/gnubin \
