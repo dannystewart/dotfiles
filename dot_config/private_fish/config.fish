@@ -20,7 +20,6 @@ set -gx EZA_ICONS_AUTO true
 
 # Fuck Node
 set -gx NVM_DIR "$HOME/.nvm"
-set -gx NODE_OPTIONS "--no-deprecation"
 
 # Use bat for manpages and show icons in eza output
 set -gx MANPAGER "sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
