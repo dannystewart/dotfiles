@@ -14,6 +14,7 @@ set possible_paths \
     ~/.rbenv/bin \
     ~/.npm-global/bin \
     ~/.volta/bin \
+    ~/.bun/bin \
     ~/.pyenv/shims \
     ~/.pyenv/bin \
     ~/.mint/bin \
