@@ -2,7 +2,9 @@
 set -gx TZ America/New_York
 
 # Set default text editor based on what's available
-if command -q cursor
+if command-q zed
+    set -gx EDITOR zed
+else if command -q cursor
     set -gx EDITOR cursor
 else if command -q code
     set -gx EDITOR code
