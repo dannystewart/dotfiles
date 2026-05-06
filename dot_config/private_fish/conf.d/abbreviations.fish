@@ -64,6 +64,12 @@ abbr -a spb "swift package clean"
 abbr -a spr "swift package reset"
 abbr -a spp "swift package purge-cache"
 
+# Tauri abbreviations
+test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a pti cd ~/Developer/Prism/PrismTauri
+test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a ptdev "cd ~/Developer/Prism/PrismTauri && pnpm tauri dev"
+test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a sti cd ~/Developer/Surfer/SurferTauri
+test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a stdev "cd ~/Developer/Surfer/SurferTauri && pnpm tauri dev"
+
 # Git
 abbr -a gs git status
 abbr -a ga git add -A
