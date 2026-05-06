@@ -66,8 +66,10 @@ abbr -a spp "swift package purge-cache"
 
 # Tauri abbreviations
 test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a pti cd ~/Developer/Prism/PrismTauri
+test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a pto cd "~/Developer/Prism/PrismTauri && opencode"
 test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a ptdev "cd ~/Developer/Prism/PrismTauri && pnpm tauri dev"
 test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a sti cd ~/Developer/Surfer/SurferTauri
+test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a sto cd "~/Developer/Surfer/SurferTauri && opencode"
 test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a stdev "cd ~/Developer/Surfer/SurferTauri && pnpm tauri dev"
 
 # Git
