@@ -10,9 +10,9 @@ set possible_paths \
     /usr/local/opt/findutils/libexec/gnubin \
     /var/lib/snapd/snap/bin \
     ~/.lmstudio/bin \
-    ~/.cargo/bin \
     ~/.rbenv/bin \
     ~/.npm-global/bin \
+    ~/.cargo/bin \
     ~/.volta/bin \
     ~/.bun/bin \
     ~/.pyenv/shims \

@@ -65,12 +65,14 @@ abbr -a spr "swift package reset"
 abbr -a spp "swift package purge-cache"
 
 # Tauri abbreviations
-test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a pti cd ~/Developer/Prism/PrismTauri
-test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a pto cd "~/Developer/Prism/PrismTauri && opencode"
-test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a ptdev "cd ~/Developer/Prism/PrismTauri && pnpm tauri dev"
-test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a sti cd ~/Developer/Surfer/SurferTauri
-test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a sto cd "~/Developer/Surfer/SurferTauri && opencode"
-test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a stdev "cd ~/Developer/Surfer/SurferTauri && pnpm tauri dev"
+test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a pri cd ~/Developer/Prism/PrismTauri
+test -d "$HOME/Developer/Prism/PrismTauri" && command -q opencode && abbr -a pro "cd ~/Developer/Prism/PrismTauri && opencode"
+test -d "$HOME/Developer/Prism/PrismTauri" && command -q amp && abbr -a pra "cd ~/Developer/Prism/PrismTauri && amp"
+test -d "$HOME/Developer/Prism/PrismTauri" && abbr -a prd "cd ~/Developer/Prism/PrismTauri && pnpm tauri dev"
+test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a sri cd ~/Developer/Surfer/SurferTauri
+test -d "$HOME/Developer/Surfer/SurferTauri" && command -q opencode && abbr -a sro "cd ~/Developer/Surfer/SurferTauri && opencode"
+test -d "$HOME/Developer/Surfer/SurferTauri" && command -q amp && abbr -a sra "cd ~/Developer/Surfer/SurferTauri && amp"
+test -d "$HOME/Developer/Surfer/SurferTauri" && abbr -a srd "cd ~/Developer/Surfer/SurferTauri && pnpm tauri dev"
 
 # Git
 abbr -a gs git status
