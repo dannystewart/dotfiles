@@ -15,6 +15,7 @@ set possible_paths \
     ~/.cargo/bin \
     ~/.volta/bin \
     ~/.bun/bin \
+    ~/Library/pnpm \
     ~/.pyenv/shims \
     ~/.pyenv/bin \
     ~/.mint/bin \
