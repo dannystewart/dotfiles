@@ -35,8 +35,7 @@ if (-not $env:HOMEBREW_PREFIX) {
             break
         }
     }
-}
-else {
+} else {
     function bru { brew update; brew upgrade; brew cleanup }
 }
 
@@ -54,6 +53,11 @@ if (Get-Command pyenv -ErrorAction SilentlyContinue) {
     }
 }
 
+# Initialize fnm
+if (Get-Command fnm -ErrorAction SilentlyContinue) {
+    fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
+}
+
 # cat replacement wrapper using bat if available
 if (Get-Command bat -ErrorAction SilentlyContinue) {
     function cat {
@@ -66,8 +70,7 @@ Remove-Item -Path Alias:ls -Force -ErrorAction SilentlyContinue
 function ls {
     if (Get-Command eza -ErrorAction SilentlyContinue) {
         eza --no-quotes --group-directories-first --icons @args
-    }
-    else {
+    } else {
         Get-ChildItem @args
     }
 }
