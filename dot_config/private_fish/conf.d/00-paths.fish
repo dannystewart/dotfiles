@@ -13,8 +13,9 @@ set possible_paths \
     ~/.rbenv/bin \
     ~/.npm-global/bin \
     ~/.cargo/bin \
-    ~/.volta/bin \
     ~/.bun/bin \
+    ~/.volta/bin \
+    ~/.vite-plus/bin \
     ~/Library/pnpm \
     ~/.pyenv/shims \
     ~/.pyenv/bin \

@@ -21,7 +21,6 @@ set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
 set -gx EZA_ICONS_AUTO true
 
 # I've become everything I claimed to hate
-set -gx NVM_DIR "$HOME/.nvm"
 set -gx PNPM_HOME "$HOME/Library/pnpm"
 if not string match -q -- "$PNPM_HOME/bin" $PATH
     set -gx PATH "$PNPM_HOME/bin" $PATH

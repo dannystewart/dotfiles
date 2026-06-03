@@ -6,25 +6,32 @@ PATH=$(getconf PATH)
 
 # Paths to add (lower paths come first)
 PATH_LIST="
-/opt/local/bin
-/sbin
-/System/Cryptexes/App/usr/bin
-/Library/Apple/usr/bin
-/usr/libexec
-/usr/local/bin
-$HOME/.local/bin/node
-$HOME/.local/bin
-$HOME/.bin
-$HOME/bin
-$HOME/.pyenv/bin
-$HOME/.pyenv/shims
-$HOME/.rbenv/bin
-$HOME/.cargo/bin
-$HOME/.lmstudio/bin
-/var/lib/snapd/snap/bin
-/usr/local/opt/findutils/libexec/gnubin
-/opt/homebrew/opt/findutils/libexec/gnubin
+/Applications/Obsidian.app/Contents/MacOS
 /opt/homebrew/opt/openjdk/bin
+/opt/homebrew/opt/findutils/libexec/gnubin
+/usr/local/opt/findutils/libexec/gnubin
+/var/lib/snapd/snap/bin
+$HOME/.lmstudio/bin
+$HOME/.rbenv/bin
+$HOME/.npm-global/bin
+$HOME/.cargo/bin
+$HOME/.bun/bin
+$HOME/.volta/bin
+$HOME/.vite-plus/bin
+$HOME/Library/pnpm
+$HOME/.pyenv/shims
+$HOME/.pyenv/bin
+$HOME/.mint/bin
+$HOME/bin
+$HOME/.bin
+$HOME/.local/bin
+$HOME/.local/bin/node
+/usr/local/bin
+/usr/libexec
+/Library/Apple/usr/bin
+/System/Cryptexes/App/usr/bin
+/sbin
+/opt/local/bin
 "
 
 # Use subshell to set PATH
