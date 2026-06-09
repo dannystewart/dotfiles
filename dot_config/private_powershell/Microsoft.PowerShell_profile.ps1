@@ -53,9 +53,9 @@ if (Get-Command pyenv -ErrorAction SilentlyContinue) {
     }
 }
 
-# Initialize Vite+
-if (Get-Command vp -ErrorAction SilentlyContinue) {
-    . "$env:USERPROFILE/.vite-plus/env.ps1"
+# Initialize fnm
+if (Get-Command fnm -ErrorAction SilentlyContinue) {
+    fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
 }
 
 # cat replacement wrapper using bat if available
