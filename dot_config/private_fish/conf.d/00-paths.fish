@@ -10,6 +10,7 @@ set possible_paths \
     /usr/local/opt/findutils/libexec/gnubin \
     /var/lib/snapd/snap/bin \
     ~/.lmstudio/bin \
+    ~/.omlx/bin \
     ~/.rbenv/bin \
     ~/.npm-global/bin \
     ~/.cargo/bin \

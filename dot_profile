@@ -12,6 +12,7 @@ PATH_LIST="
 /usr/local/opt/findutils/libexec/gnubin
 /var/lib/snapd/snap/bin
 $HOME/.lmstudio/bin
+$HOME/.omlx/bin
 $HOME/.rbenv/bin
 $HOME/.npm-global/bin
 $HOME/.cargo/bin
