@@ -7,7 +7,7 @@ set possible_paths \
     /Applications/Obsidian.app/Contents/MacOS \
     /opt/homebrew/opt/openjdk/bin \
     /opt/homebrew/opt/findutils/libexec/gnubin \
-    /usr/local/opt/findutils/libexec/gnubin \
+    /usr/local/bin \
     /var/lib/snapd/snap/bin \
     ~/.lmstudio/bin \
     ~/.omlx/bin \
@@ -25,12 +25,13 @@ set possible_paths \
     ~/.bin \
     ~/.local/bin \
     ~/.local/bin/node \
-    /usr/local/bin \
     /usr/libexec \
     /Library/Apple/usr/bin \
     /System/Cryptexes/App/usr/bin \
     /sbin \
-    /opt/local/bin
+    /opt/local/bin \
+    /opt/homebrew/sbin \
+    /opt/homebrew/bin
 
 for path in $possible_paths
     if test -d $path
