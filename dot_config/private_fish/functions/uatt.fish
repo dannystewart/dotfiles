@@ -37,7 +37,7 @@ function uatt --description "Update all the things"
 
     # Homebrew
     if command -q brew
-        brew update && brew upgrade && brew cleanup
+        brew update && brew upgrade -y && brew cleanup
         set updated true
     end
 
