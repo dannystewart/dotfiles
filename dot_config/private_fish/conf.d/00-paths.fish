@@ -21,6 +21,7 @@ set possible_paths \
     ~/.pyenv/shims \
     ~/.pyenv/bin \
     ~/.mint/bin \
+    ~/.opencode/bin \
     ~/bin \
     ~/.bin \
     ~/.local/bin \

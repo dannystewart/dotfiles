@@ -23,6 +23,7 @@ $HOME/Library/pnpm
 $HOME/.pyenv/shims
 $HOME/.pyenv/bin
 $HOME/.mint/bin
+$HOME/.opencode/bin
 $HOME/bin
 $HOME/.bin
 $HOME/.local/bin
