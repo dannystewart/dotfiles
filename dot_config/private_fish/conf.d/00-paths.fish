@@ -15,7 +15,6 @@ set possible_paths \
     ~/.npm-global/bin \
     ~/.cargo/bin \
     ~/.bun/bin \
-    ~/.volta/bin \
     ~/.vite-plus/bin \
     ~/Library/pnpm \
     ~/.pyenv/shims \

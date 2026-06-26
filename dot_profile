@@ -17,7 +17,6 @@ $HOME/.rbenv/bin
 $HOME/.npm-global/bin
 $HOME/.cargo/bin
 $HOME/.bun/bin
-$HOME/.volta/bin
 $HOME/.vite-plus/bin
 $HOME/Library/pnpm
 $HOME/.pyenv/shims
