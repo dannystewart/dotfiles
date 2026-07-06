@@ -1,2 +1,4 @@
 # Vite+ bin (https://viteplus.dev)
-source "$HOME/.vite-plus/env.fish"
+if test -f /opt/homebrew/bin/brew
+    source "$HOME/.vite-plus/env.fish"
+end
