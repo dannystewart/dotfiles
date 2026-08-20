@@ -6,7 +6,7 @@ switch (uname)
         # PowerShell abbreviations
         abbr -a pim pwsh "/Users/danny/Developer/iri/iri-powershell/Azure/Set-PIM.ps1" -Enable
         # Add Touch ID as allowable for sudo
-        abbr -a touchid sudo su root -c '/opt/homebrew/bin/gsed -i "2iauth       sufficient     pam_tid.so" /etc/pam.d/sudo'
+        abbr -a touchid "sudo /opt/homebrew/bin/gsed -i '2iauth       sufficient     pam_tid.so' /etc/pam.d/sudo"
         # Bluetooth reset
         abbr -a btreset "blueutil -p 0 && sleep 1 && blueutil -p 1"
         # Xcode DerivedData folder
