@@ -62,13 +62,13 @@
 {{ if eq .chezmoi.os "linux" -}}
 [safe]
 	directory = /home/linuxbrew/.linuxbrew
-	directory = /home/danny/prism/prod
+	directory = /home/danny/{{ .homeServerSafeDir }}
 {{- end }}
 {{ if eq .chezmoi.os "windows" -}}
 [safe]
 	directory = C:/Users/danny/.local/share/chezmoi
 {{- end }}
 {{- if eq .chezmoi.hostname "defiant" }}
-[includeIf "gitdir:/Users/danny/Developer/iriit/"]
+[includeIf "gitdir:/Users/danny/Developer/{{ .workProjectsDir }}/"]
     path = .gitconfig-iri
 {{- end }}
