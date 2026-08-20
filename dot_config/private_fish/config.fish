@@ -12,6 +12,9 @@ end
 # Disable Homebrew environment variable hints
 set -gx HOMEBREW_NO_ENV_HINTS 1
 
+# Bypass Homebrew's confirmation prompt
+set -gx NONINTERACTIVE 1
+
 # Set config paths and directories
 set -gx BAT_CONFIG_PATH "$HOME/.config/bat/config"
 set -gx EZA_CONFIG_DIR "$HOME/.config/eza"
